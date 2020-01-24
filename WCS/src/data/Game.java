@@ -56,7 +56,14 @@ public class Game {
 	}
 	
 	
-	
+	public void addPoint(Team team, int points) {
+		if(team.getName().equals(team1.getName())){
+			score1 += points;
+		}
+		else{
+			score2 += points;
+		}
+	}
 	
 	
 	

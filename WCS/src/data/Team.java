@@ -21,7 +21,7 @@ public class Team {
 	private int strenght;
 	private int reactionTime;
 	private int speed;
-	
+	private int form;
 	
 	public Team(String name, ArrayList<Player>  players) {
 		this.name = name;
@@ -29,164 +29,346 @@ public class Team {
 	}
 
 
+
+
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 
-	public ArrayList<Player>  getPlayers() {
+	/**
+	 * @return the players
+	 */
+	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 
 
-	public void setPlayers(ArrayList<Player>  players) {
-		this.players = players;
-	}
 
 
+	/**
+	 * @return the attack
+	 */
 	public int getAttack() {
 		return attack;
 	}
 
 
-	public void setAttack(int attack) {
-		this.attack = attack;
-	}
 
 
+	/**
+	 * @return the shot2Pts
+	 */
 	public int getShot2Pts() {
 		return shot2Pts;
 	}
 
 
-	public void setShot2Pts(int shot2Pts) {
-		this.shot2Pts = shot2Pts;
-	}
 
 
+	/**
+	 * @return the shot3Pts
+	 */
 	public int getShot3Pts() {
 		return shot3Pts;
 	}
 
 
-	public void setShot3Pts(int shot3Pts) {
-		this.shot3Pts = shot3Pts;
-	}
 
 
+	/**
+	 * @return the freeThrows
+	 */
 	public int getFreeThrows() {
 		return freeThrows;
 	}
 
 
-	public void setFreeThrows(int freeThrows) {
-		this.freeThrows = freeThrows;
-	}
 
 
+	/**
+	 * @return the pass
+	 */
 	public int getPass() {
 		return pass;
 	}
 
 
-	public void setPass(int pass) {
-		this.pass = pass;
-	}
 
 
+	/**
+	 * @return the ballHandle
+	 */
 	public int getBallHandle() {
 		return ballHandle;
 	}
 
 
-	public void setBallHandle(int ballHandle) {
-		this.ballHandle = ballHandle;
-	}
 
 
+	/**
+	 * @return the reboundOff
+	 */
 	public int getReboundOff() {
 		return reboundOff;
 	}
 
 
-	public void setReboundOff(int reboundOff) {
-		this.reboundOff = reboundOff;
-	}
 
 
+	/**
+	 * @return the defense
+	 */
 	public int getDefense() {
 		return defense;
 	}
 
 
-	public void setDefense(int defense) {
-		this.defense = defense;
-	}
 
 
+	/**
+	 * @return the block
+	 */
 	public int getBlock() {
 		return block;
 	}
 
 
-	public void setBlock(int block) {
-		this.block = block;
-	}
 
 
+	/**
+	 * @return the steal
+	 */
 	public int getSteal() {
 		return steal;
 	}
 
 
-	public void setSteal(int steal) {
-		this.steal = steal;
-	}
 
 
+	/**
+	 * @return the reboundDef
+	 */
 	public int getReboundDef() {
 		return reboundDef;
 	}
 
 
-	public void setReboundDef(int reboundDef) {
-		this.reboundDef = reboundDef;
-	}
 
 
+	/**
+	 * @return the strenght
+	 */
 	public int getStrenght() {
 		return strenght;
 	}
 
 
-	public void setStrenght(int strenght) {
-		this.strenght = strenght;
-	}
 
 
+	/**
+	 * @return the reactionTime
+	 */
 	public int getReactionTime() {
 		return reactionTime;
 	}
 
 
-	public void setReactionTime(int reactionTime) {
-		this.reactionTime = reactionTime;
-	}
 
 
+	/**
+	 * @return the speed
+	 */
 	public int getSpeed() {
 		return speed;
 	}
 
 
+
+
+	/**
+	 * @return the form
+	 */
+	public int getForm() {
+		return form;
+	}
+
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	/**
+	 * @param players the players to set
+	 */
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+
+
+
+
+	/**
+	 * @param attack the attack to set
+	 */
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+
+
+
+	/**
+	 * @param shot2Pts the shot2Pts to set
+	 */
+	public void setShot2Pts(int shot2Pts) {
+		this.shot2Pts = shot2Pts;
+	}
+
+
+
+
+	/**
+	 * @param shot3Pts the shot3Pts to set
+	 */
+	public void setShot3Pts(int shot3Pts) {
+		this.shot3Pts = shot3Pts;
+	}
+
+
+
+
+	/**
+	 * @param freeThrows the freeThrows to set
+	 */
+	public void setFreeThrows(int freeThrows) {
+		this.freeThrows = freeThrows;
+	}
+
+
+
+
+	/**
+	 * @param pass the pass to set
+	 */
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
+
+
+
+
+	/**
+	 * @param ballHandle the ballHandle to set
+	 */
+	public void setBallHandle(int ballHandle) {
+		this.ballHandle = ballHandle;
+	}
+
+
+
+
+	/**
+	 * @param reboundOff the reboundOff to set
+	 */
+	public void setReboundOff(int reboundOff) {
+		this.reboundOff = reboundOff;
+	}
+
+
+
+
+	/**
+	 * @param defense the defense to set
+	 */
+	public void setDefense(int defense) {
+		this.defense = defense;
+	}
+
+
+
+
+	/**
+	 * @param block the block to set
+	 */
+	public void setBlock(int block) {
+		this.block = block;
+	}
+
+
+
+
+	/**
+	 * @param steal the steal to set
+	 */
+	public void setSteal(int steal) {
+		this.steal = steal;
+	}
+
+
+
+
+	/**
+	 * @param reboundDef the reboundDef to set
+	 */
+	public void setReboundDef(int reboundDef) {
+		this.reboundDef = reboundDef;
+	}
+
+
+
+
+	/**
+	 * @param strenght the strenght to set
+	 */
+	public void setStrenght(int strenght) {
+		this.strenght = strenght;
+	}
+
+
+
+
+	/**
+	 * @param reactionTime the reactionTime to set
+	 */
+	public void setReactionTime(int reactionTime) {
+		this.reactionTime = reactionTime;
+	}
+
+
+
+
+	/**
+	 * @param speed the speed to set
+	 */
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+
+
+
+	/**
+	 * @param form the form to set
+	 */
+	public void setForm(int form) {
+		this.form = form;
+	}
+
+
 
 
 	@Override
@@ -197,6 +379,8 @@ public class Team {
 		}
 		return value;
 	}
+	
+	
 	
 	
 	

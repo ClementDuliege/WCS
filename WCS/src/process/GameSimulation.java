@@ -4,18 +4,32 @@ import java.time.Duration;
 import java.util.Random;
 
 import data.*;
+import usual.*;
 
 
 public class GameSimulation {
 
-	private Duration duration = Duration.ofSeconds(0);
+	private int duration;
 	private Game game;
+	
+	
+	
+	
+	/**
+	 * @param game
+	 */
+	public GameSimulation(Game game) {
+		super();
+		this.game = game;
+	}
+
+
 	
 	
 	/**
 	 * @return the duration
 	 */
-	public Duration getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
@@ -23,7 +37,7 @@ public class GameSimulation {
 	/**
 	 * @param duration the duration to set
 	 */
-	public void setDuration(Duration duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
@@ -43,10 +57,6 @@ public class GameSimulation {
 		this.game = game;
 	}
 
-
-	public GameSimulation(Game game) {
-		this.game = game;
-	}
 	
 	
 	public void play() {
@@ -57,20 +67,40 @@ public class GameSimulation {
 		int quarter = 0;
 		int actionTime = 0;
 		Team teamHadBall = betweenTwo(team1,team2);
-		Team teamDontHadBall = otherTeam(teamHadBall,game);
+		Team teamDontHadBall = otherTeam(teamHadBall);
 		
 		int action;
 		
-		while( (duration.toMillis()/1000)!=2880 ) {
-			action = chooseActionToDo(game,3);
+		while(duration!=2880) {
+			action = chooseActionToDo(3);
 			if(action==0 || action==1) { //if pass or dribble
-				if(action==0) {
-					if(teamHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
-							< teamDontHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
+				if(action == 0) {
+					if(pass(teamHadBall)) {
 						actionTime = 0;
-						
+						this.duration+=3;
+						teamHadBall = teamDontHadBall;
+						teamDontHadBall= otherTeam(teamHadBall);	
+					}
+					else {
+						actionTime +=3;
+						this.duration+=3;
 					}
 				}
+			}
+			else if(action == 2) {
+				int mistake = MyRandom.getIntIntoMinMax(0, 9);
+				if(mistake==1) { //case when a fault is done on the team who had the ball (10% chance)
+					freeThrow(teamHadBall);
+					teamHadBall = teamDontHadBall;
+					teamDontHadBall= otherTeam(teamHadBall);	
+
+				}
+				else {
+					shot(teamHadBall);
+					teamHadBall = teamDontHadBall;
+					teamDontHadBall= otherTeam(teamHadBall);	
+				}
+				
 			}
 			
 			
@@ -80,7 +110,7 @@ public class GameSimulation {
 	
 	
 	/**
-	 * @return the duration
+	 * @return the team who got the ball in the between two
 	 */
 	public Team betweenTwo(Team team1, Team team2) {
 		return (Team) MyRandom.oneOrTwo((Object)team1,(Object)team2);
@@ -93,7 +123,7 @@ public class GameSimulation {
 	 * @game game 
 	 * @return the other team in the game
 	 */
-	public Team otherTeam(Team team, Game game) {
+	public Team otherTeam(Team team) {
 		if(team == game.getTeam1()) {
 			return game.getTeam2();
 		}
@@ -103,12 +133,37 @@ public class GameSimulation {
 	
 	
 	/**
-	 * @return what action will be happened
+	 * @return what action will happen
 	 */
-	public int chooseActionToDo(Game game, int max) {
+	public int chooseActionToDo(int max) {
 		return MyRandom.getIntIntoMinMax(0, max);
 	}
 	
+	
+	
+	//TODO ajouter cas ou faute, reduire le taux de reussite 
+	public void shot(Team team) {
+		
+	}
+	//TODO 1 si il a marqué
+	public void freeThrow(Team teamHadBall) {
+		float succesRate = teamHadBall.getFreeThrows() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ;
+		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
+		if(succesRate<lessThan) {
+			game.addPoint(teamHadBall, 1);
+		}
+	}
+	
+	public boolean pass(Team teamHadBall) {
+		Team teamDontHadBall = otherTeam(teamHadBall);
+		if(teamHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
+				>= teamDontHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
+			return true;
+		}
+		return false;
+	}
+	
+
 	
 	
 	public void analyse() {
