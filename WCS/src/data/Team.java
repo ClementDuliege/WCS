@@ -1,11 +1,12 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Team {
 	
 	private String name;
-	private HashMap<String,Player> players;
+	private ArrayList<Player>  players;
 	private int attack;
 	private int shot2Pts;
 	private int shot3Pts;
@@ -22,7 +23,7 @@ public class Team {
 	private int speed;
 	
 	
-	public Team(String name, HashMap<String, Player> players) {
+	public Team(String name, ArrayList<Player>  players) {
 		this.name = name;
 		this.players = players;
 	}
@@ -38,12 +39,12 @@ public class Team {
 	}
 
 
-	public HashMap<String, Player> getPlayers() {
+	public ArrayList<Player>  getPlayers() {
 		return players;
 	}
 
 
-	public void setPlayers(HashMap<String, Player> players) {
+	public void setPlayers(ArrayList<Player>  players) {
 		this.players = players;
 	}
 
@@ -186,6 +187,18 @@ public class Team {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+
+	@Override
+	public String toString() {
+		String value="Team name : "+name+"\n";
+		for(Player p : players) {
+			value+=p.getName()+"\n";
+		}
+		return value;
+	}
+	
+	
 	
 	
 	
