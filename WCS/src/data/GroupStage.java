@@ -66,6 +66,18 @@ public class GroupStage {
 	public void setGames(ArrayList<Game> games) {
 		this.games = games;
 	}
+
+	@Override
+	public String toString() {
+		String value=name+"\n";
+		value+="	1- "+team1.getName()+"\n";
+		value+="	2- "+team2.getName()+"\n";
+		value+="	3- "+team3.getName()+"\n";
+		value+="	4- "+team4.getName()+"\n";
+		return value;
+	}
+	
+	
 	
 	
 	
