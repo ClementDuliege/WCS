@@ -400,8 +400,23 @@ public class Team {
 			this.reactionTime+= p.getReactionTime();
 			this.speed+= p.getSpeed();
 			this.form+= p.getForm();
-
 		}
+		int nbPLayers = players.size();
+		this.attack /= nbPLayers;;
+		this.shot2Pts /= nbPLayers;
+		this.shot3Pts /= nbPLayers;
+		this.freeThrows/= nbPLayers;
+		this.pass/= nbPLayers;
+		this.ballHandle/= nbPLayers;
+		this.reboundOff/= nbPLayers;
+		this.defense/= nbPLayers;
+		this.block/= nbPLayers;
+		this.steal/= nbPLayers;
+		this.reboundDef/= nbPLayers;
+		this.strenght/= nbPLayers;
+		this.reactionTime/= nbPLayers;
+		this.speed/= nbPLayers;
+		this.form/= nbPLayers;;
 	}
 	
 	

@@ -61,8 +61,8 @@ public class GeneratePlayer {
 	
 	public int generateValueDefense() {
 		Random random = new Random();
-		int valueMin=0;
-		int valueMax=50;
+		int valueMin=40;
+		int valueMax=100;
 		int value = valueMin + random.nextInt(valueMax - valueMin);
 		return value;
 	}

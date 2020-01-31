@@ -39,7 +39,7 @@ public class Test {
 		
 		Game game = new Game(team1, team2);
 		GameSimulation gameTest = new GameSimulation(game);
-System.out.println(		game.getTeam1().getShot2Pts());
+System.out.println(		game.getTeam1().getShot2Pts()+" DDDD" +game.getTeam1().getBlock() + " CLEMENT : " + game.getTeam2().getShot2Pts()+"FAFA"+game.getTeam2().getBlock() );
 		gameTest.play();
 		System.out.println("team1 : " + gameTest.getGame().getScore1()+" TEAM 2 : " +gameTest.getGame().getScore2() );
  
