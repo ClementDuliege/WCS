@@ -75,7 +75,7 @@ public class GameSimulation {
 			action = chooseActionToDo(3);
 			if(action==0 || action==1) { //if pass or dribble
 				if(action == 0) {
-					if(pass(teamHadBall)) {
+					if(!pass(teamHadBall)) {
 						actionTime = 0;
 						this.duration+=3;
 						teamHadBall = teamDontHadBall;
@@ -144,7 +144,13 @@ public class GameSimulation {
 	//TODO ajouter cas ou faute, reduire le taux de reussite 
 	public void shot(Team team) {
 		
+		
+		
+		
 	}
+	
+	
+	
 	//TODO 1 si il a marqué
 	public void freeThrow(Team teamHadBall) {
 		float succesRate = teamHadBall.getFreeThrows() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ;
