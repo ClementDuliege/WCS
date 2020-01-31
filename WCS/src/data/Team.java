@@ -26,6 +26,7 @@ public class Team {
 	public Team(String name, ArrayList<Player>  players) {
 		this.name = name;
 		this.players = players;
+		getStats();
 	}
 
 
@@ -382,7 +383,26 @@ public class Team {
 	
 	
 	
-	
+	public void getStats() {
+		for(Player p : players) {
+			this.attack+= p.getAttack();
+			this.shot2Pts+= p.getShot2Pts();
+			this.shot3Pts+= p.getShot3Pts();
+			this.freeThrows+= p.getFreeThrows();
+			this.pass+= p.getPass();
+			this.ballHandle+= p.getBallHandle();
+			this.reboundOff+= p.getReboundOff();
+			this.defense+= p.getDefense();
+			this.block+= p.getBlock();
+			this.steal+= p.getSteal();
+			this.reboundDef+= p.getReboundDef();
+			this.strenght+= p.getStrenght();
+			this.reactionTime+= p.getReactionTime();
+			this.speed+= p.getSpeed();
+			this.form+= p.getForm();
+
+		}
+	}
 	
 	
 	

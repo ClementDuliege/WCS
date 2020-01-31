@@ -39,9 +39,9 @@ public class Test {
 		
 		Game game = new Game(team1, team2);
 		GameSimulation gameTest = new GameSimulation(game);
-		
+System.out.println(		game.getTeam1().getShot2Pts());
 		gameTest.play();
-		System.out.println("team1 :" + gameTest.getGame().getScore1()+" TEAM 2 : " +gameTest.getGame().getScore2() );
+		System.out.println("team1 : " + gameTest.getGame().getScore1()+" TEAM 2 : " +gameTest.getGame().getScore2() );
  
 	}
 
