@@ -157,8 +157,8 @@ public class GameSimulation {
 		Team teamDontHadBall = otherTeam(teamHadBall);
 		int kindOfShot = MyRandom.getIntIntoMinMax(1, 100);
 		if(kindOfShot <= 60) {//2points
-			if(teamHadBall.getShot2Pts() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
-					>= teamDontHadBall.getBlock() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
+			if(teamHadBall.getShot2Pts() * /* teamHadBall.getForm() * */ MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) 
+					>= teamDontHadBall.getBlock() * /* teamHadBall.getForm()* */ MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) ) {
 				this.game.addPoint(teamHadBall, 2);
 				System.out.println("shot 2pts");
 
@@ -168,8 +168,8 @@ public class GameSimulation {
 			}
 		}
 		else {//3points
-			if(teamHadBall.getShot3Pts() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
-					>= teamDontHadBall.getBlock() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
+			if(teamHadBall.getShot3Pts() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) 
+					>= teamDontHadBall.getBlock() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) ) {
 				this.game.addPoint(teamHadBall, 3);
 				System.out.println("shot 3pts");
 

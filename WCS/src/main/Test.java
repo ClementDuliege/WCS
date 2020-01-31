@@ -23,14 +23,14 @@ public class Test {
 
 		
 		for(Team t:teams) {
-	//		System.out.println(t.toString());
+			//System.out.println(t.toString());
 		}
 		
 		GenerateGroupStage generateGroupStage=new GenerateGroupStage(teams);
 		HashMap<String, GroupStage> groupeStage=generateGroupStage.generateGroupStage1();
 		
 		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
-		  //  System.out.println(pool.getValue().toString());
+		    System.out.println(pool.getValue().toString());
 		}
 	
 		

@@ -46,13 +46,14 @@ public class GeneratePlayer {
 		
 		this.playerCreated=new Player(this.name,attack,shot2Pts,shot3Pts,freeThrows,pass,ballHandle,reboundOff,defense,block,steal,reboundDef,strenght
 				,reactionTime,speed);
+		playerCreated.setForm(generateValueAttack());
 		
 		return playerCreated;
 	}
 	
 	public int generateValueAttack() {
 		Random random = new Random();
-		int valueMin=50;
+		int valueMin=90;
 		int valueMax=100;
 		int value = valueMin + random.nextInt(valueMax - valueMin);
 		return value;
