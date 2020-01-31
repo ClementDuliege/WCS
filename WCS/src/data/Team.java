@@ -378,7 +378,7 @@ public class Team {
 		for(Player p : players) {
 			value+=p.getName()+"\n";
 		}
-		return value;
+		return value ;
 	}
 	
 	
