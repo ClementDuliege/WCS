@@ -155,6 +155,8 @@ public class GameSimulation {
 			if(teamHadBall.getShot2Pts() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
 					>= teamDontHadBall.getBlock() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
 				this.game.addPoint(teamHadBall, 2);
+			}
+			else {
 				
 			}
 		}
