@@ -33,7 +33,7 @@ public class Test {
 		    System.out.println(pool.getValue().toString());
 		}
 	
-		
+		 
 		Team team1 = teams.get(1);
 		Team team2 = teams.get(2);
 		
