@@ -22,8 +22,11 @@ public class Player {
 	private int strenght;
 	private int reactionTime;
 	private int speed;
-	private int form;
 	
+	
+	public Player(String name) {
+		this.name = name;
+	}
 	public Player(String name, int attack, int shot2Pts, int shot3Pts, int freeThrows, int pass, int ballHandle,
 			int reboundOff, int defense, int block, int steal, int reboundDef, int strenght, int reactionTime,
 			int speed) {
@@ -149,12 +152,6 @@ public class Player {
 		return speed;
 	}
 
-	/**
-	 * @return the form
-	 */
-	public int getForm() {
-		return form;
-	}
 
 	/**
 	 * @param name the name to set
@@ -261,12 +258,6 @@ public class Player {
 		this.speed = speed;
 	}
 
-	/**
-	 * @param form the form to set
-	 */
-	public void setForm(int form) {
-		this.form = form;
-	}
 
 
 	

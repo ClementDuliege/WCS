@@ -21,7 +21,7 @@ public class Team {
 	private int strenght;
 	private int reactionTime;
 	private int speed;
-	private int form;
+	private int form = 1;
 	
 	public Team(String name, ArrayList<Player>  players) {
 		this.name = name;
@@ -399,7 +399,6 @@ public class Team {
 			this.strenght+= p.getStrenght();
 			this.reactionTime+= p.getReactionTime();
 			this.speed+= p.getSpeed();
-			this.form+= p.getForm();
 		}
 		int nbPLayers = players.size();
 		this.attack /= nbPLayers;;
@@ -416,7 +415,6 @@ public class Team {
 		this.strenght/= nbPLayers;
 		this.reactionTime/= nbPLayers;
 		this.speed/= nbPLayers;
-		this.form/= nbPLayers;;
 	}
 	
 	
