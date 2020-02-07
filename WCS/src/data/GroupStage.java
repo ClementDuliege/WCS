@@ -9,7 +9,8 @@ public class GroupStage {
 	private Team team2;
 	private Team team3;
 	private Team team4;
-	private ArrayList<Game> games;
+	private ArrayList<Game> listGames=new  ArrayList<Game>() ;
+	
 	
 	public GroupStage(String name, Team team1, Team team2, Team team3, Team team4) {
 		this.name = name;
@@ -17,6 +18,20 @@ public class GroupStage {
 		this.team2 = team2;
 		this.team3 = team3;
 		this.team4 = team4;
+		
+		Game game1_2 = new Game(team1,team2);
+		listGames.add(game1_2);
+		Game game1_3 = new Game(team1,team3);
+		listGames.add(game1_3);
+		Game game1_4 = new Game(team1,team4);
+		listGames.add(game1_4);
+		Game game2_3 = new Game(team2,team3);
+		listGames.add(game2_3);
+		Game game2_4 = new Game(team2,team4);
+		listGames.add(game2_4);
+		Game game3_4 = new Game(team3,team4);
+		listGames.add(game3_4);
+		
 	}
 
 	public String getName() {
@@ -60,12 +75,10 @@ public class GroupStage {
 	}
 
 	public ArrayList<Game> getGames() {
-		return games;
+		return listGames;
 	}
 
-	public void setGames(ArrayList<Game> games) {
-		this.games = games;
-	}
+	
 
 	@Override
 	public String toString() {
