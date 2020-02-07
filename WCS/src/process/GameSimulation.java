@@ -74,6 +74,8 @@ public class GameSimulation {
 		
 		while(duration!=2880) {
 			action = chooseActionToDo(2,actionTime);
+			System.out.println(action);
+			
 			if(action==0 || action==1) { //if pass or dribble
 				if(action == 0) {
 					System.out.println("Passe/dribble");
@@ -93,12 +95,15 @@ public class GameSimulation {
 
 				int mistake = MyRandom.getIntIntoMinMax(0, 9);
 				if(mistake==1) { //case when a fault is done on the team who had the ball (10% chance)
+					System.out.println("Lancer franc");
 					freeThrow(teamHadBall);
 					teamHadBall = teamDontHadBall;
 					teamDontHadBall= otherTeam(teamHadBall);	
 
 				}
 				else {
+					System.out.println("Tir");
+
 					shot(teamHadBall);
 					teamHadBall = teamDontHadBall;
 					teamDontHadBall= otherTeam(teamHadBall);	
@@ -157,26 +162,29 @@ public class GameSimulation {
 		Team teamDontHadBall = otherTeam(teamHadBall);
 		int kindOfShot = MyRandom.getIntIntoMinMax(1, 100);
 		if(kindOfShot <= 60) {//2points
-			if(teamHadBall.getShot2Pts() * /* teamHadBall.getForm() * */ MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) 
-					>= teamDontHadBall.getBlock() * /* teamHadBall.getForm()* */ MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) ) {
+			
+			float succesRate = ((teamHadBall.getShot2Pts() * teamHadBall.getForm()) - teamDontHadBall.getBlock() * teamHadBall.getForm())* MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1);  
+
+			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
+			if(succesRate>lessThan) {
 				this.game.addPoint(teamHadBall, 2);
 				System.out.println("shot 2pts");
-
 			}
 			else {
-				System.out.println("shot 2pts raté");
+				System.out.println("shot 2pts ratÃ©");
 			}
+
 		}
 		else {//3points
-			if(teamHadBall.getShot3Pts() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) 
-					>= teamDontHadBall.getBlock() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.8,(float)1.5) ) {
+			float succesRate = ((teamHadBall.getShot2Pts() * teamHadBall.getForm()) - teamDontHadBall.getBlock() * teamHadBall.getForm())* MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1);  
+
+			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
+			if(succesRate>lessThan) {
 				this.game.addPoint(teamHadBall, 3);
 				System.out.println("shot 3pts");
-
 			}
 			else {
-				System.out.println("shot 3pts raté");
-
+				System.out.println("shot 3pts ratÃ©");
 			}
 		}
 		
@@ -188,27 +196,25 @@ public class GameSimulation {
 	public void freeThrow(Team teamHadBall) {
 		float succesRate = teamHadBall.getFreeThrows() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ;
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
-		if(succesRate<lessThan) {
+		if(succesRate>lessThan) {
 			game.addPoint(teamHadBall, 1);
 		}
 	}
 	
 	public boolean pass(Team teamHadBall) {
+		
 		Team teamDontHadBall = otherTeam(teamHadBall);
-		if(teamHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) 
-				>= teamDontHadBall.getPass() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ) {
+		
+		//Define succesRate of the pass
+		float succesRate = ((teamHadBall.getPass() * teamHadBall.getForm()) - teamDontHadBall.getSteal() * teamHadBall.getForm())* MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1);  
+
+		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
+		if(succesRate>lessThan) {
 			return true;
 		}
 		return false;
 	}
-	
-
-	
-	
-	public void analyse() {
 		
-	}
-	
 	
 	public static void main(String[] args) {
 		

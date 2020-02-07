@@ -1,7 +1,7 @@
 package generate;
 
 import java.util.Random;
-
+import usual.*;
 import data.Player;
 
 public class GeneratePlayer {
@@ -28,7 +28,7 @@ public class GeneratePlayer {
 		this.playerCreated.setReboundOff(generateValueDefense());
 		this.playerCreated.setBlock(generateValueDefense());
 		this.playerCreated.setDefense(generateValueDefense());
-		this.playerCreated.setSteal(generateValueDefense());
+		this.playerCreated.setSteal(MyRandom.getIntIntoMinMax(0, 10));
 		this.playerCreated.setReboundDef(generateValueDefense());
 		this.playerCreated.setStrenght(generateValueDefense());
 		this.playerCreated.setReactionTime(generateValueDefense());		
