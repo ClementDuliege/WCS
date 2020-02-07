@@ -10,6 +10,7 @@ public class GroupStage {
 	private Team team3;
 	private Team team4;
 	private ArrayList<Game> listGames=new  ArrayList<Game>() ;
+	private ClassementGroupStage ranking;
 	
 	
 	public GroupStage(String name, Team team1, Team team2, Team team3, Team team4) {
@@ -18,6 +19,8 @@ public class GroupStage {
 		this.team2 = team2;
 		this.team3 = team3;
 		this.team4 = team4;
+		
+		this.ranking=new ClassementGroupStage(team1, team2, team3, team4);
 		
 		Game game1_2 = new Game(team1,team2);
 		listGames.add(game1_2);
@@ -33,6 +36,16 @@ public class GroupStage {
 		listGames.add(game3_4);
 		
 	}
+	
+	
+
+	/**
+	 * @return the ranking
+	 */
+	public ClassementGroupStage getRanking() {
+		return ranking;
+	}
+
 
 	public String getName() {
 		return name;

@@ -74,11 +74,10 @@ public class GameSimulation {
 		
 		while(duration!=2880) {
 			action = chooseActionToDo(2,actionTime);
-			System.out.println(action);
 			
 			if(action==0 || action==1) { //if pass or dribble
 				if(action == 0) {
-					System.out.println("Passe/dribble");
+					//System.out.println("Passe/dribble");
 					if(!pass(teamHadBall)) {
 						actionTime = 0;
 						this.duration+=3;
@@ -95,14 +94,14 @@ public class GameSimulation {
 
 				int mistake = MyRandom.getIntIntoMinMax(0, 9);
 				if(mistake==1) { //case when a fault is done on the team who had the ball (10% chance)
-					System.out.println("Lancer franc");
+					//System.out.println("Lancer franc");
 					freeThrow(teamHadBall);
 					teamHadBall = teamDontHadBall;
 					teamDontHadBall= otherTeam(teamHadBall);	
 
 				}
 				else {
-					System.out.println("Tir");
+					//System.out.println("Tir");
 
 					shot(teamHadBall);
 					teamHadBall = teamDontHadBall;
@@ -168,10 +167,10 @@ public class GameSimulation {
 			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 			if(succesRate>lessThan) {
 				this.game.addPoint(teamHadBall, 2);
-				System.out.println("shot 2pts");
+				//System.out.println("shot 2pts");
 			}
 			else {
-				System.out.println("shot 2pts raté");
+				//System.out.println("shot 2pts raté");
 			}
 
 		}
@@ -181,10 +180,10 @@ public class GameSimulation {
 			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 			if(succesRate>lessThan) {
 				this.game.addPoint(teamHadBall, 3);
-				System.out.println("shot 3pts");
+				//System.out.println("shot 3pts");
 			}
 			else {
-				System.out.println("shot 3pts raté");
+				//System.out.println("shot 3pts raté");
 			}
 		}
 		

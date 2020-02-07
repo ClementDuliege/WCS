@@ -31,11 +31,25 @@ public class Test {
 		HashMap<String, GroupStage> groupeStage=generateGroupStage.generateGroupStage1();
 		
 		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
-		    
+			ArrayList<Game> listGames = pool.getValue().getGames();
+			for(Game game : listGames) {
+				GameSimulation gameTest = new GameSimulation(game);
+				gameTest.play();
+				
+				if(game.getScore1()<game.getScore2()) {
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
+				}
+				else {
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
+				}
+				//System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+			}
+			
+			System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
 	
 		 
-		Team team1 = teams.get(1);
+		/*Team team1 = teams.get(1);
 		Team team2 = teams.get(2);
 		Team team3 = teams.get(3);
 		Team team4 = teams.get(4);
@@ -53,7 +67,7 @@ public class Test {
 		c.addPointWinningTeam(team2.getName());
 		c.addPointWinningTeam(team4.getName());
 		
-		System.out.print(c.toString());
+		System.out.print(c.toString());*/
 		
  
 	}
