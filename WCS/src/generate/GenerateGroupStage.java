@@ -111,8 +111,7 @@ public  HashMap<String, GroupStage> generateGroupStage2(){
 		
 		teamsAlreadyChosen.add(teamChosen);
 		
-		return teamChosen;
-		
+		return teamChosen;	
 	}
 	
 	
