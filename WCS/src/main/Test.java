@@ -26,10 +26,12 @@ public class Test {
 		for(Team t:teams) {
 			//System.out.println(t.toString());
 		}
-		
+		/////////////////////////////// CREATION GROUPSTAGE 1//////////////////////////////////////////////
 		GenerateGroupStage generateGroupStage=new GenerateGroupStage(teams);
 		HashMap<String, GroupStage> groupeStage=generateGroupStage.generateGroupStage1();
 		
+		
+		/////////////////////////////  SIMULATE GAME GROUPSTAGE 1////////////////////////////////////////////
 		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
 			ArrayList<Game> listGames = pool.getValue().getGames();
 			for(Game game : listGames) {
@@ -42,13 +44,50 @@ public class Test {
 				else {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
 				}
-				//System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+				
 			}
 			
 			System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
-	
+		
+		////////////////////////////////// GET TEAM QUALIFIED GROUPSTAGE 2 ///////////////////////////////
+		ArrayList<Team> teamQualified=new ArrayList<Team>();
+		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
+			
+			
+			Team team1 = pool.getValue().getRanking().getRankingTeams()[0];
+			Team team2 = pool.getValue().getRanking().getRankingTeams()[1];
+			teamQualified.add(team1);
+			teamQualified.add(team2);
+			
+		}
+		
+		/////////////////////////////// CREATION GROUPSTAGE 2//////////////////////////////////////////////
+		generateGroupStage.setTeams(teamQualified);
+		HashMap<String, GroupStage> groupeStage2 =generateGroupStage.generateGroupStage2();
+		
+		/////////////////////////////  SIMULATE GAME GROUPSTAGE 2////////////////////////////////////////////
+		for (HashMap.Entry<String, GroupStage> pool : groupeStage2.entrySet()) {
+			ArrayList<Game> listGames = pool.getValue().getGames();
+			for(Game game : listGames) {
+				GameSimulation gameTest = new GameSimulation(game);
+				gameTest.play();
+				
+				if(game.getScore1()<game.getScore2()) {
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
+				}
+				else {
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
+				}
+				
+			}
+			
+			System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+		}
 		 
+		
+		
+		
 		/*Team team1 = teams.get(1);
 		Team team2 = teams.get(2);
 		Team team3 = teams.get(3);

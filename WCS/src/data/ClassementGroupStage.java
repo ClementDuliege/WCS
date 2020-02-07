@@ -26,6 +26,17 @@ public class ClassementGroupStage {
 		
 	}
 	
+	
+	
+	/**
+	 * @return the rankingTeams
+	 */
+	public Team[] getRankingTeams() {
+		return rankingTeams;
+	}
+
+
+
 	public void addPointWinningTeam(String nameTeam) {
 		int score =scoreTeams.get(nameTeam);
 		score+=3;
