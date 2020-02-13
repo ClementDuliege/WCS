@@ -109,12 +109,12 @@ public class WorldCup {
 				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
 				
 				if(game.getScore1()<game.getScore2()) {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
-					ranking.addPointWinningTeam(game.getTeam2().getName(),3);
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
+					ranking.addPointWinningTeam(game.getTeam2().getName(),4);
 				}
 				else {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
-					ranking.addPointWinningTeam(game.getTeam1().getName(),3);
+					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
+					ranking.addPointWinningTeam(game.getTeam1().getName(),4);
 				}
 				
 			}
@@ -143,20 +143,20 @@ public class WorldCup {
 		Team teamWin1 ,teamWin2;
 		if(quarterGame1.getScore1()<quarterGame1.getScore2()) {
 			teamWin1=quarterGame1.getTeam2();
-			ranking.addPointWinningTeam(quarterGame1.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(quarterGame1.getTeam2().getName(),16);
 		}
 		else {
 			teamWin1=quarterGame1.getTeam1();
-			ranking.addPointWinningTeam(quarterGame1.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(quarterGame1.getTeam1().getName(),16);
 		}
 		
 		if(quarterGame2.getScore1()<quarterGame2.getScore2()) {
 			teamWin2=quarterGame2.getTeam2();
-			ranking.addPointWinningTeam(quarterGame2.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(quarterGame2.getTeam2().getName(),16);
 		}
 		else {
 			teamWin2=quarterGame2.getTeam1();
-			ranking.addPointWinningTeam(quarterGame2.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(quarterGame2.getTeam1().getName(),16);
 		}
 		Game semiGame1 = new Game(teamWin1,teamWin2);
 		
@@ -178,20 +178,20 @@ public class WorldCup {
 		Team teamWin3 ,teamWin4;
 		if(quarterGame3.getScore1()<quarterGame3.getScore2()) {
 			teamWin3=quarterGame3.getTeam2();
-			ranking.addPointWinningTeam(quarterGame3.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(quarterGame3.getTeam2().getName(),16);
 		}
 		else {
 			teamWin3=quarterGame3.getTeam1();
-			ranking.addPointWinningTeam(quarterGame3.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(quarterGame3.getTeam1().getName(),16);
 		}
 		
 		if(quarterGame4.getScore1()<quarterGame4.getScore2()) {
 			teamWin4=quarterGame4.getTeam2();
-			ranking.addPointWinningTeam(quarterGame4.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(quarterGame4.getTeam2().getName(),16);
 		}
 		else {
 			teamWin4=quarterGame4.getTeam1();
-			ranking.addPointWinningTeam(quarterGame4.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(quarterGame4.getTeam1().getName(),16);
 		}
 		Game semiGame2 = new Game(teamWin3,teamWin4);
 		
@@ -216,12 +216,12 @@ public class WorldCup {
 		if(semiFinal1.getScore1()<semiFinal1.getScore2()) {
 			teamWin1=semiFinal1.getTeam2();
 			teamLose1=semiFinal1.getTeam1();
-			ranking.addPointWinningTeam(semiFinal1.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(semiFinal1.getTeam2().getName(),16);
 		}
 		else {
 			teamWin1=semiFinal1.getTeam1();
 			teamLose1=semiFinal1.getTeam2();
-			ranking.addPointWinningTeam(semiFinal1.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(semiFinal1.getTeam1().getName(),16);
 		}
 		
 		Game semiFinal2 = semiFinal.get(1);
@@ -232,12 +232,12 @@ public class WorldCup {
 		if(semiFinal2.getScore1()<semiFinal2.getScore2()) {
 			teamWin2=semiFinal2.getTeam2();
 			teamLose2=semiFinal2.getTeam1();
-			ranking.addPointWinningTeam(semiFinal2.getTeam2().getName(),5);
+			ranking.addPointWinningTeam(semiFinal2.getTeam2().getName(),16);
 		}
 		else {
 			teamWin2=semiFinal2.getTeam1();
 			teamLose2=semiFinal2.getTeam2();
-			ranking.addPointWinningTeam(semiFinal2.getTeam1().getName(),5);
+			ranking.addPointWinningTeam(semiFinal2.getTeam1().getName(),16);
 		}
 		
 		finalGame = new Game(teamWin1, teamWin2);
@@ -250,12 +250,11 @@ public class WorldCup {
 		gameTest.play();
 		System.out.println(smallFinalGame.toString());
 		if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
-			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),6);
+			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),25);
 			
 		}
 		else {
-			System.err.println("WINNER : "+finalGame.getTeam1().getName());
-			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),6);
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),25);
 			
 		}
 	}
@@ -267,13 +266,13 @@ public class WorldCup {
 		System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
 			System.err.println("WINNER : "+finalGame.getTeam2().getName());
-			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),15);
-			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),8);
+			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),100);
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),50);
 		}
 		else {
 			System.err.println("WINNER : "+finalGame.getTeam1().getName());
-			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),15);
-			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),8);
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),100);
+			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),50);
 		}
 	}
 
