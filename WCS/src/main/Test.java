@@ -1,12 +1,13 @@
 package main;
 
 import java.util.ArrayList;
-import data.ClassementGroupStage;
+import data.RankingGroupStage;
 import java.util.HashMap;
 
 import data.Game;
 import data.GroupStage;
 import data.Team;
+import data.WorldCup;
 import generate.GenerateGroupStage;
 import generate.GenerateTeam;
 import process.GameSimulation;
@@ -17,79 +18,35 @@ public class Test {
 
 	public static void main(String[] args) {
 		
+		
 		 
-		GenerateTeam gT=new GenerateTeam();
-		ArrayList<Team> teams =gT.getTeams();
+	
+		WorldCup worldCup = new WorldCup();
 		
-
+		worldCup.creationGroupStage1();
+		System.err.println("----------- GROUP STAGE 1 -------------\n");
+		worldCup.simulateGameGroupStage1();
+		worldCup.creationGroupStage2();
+		System.err.println("----------- GROUP STAGE 2 -------------\n");
+		worldCup.simulateGameGroupStage2();
+		System.err.println("----------- QUARTER FINAL GAME -------------\n");
+		worldCup.simulationQuarterFinal();
+		System.err.println("----------- SEMI FINAL GAME -------------\n");
+		worldCup.simulateSemiFinal();
+		System.err.println("----------- FINAL GAME -------------\n");
+		worldCup.simulateFinal();
 		
-		for(Team t:teams) {
-			//System.out.println(t.toString());
-		}
-		/////////////////////////////// CREATION GROUPSTAGE 1//////////////////////////////////////////////
-		GenerateGroupStage generateGroupStage=new GenerateGroupStage(teams);
-		HashMap<String, GroupStage> groupeStage=generateGroupStage.generateGroupStage1();
+		System.out.println(worldCup.getRanking().toString());
 		
 		
-		/////////////////////////////  SIMULATE GAME GROUPSTAGE 1////////////////////////////////////////////
-		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
-			ArrayList<Game> listGames = pool.getValue().getGames();
-			for(Game game : listGames) {
-				GameSimulation gameTest = new GameSimulation(game);
-				gameTest.play();
-				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
-				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
-				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
-				
-				if(game.getScore1()>game.getScore2()) {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
-				}
-				else {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
-				}
-				
-			}
-			
-			System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
-		}
 		
-		////////////////////////////////// GET TEAM QUALIFIED GROUPSTAGE 2 ///////////////////////////////
-		ArrayList<Team> teamQualified=new ArrayList<Team>();
-		for (HashMap.Entry<String, GroupStage> pool : groupeStage.entrySet()) {
-			
-			
-			Team team1 = pool.getValue().getRanking().getRankingTeams()[0];
-			Team team2 = pool.getValue().getRanking().getRankingTeams()[1];
-			teamQualified.add(team1);
-			teamQualified.add(team2); 
-			
-		}
 		
-		/////////////////////////////// CREATION GROUPSTAGE 2//////////////////////////////////////////////
-		generateGroupStage.setTeams(teamQualified);
-		HashMap<String, GroupStage> groupeStage2 =generateGroupStage.generateGroupStage2();
 		
-		/////////////////////////////  SIMULATE GAME GROUPSTAGE 2////////////////////////////////////////////
-		for (HashMap.Entry<String, GroupStage> pool : groupeStage2.entrySet()) {
-			ArrayList<Game> listGames = pool.getValue().getGames();
-			for(Game game : listGames) {
-				GameSimulation gameTest = new GameSimulation(game);
-				gameTest.play();
-				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
-				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
-				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
-				
-				if(game.getScore1()<game.getScore2()) {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
-				}
-				else {
-					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
-				}
-				
-			}
-			
-			System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
-		}
+		
+		
+		
+		
+	
 		 
 		
 		

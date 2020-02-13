@@ -3,7 +3,7 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ClassementGroupStage {
+public class RankingGroupStage {
 	
 	private Team[] rankingTeams = new Team[4];
 	private HashMap<String, Integer> scoreTeams = new HashMap<String, Integer>();
@@ -11,7 +11,7 @@ public class ClassementGroupStage {
 	
 	
 
-	public ClassementGroupStage(Team team1,Team team2,Team team3,Team team4) {
+	public RankingGroupStage(Team team1,Team team2,Team team3,Team team4) {
 		
 		rankingTeams[0]=team1;
 		rankingTeams[1]=team2;

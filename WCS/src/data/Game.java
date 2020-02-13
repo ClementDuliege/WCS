@@ -64,6 +64,21 @@ public class Game {
 			score2 += points;
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String value="";
+		value+=getTeam1().getName()+" VS "+getTeam2().getName()+"\n";
+		value+="	"+getTeam1().getName()+" : "+getScore1()+"\n";
+		value+="	"+getTeam2().getName()+" : "+getScore2()+"\n";
+		return value;
+	}
+	
+	
 	
 	
 	
