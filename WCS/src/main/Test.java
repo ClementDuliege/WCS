@@ -61,7 +61,7 @@ public class Test {
 			Team team1 = pool.getValue().getRanking().getRankingTeams()[0];
 			Team team2 = pool.getValue().getRanking().getRankingTeams()[1];
 			teamQualified.add(team1);
-			teamQualified.add(team2);
+			teamQualified.add(team2); 
 			
 		}
 		
