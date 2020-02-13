@@ -37,8 +37,11 @@ public class Test {
 			for(Game game : listGames) {
 				GameSimulation gameTest = new GameSimulation(game);
 				gameTest.play();
+				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
+				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
+				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
 				
-				if(game.getScore1()<game.getScore2()) {
+				if(game.getScore1()>game.getScore2()) {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
 				}
 				else {
@@ -47,7 +50,7 @@ public class Test {
 				
 			}
 			
-			System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+			System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
 		
 		////////////////////////////////// GET TEAM QUALIFIED GROUPSTAGE 2 ///////////////////////////////
@@ -72,6 +75,9 @@ public class Test {
 			for(Game game : listGames) {
 				GameSimulation gameTest = new GameSimulation(game);
 				gameTest.play();
+				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
+				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
+				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
 				
 				if(game.getScore1()<game.getScore2()) {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
@@ -82,7 +88,7 @@ public class Test {
 				
 			}
 			
-			System.out.print(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+			System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
 		 
 		
