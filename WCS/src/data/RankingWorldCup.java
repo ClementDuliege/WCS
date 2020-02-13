@@ -44,7 +44,7 @@ public class RankingWorldCup {
 		String value="Classement\n";
 		for ( int i =0;i<32;i++) {
 			Team team = rankingTeams[i];
-			value+=" 	"+team.getName()+" : "+scoreTeams.get(team.getName())+" points\n";
+			value+=" 	"+(i+1)+"-- "+team.getName()+" : "+scoreTeams.get(team.getName())+" points\n";
 		}
 		return value;
 		

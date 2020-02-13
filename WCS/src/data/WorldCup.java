@@ -250,11 +250,11 @@ public class WorldCup {
 		gameTest.play();
 		System.out.println(smallFinalGame.toString());
 		if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
-			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),25);
+			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),35);
 			
 		}
 		else {
-			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),25);
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),35);
 			
 		}
 	}
@@ -267,12 +267,12 @@ public class WorldCup {
 		if(finalGame.getScore1()<finalGame.getScore2()) {
 			System.err.println("WINNER : "+finalGame.getTeam2().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),100);
-			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),50);
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),60);
 		}
 		else {
 			System.err.println("WINNER : "+finalGame.getTeam1().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),100);
-			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),50);
+			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),60);
 		}
 	}
 
