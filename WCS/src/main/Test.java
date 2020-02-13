@@ -17,7 +17,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		
+		 
 		GenerateTeam gT=new GenerateTeam();
 		ArrayList<Team> teams =gT.getTeams();
 		
