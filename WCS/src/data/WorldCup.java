@@ -245,6 +245,21 @@ public class WorldCup {
 		
 	}
 	
+	public void simulateSmallFinal() {
+		GameSimulation gameTest = new GameSimulation(smallFinalGame);
+		gameTest.play();
+		System.out.println(smallFinalGame.toString());
+		if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
+			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),6);
+			
+		}
+		else {
+			System.err.println("WINNER : "+finalGame.getTeam1().getName());
+			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),6);
+			
+		}
+	}
+	
 	
 	public void simulateFinal() {
 		GameSimulation gameTest = new GameSimulation(finalGame);

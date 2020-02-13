@@ -33,6 +33,8 @@ public class Test {
 		worldCup.simulationQuarterFinal();
 		System.err.println("----------- SEMI FINAL GAME -------------\n");
 		worldCup.simulateSemiFinal();
+		System.err.println("----------- SMALL FINAL GAME -------------\n");
+		worldCup.simulateSmallFinal();
 		System.err.println("----------- FINAL GAME -------------\n");
 		worldCup.simulateFinal();
 		
