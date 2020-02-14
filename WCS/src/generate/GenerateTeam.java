@@ -31,7 +31,7 @@ public class GenerateTeam {
 
 	public ArrayList<Team> getTeams() {
 		return teams;
-	}
+	} 
 	
 	
 }

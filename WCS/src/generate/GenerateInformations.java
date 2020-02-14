@@ -30,7 +30,7 @@ public class GenerateInformations {
 	            	 
 	            	 //System.out.println("Joueur: " + namePlayer[i][j]);
 	             }
-	             
+	               
 		         i++;
 	         }              
 	        
