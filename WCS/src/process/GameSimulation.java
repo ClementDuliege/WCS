@@ -11,6 +11,7 @@ import usual.*;
 public class GameSimulation {
 
 	private int duration;
+	private int durationTotal;
 	private Game game;
 	
 	
@@ -19,9 +20,10 @@ public class GameSimulation {
 	/**
 	 * @param game
 	 */
-	public GameSimulation(Game game) {
+	public GameSimulation() {
 		super();
-		this.game = game;
+		this.durationTotal=2881;
+		
 	}
 
 
@@ -55,12 +57,16 @@ public class GameSimulation {
 	 * @param game the game to set
 	 */
 	public void setGame(Game game) {
+		duration=0;
+		durationTotal=2881;
 		this.game = game;
 	}
 
 	
 	
-	public void play() {
+	public void play(Game game) {
+		this.game=game;
+		this.duration=0;
 		Team team1 = game.getTeam1();
 		Team team2 = game.getTeam2();
 		
@@ -72,7 +78,7 @@ public class GameSimulation {
 		
 		int action;
 		
-		while(duration!=2880) {
+		while(duration<=durationTotal) {
 			action = chooseActionToDo(2,actionTime);
 			
 			if(action==0 || action==1) { //if pass or dribble
@@ -109,6 +115,13 @@ public class GameSimulation {
 				}
 				actionTime = 0;
 
+			}
+			
+			if(duration==durationTotal-1) {
+				if(game.getScore1()==game.getScore2()) {
+					durationTotal+=300;
+					
+				}
 			}
 			
 			
