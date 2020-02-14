@@ -12,7 +12,7 @@ public class GeneratePlayer {
 	public GeneratePlayer() {
 	
 	}
-	
+	 
 	public Player generatePlayer(String name) {
 		
 		this.playerCreated=new Player(name);

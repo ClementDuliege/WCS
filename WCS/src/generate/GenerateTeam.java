@@ -7,14 +7,14 @@ import data.Team;
 
 
 public class GenerateTeam {
-
+ 
 	private ArrayList<Team> teams=new ArrayList<Team>();
 	private GenerateInformations nameTeam = new GenerateInformations();
 
 	public GenerateTeam() {
 		
 		String[][] informations = nameTeam.infoTeam();
-		 
+		  
 		for(int i=0;i<32;i++) {
 				String teamName = informations[i][0];
 				GeneratePlayer generatePlayer=new GeneratePlayer();
