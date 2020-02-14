@@ -39,6 +39,32 @@ public class WorldCup {
 	
 	
 	
+	
+	
+	/**
+	 * @return the teams
+	 */
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
+
+
+
+
+
+
+	/**
+	 * @param teams the teams to set
+	 */
+	public void setTeams(ArrayList<Team> teams) {
+		this.teams = teams;
+	}
+
+
+
+
+
+
 	/**
 	 * @return the ranking
 	 */

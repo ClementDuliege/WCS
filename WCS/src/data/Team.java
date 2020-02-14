@@ -376,7 +376,7 @@ public class Team {
 	public String toString() {
 		String value="Team name : "+name+"\n";
 		for(Player p : players) {
-			value+=p.getName()+"\n";
+			value+="	"+p.getName()+"\n";
 		}
 		return value ;
 	}

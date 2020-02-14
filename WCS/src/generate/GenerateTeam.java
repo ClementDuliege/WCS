@@ -19,8 +19,8 @@ public class GenerateTeam {
 				String teamName = informations[i][0];
 				GeneratePlayer generatePlayer=new GeneratePlayer();
 				ArrayList<Player> playerTeam= new ArrayList<Player> ();
-				for(int j=0;j<10;j++) {
-					playerTeam.add(generatePlayer.generatePlayer("Player "+j));
+				for(int j=1;j<11;j++) {
+					playerTeam.add(generatePlayer.generatePlayer(informations[i][j]));
 					
 				}
 				Team teamCreated=new Team(teamName,playerTeam);

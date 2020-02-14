@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class GenerateInformations {
 	
-	public String[][] informationPlayerTeam = new String[32][10];
+	public String[][] informationPlayerTeam = new String[32][11];
 	
-	public String[][] infoTeam() {/*On récupère le plus haut salaire*/
+	public String[][] infoTeam() {
 	     String csvFile = "teamWCS.csv";
 	     String line = "";
 	     String cvsSplitBy = ";";
@@ -22,10 +22,12 @@ public class GenerateInformations {
 	            //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
 	             String[]payslip = line.split(cvsSplitBy);
 	             
+	             
 	             informationPlayerTeam[i][0] = payslip[0];
 	             //System.out.println("Team: " + namePlayer[i][0]);
-	             for (int j = 1; j<10 ; j++) {
+	             for (int j = 1; j<11 ; j++) {
 	            	 informationPlayerTeam[i][j] = payslip[j];
+	            	 
 	            	 //System.out.println("Joueur: " + namePlayer[i][j]);
 	             }
 	             

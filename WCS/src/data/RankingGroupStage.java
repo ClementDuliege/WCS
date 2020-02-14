@@ -62,7 +62,7 @@ public class RankingGroupStage {
 	
 	public String toString() {
 		
-		String value="Classement\n";
+		String value="Ranking\n";
 		for ( int i =0;i<4;i++) {
 			Team team = rankingTeams[i];
 			value+=" 	"+team.getName()+" : "+scoreTeams.get(team.getName())+" points\n";
