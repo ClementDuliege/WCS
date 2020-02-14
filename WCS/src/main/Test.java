@@ -22,6 +22,7 @@ public class Test {
 		 
 	
 		WorldCup worldCup = new WorldCup();
+		
 		ArrayList<Team> ts = worldCup.getTeams();
 		
 		for(Team t : ts) {
@@ -31,15 +32,20 @@ public class Test {
 		worldCup.creationGroupStage1();
 		System.err.println("----------- GROUP STAGE 1 -------------\n");
 		worldCup.simulateGameGroupStage1();
+		
 		worldCup.creationGroupStage2();
 		System.err.println("----------- GROUP STAGE 2 -------------\n");
 		worldCup.simulateGameGroupStage2();
+		
 		System.err.println("----------- QUARTER FINAL GAME -------------\n");
 		worldCup.simulationQuarterFinal();
+		
 		System.err.println("----------- SEMI FINAL GAME -------------\n");
 		worldCup.simulateSemiFinal();
+		
 		System.err.println("----------- SMALL FINAL GAME -------------\n");
 		worldCup.simulateSmallFinal();
+		
 		System.err.println("----------- FINAL GAME -------------\n");
 		worldCup.simulateFinal();
 		
