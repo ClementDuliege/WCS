@@ -105,9 +105,7 @@ public class WorldCup {
 			for(Game game : listGames) {
 				
 				gameSimulation.play(game);
-				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
-				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
-				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
+				System.out.println(game.toString());
 				
 				if(game.getScore1()>game.getScore2()) {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
@@ -292,12 +290,12 @@ public class WorldCup {
 		gameSimulation.play(finalGame);
 		System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
-			System.err.println("WINNER : "+finalGame.getTeam2().getName());
+			System.out.println("WINNER : "+finalGame.getTeam2().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),60);
 		}
 		else {
-			System.err.println("WINNER : "+finalGame.getTeam1().getName());
+			System.out.println("WINNER : "+finalGame.getTeam1().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),60);
 		}
