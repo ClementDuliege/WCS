@@ -93,7 +93,7 @@ public class MainFrame extends JFrame {
 	
 	public class ListTeamAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			
+			windows.dispose();
 			new ListTeamsFrame("listTeams", worldCup);
 			
 			

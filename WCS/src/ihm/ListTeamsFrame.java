@@ -14,14 +14,15 @@ import javax.swing.JPanel;
 
 import data.Team;
 import data.WorldCup;
+import ihm.TeamFrame.Back;
 
 public class ListTeamsFrame extends JFrame {
-	
+	protected JFrame windows;
 	private WorldCup worldCup;
 	private Container contentPane;
 	private JButton tabButton[]= new JButton[32];
 	private JLabel teamsLabel;
-	
+	private JButton backButton=new JButton("Back");
 	public ListTeamsFrame(String windowsTitle, WorldCup worldCup) {
 		super(windowsTitle);
 		setSize(900,600);
@@ -33,6 +34,7 @@ public class ListTeamsFrame extends JFrame {
 		this.worldCup=worldCup;
 		contentPane=getContentPane();
 		creationButton();
+		windows=this;
 		
 		
 	}
@@ -49,6 +51,10 @@ public class ListTeamsFrame extends JFrame {
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,30));
 		teamsLabel.setBounds(300, 15, 275, 75);
 		panel.add(teamsLabel);
+		
+		backButton.setBounds(750, 500, 70, 40);
+		backButton.addActionListener(new Back());
+		panel.add(backButton);
 		
 		ArrayList<Team> teams=worldCup.getTeams();
 		int x = 70;
@@ -79,13 +85,24 @@ public class ListTeamsFrame extends JFrame {
 			String command = ((JButton) e.getSource()).getActionCommand();
 			int i = Integer.parseInt(command);
 			
-			System.out.println(teams.get(i).getName());
-			
+			windows.dispose();
 			new TeamFrame(teams.get(i).getName(), worldCup, i);
 		   
 			
 		}
 	}
+	
+	public class Back implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			windows.dispose();
+			JFrame main = new MainFrame("WCS",worldCup);
+			
+		   
+			
+		}
+	}
+	
 	
 
 	
