@@ -1,11 +1,14 @@
 package ihm;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class FinalPhaseFrame extends JFrame {
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	
+	private JButton backButton=new JButton("Back");
 	public FinalPhaseFrame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
@@ -44,8 +47,12 @@ public class FinalPhaseFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
+		backButton.setBounds(1200, 750, 100, 40);
+		backButton.addActionListener(new Back());
+		panel.add(backButton);
+		
 		JPanel pane2 =new TableauPhaseFinal(worldCup);
-		pane2.setBounds(50, 50, 1200, 800);
+		pane2.setBounds(100, 150, 1200, 800);
 		panel.add(pane2);
 		
 		
@@ -55,6 +62,7 @@ public class FinalPhaseFrame extends JFrame {
 	
 	
 	class TableauPhaseFinal extends JPanel{
+
 		WorldCup worldCup;
 		private ArrayList<Game> quarterFinal = new ArrayList<Game>();
 		private ArrayList<Game> semiFinal = new ArrayList<Game>();
@@ -135,7 +143,8 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawString(""+finalGame.getScore1(), 483, 225);
 			 g2.drawString(""+finalGame.getScore2(), 550, 225);
 			 
-			 g2.setColor(Color.black);
+			 g2.setStroke(new BasicStroke(10));
+			 g2.setColor(new Color(239,144,52));
 			 g2.drawLine(125, 43, 125, 121);
 			 g2.drawLine(125, 400, 125, 322);
 			 g2.drawLine(925, 43, 925, 121);
@@ -151,11 +160,43 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawLine(220, 322, 220, 242);
 			 g2.drawLine(830, 322, 830, 242);
 			 
+			 g2.drawLine(350, 222, 400, 222);
+			 g2.drawLine(650, 222, 710, 222);
+			 
+			 try {
+					icone2 = ImageIO.read(new File("score.jpg"));
+					g2.drawImage(icone2,400,300,250,43,this);
+							
+			}catch(IOException exc){
+						exc.printStackTrace();
+			}
+			 
+			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
+			 //g2.setColor(Color.blue);
+			 g2.setColor(Color.black);
+			 g2.drawString(smallFinalGame.getTeam1().getName(), 405, 325);
+			 g2.drawString(smallFinalGame.getTeam2().getName(), 575, 325);
+			 g2.setColor(Color.white);
+			 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
+			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
+			 
 			 
 			 
 			 
 			
 			
 		 }
+	}
+
+	public class Back implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			windows.dispose();
+			new Phase2Frame(worldCup,"WCS");
+			
+			
+		   
+			
+		}
 	}
 }

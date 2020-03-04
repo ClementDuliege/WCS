@@ -144,7 +144,7 @@ public class Phase2Frame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new MainFrame("WCS",worldCup);
+			new Phase1Frame(worldCup, "Phase1");
 			
 		   
 			
@@ -155,7 +155,7 @@ public class Phase2Frame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new FinalPhaseFrame(worldCup,"WCS");
+			new FinalPhaseFrame(worldCup, "Phase1");
 			
 		   
 			

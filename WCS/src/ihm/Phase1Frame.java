@@ -61,7 +61,7 @@ public class Phase1Frame extends JFrame {
 		backButton.setBounds(1200, 750, 100, 40);
 		backButton.addActionListener(new Back());
 		
-		phase2Button.setBounds(200, 50, 70, 25);
+		phase2Button.setBounds(200, 50, 100, 25);
 		phase2Button.addActionListener(new Phase2());
 		panel.add(backButton);
 		panel.add(phase2Button);
