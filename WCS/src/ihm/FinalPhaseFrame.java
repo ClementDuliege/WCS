@@ -134,7 +134,23 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.setColor(Color.white);
 			 g2.drawString(""+finalGame.getScore1(), 483, 225);
 			 g2.drawString(""+finalGame.getScore2(), 550, 225);
-			
+			 
+			 g2.setColor(Color.black);
+			 g2.drawLine(125, 43, 125, 121);
+			 g2.drawLine(125, 400, 125, 322);
+			 g2.drawLine(925, 43, 925, 121);
+			 g2.drawLine(925, 400, 925, 322);
+			 
+			 g2.drawLine(125, 121, 220, 121);
+			 g2.drawLine(125, 322, 220, 322);
+			 g2.drawLine(925, 121, 830, 121);
+			 g2.drawLine(925, 322, 830, 322);
+			 
+			 g2.drawLine(220, 121, 220, 201);
+			 g2.drawLine(830, 121, 830, 201);
+			 g2.drawLine(220, 322, 220, 242);
+			 g2.drawLine(830, 322, 830, 242);
+			 
 			 
 			 
 			 
