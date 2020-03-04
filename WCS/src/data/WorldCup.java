@@ -105,7 +105,7 @@ public class WorldCup {
 			for(Game game : listGames) {
 				
 				gameSimulation.play(game);
-				System.out.println(game.toString());
+				//System.out.println(game.toString());
 				
 				if(game.getScore1()>game.getScore2()) {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam1().getName());
@@ -118,7 +118,7 @@ public class WorldCup {
 					
 			}
 		
-		 System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+		 //System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
 	}
 	
@@ -129,9 +129,9 @@ public class WorldCup {
 			for(Game game : listGames) {
 				
 				gameSimulation.play(game);
-				System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
-				System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
-				System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
+				//System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
+				//System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
+				//System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
 				
 				if(game.getScore1()<game.getScore2()) {
 					pool.getValue().getRanking().addPointWinningTeam(game.getTeam2().getName());
@@ -144,7 +144,7 @@ public class WorldCup {
 				
 			}
 			
-			System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
+			//System.out.println(pool.getValue().getName()+"\n	"+pool.getValue().getRanking().toString());
 		}
 	}
 	
@@ -161,11 +161,11 @@ public class WorldCup {
 		quarterFinal.add(quarterGame2);
 		
 		gameSimulation.play(quarterGame1);
-		System.out.println(quarterGame1.toString());
+		//System.out.println(quarterGame1.toString());
 	
 	
 		gameSimulation.play(quarterGame2);
-		System.out.println(quarterGame2.toString());
+		//System.out.println(quarterGame2.toString());
 		
 		Team teamWin1 ,teamWin2;
 		if(quarterGame1.getScore1()<quarterGame1.getScore2()) {
@@ -198,11 +198,11 @@ public class WorldCup {
 		quarterFinal.add(quarterGame4);
 		
 		gameSimulation.play(quarterGame3);
-		System.out.println(quarterGame3.toString());
+		//System.out.println(quarterGame3.toString());
 		
 		
 		gameSimulation.play(quarterGame4);
-		System.out.println(quarterGame4.toString());
+		//System.out.println(quarterGame4.toString());
 		
 		Team teamWin3 ,teamWin4;
 		if(quarterGame3.getScore1()<quarterGame3.getScore2()) {
@@ -240,7 +240,7 @@ public class WorldCup {
 		Game semiFinal1 = semiFinal.get(0);
 	
 		gameSimulation.play(semiFinal1);
-		System.out.println(semiFinal1.toString());
+		//System.out.println(semiFinal1.toString());
 		
 		if(semiFinal1.getScore1()<semiFinal1.getScore2()) {
 			teamWin1=semiFinal1.getTeam2();
@@ -256,7 +256,7 @@ public class WorldCup {
 		Game semiFinal2 = semiFinal.get(1);
 
 		gameSimulation.play(semiFinal2);
-		System.out.println(semiFinal2.toString());
+		//.out.println(semiFinal2.toString());
 		
 		if(semiFinal2.getScore1()<semiFinal2.getScore2()) {
 			teamWin2=semiFinal2.getTeam2();
@@ -277,7 +277,7 @@ public class WorldCup {
 	public void simulateSmallFinal() {
 		
 		gameSimulation.play(smallFinalGame);
-		System.out.println(smallFinalGame.toString());
+		//System.out.println(smallFinalGame.toString());
 		if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
 			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),35);
 			
@@ -292,14 +292,14 @@ public class WorldCup {
 	public void simulateFinal() {
 		
 		gameSimulation.play(finalGame);
-		System.out.println(finalGame.toString());
+		//System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
-			System.out.println("WINNER : "+finalGame.getTeam2().getName());
+			//System.out.println("WINNER : "+finalGame.getTeam2().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),60);
 		}
 		else {
-			System.out.println("WINNER : "+finalGame.getTeam1().getName());
+			//System.out.println("WINNER : "+finalGame.getTeam1().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),60);
 		}

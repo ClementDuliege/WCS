@@ -17,21 +17,25 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import data.Game;
 import data.WorldCup;
 import ihm.Phase1Frame.Back;
 import ihm.Phase1Frame.Phase2;
+import ihm.Phase1Frame.PhaseFinale;
 import ihm.Phase1Frame.ScorePanel;
+import ihm.Phase1Frame.Teams;
 
 public class Phase2Frame extends JFrame {
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	private JButton backButton=new JButton("Back");
-	private JButton phase2Button=new JButton("Phase2");
-	private JButton phaseFinalButton = new JButton("Final Phase");
+	private JButton phase1Button=new JButton("Phase 1");
+	private JButton phase2Button=new JButton("Phase 2");
+	private JButton phaseFinalButton=new JButton("Phase Finale");
+	private JButton teamsButton=new JButton("Equipe");
 	
 	public Phase2Frame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
@@ -57,43 +61,83 @@ public class Phase2Frame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		backButton.setBounds(1200, 750, 100, 40);
-		backButton.addActionListener(new Back());
 		
-		phaseFinalButton.setBounds(100, 50, 150, 30);
-		phaseFinalButton.addActionListener(new PhaseFinal());
+		phase1Button.setBounds(150, 50, 200, 25);
+		phase2Button.setBounds(400, 50, 200, 25);
+		phaseFinalButton.setBounds(650, 50, 200, 25);
+		teamsButton.setBounds(900, 50, 200, 25);
+		
+		panel.add(phase1Button);
+		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
-		panel.add(backButton);
+		panel.add(teamsButton);
 		
+		initAction();
 		
 		displayGroup();
 		contentPane.add(panel);
 	}
 	
+	public void initAction() {
+		phase1Button.addActionListener(new Phase1());
+		phaseFinalButton.addActionListener(new PhaseFinale());
+		teamsButton.addActionListener(new Teams());
+	}
+	
+	
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	public class PhaseFinale implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new FinalPhaseFrame(worldCup,"WCS");
+		}
+	}
+	
+	
+	public class Teams implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new ListTeamsFrame("TEAMS",worldCup);
+		}
+	}
+	
 	public void displayGroup() {
-		JLabel groupI=new JLabel("GROUPE I");
-		groupI.setBounds(145, 100, 200, 30);
-		groupI.setForeground(new Color(239,144,52));
-		JLabel groupJ=new JLabel("GROUPE J");
-		groupJ.setBounds(445, 100, 200, 30);
-		groupJ.setForeground(new Color(239,144,52));
-		JLabel groupK=new JLabel("GROUPE K");
-		groupK.setBounds(745, 100, 200, 30);
-		groupK.setForeground(new Color(239,144,52));
-		JLabel groupL=new JLabel("GROUPE L");
-		groupL.setBounds(1045, 100, 200, 30);
-		groupL.setForeground(new Color(239,144,52));
+		JLabel groupI=new JLabel("GROUPE I",SwingConstants.CENTER);
+		groupI.setBounds(80, 100, 200, 30);
+		groupI.setForeground(Color.WHITE);
+		groupI.setOpaque(true);
+		groupI.setBackground(new Color(239,144,52));
+		
+		JLabel groupJ=new JLabel("GROUPE J",SwingConstants.CENTER);
+		groupJ.setBounds(380, 100, 200, 30);
+		groupJ.setForeground(Color.WHITE);
+		groupJ.setOpaque(true);
+		groupJ.setBackground(new Color(239,144,52));
+		
+		JLabel groupK=new JLabel("GROUPE K",SwingConstants.CENTER);
+		groupK.setBounds(680, 100, 200, 30);
+		groupK.setForeground(Color.WHITE);
+		groupK.setOpaque(true);
+		groupK.setBackground(new Color(239,144,52));
+		
+		JLabel groupL=new JLabel("GROUPE L",SwingConstants.CENTER);
+		groupL.setBounds(980, 100, 200, 30);
+		groupL.setForeground(Color.WHITE);
+		groupL.setOpaque(true);
+		groupL.setBackground(new Color(239,144,52));
 		
 		panel.add(groupI);
 		panel.add(groupJ);
 		panel.add(groupK);
-		panel.add(groupL);
-	
-		
-		
-		
-		
+		panel.add(groupL);	
 	}
+	
 	
 	public void displayGameGroup(String group, int j) {
 		ArrayList<Game> listGameGroup2 = worldCup.getGroupStage2().get(group).getGames();
@@ -105,12 +149,10 @@ public class Phase2Frame extends JFrame {
 			panel.add(panelScore);
 			
 		}
-		
-		
-		
 	}
 	
-	class ScorePanel extends JPanel{
+	
+	public class ScorePanel extends JPanel{
 		private Game ga;
 		public ScorePanel(Game g) {
 			
@@ -132,33 +174,23 @@ public class Phase2Frame extends JFrame {
 			 g2.drawString(ga.getTeam1().getName(), 5, 25);
 			 g2.drawString(ga.getTeam2().getName(), 170, 25);
 			 g2.setColor(Color.white);
+			 if(ga.getScore1()<ga.getScore2()) {
+				 g2.setColor(Color.red);
+			 }
+			 else {
+				 g2.setColor(Color.green);
+			 }
 			 g2.drawString(""+ga.getScore1(), 83, 25);
+			 if(ga.getScore1()>ga.getScore2()) {
+				 g2.setColor(Color.red);
+			 }
+			 else {
+				 g2.setColor(Color.green);
+			 }
 			 g2.drawString(""+ga.getScore2(), 150, 25);
-			 
-			
-			
 		 }
 	}
 	
-	public class Back implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			windows.dispose();
-			new Phase1Frame(worldCup, "Phase1");
-			
-		   
-			
-		}
-	}
 	
-	public class PhaseFinal implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			windows.dispose();
-			new FinalPhaseFrame(worldCup, "Phase1");
-			
-		   
-			
-		}
-	}
+	
 }

@@ -20,15 +20,20 @@ import javax.swing.JPanel;
 
 import data.Game;
 import data.WorldCup;
-import ihm.Phase2Frame.Back;
-import ihm.Phase2Frame.PhaseFinal;
+import ihm.Phase2Frame.Phase1;
+import ihm.Phase2Frame.PhaseFinale;
+import ihm.Phase2Frame.Teams;
+
 
 public class FinalPhaseFrame extends JFrame {
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	private JButton backButton=new JButton("Back");
+	private JButton phase1Button=new JButton("Phase 1");
+	private JButton phase2Button=new JButton("Phase 2");
+	private JButton phaseFinalButton=new JButton("Phase Finale");
+	private JButton teamsButton=new JButton("Equipe");
 	public FinalPhaseFrame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
@@ -47,9 +52,18 @@ public class FinalPhaseFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		backButton.setBounds(1200, 750, 100, 40);
-		backButton.addActionListener(new Back());
-		panel.add(backButton);
+
+		phase1Button.setBounds(150, 50, 200, 25);
+		phase2Button.setBounds(400, 50, 200, 25);
+		phaseFinalButton.setBounds(650, 50, 200, 25);
+		teamsButton.setBounds(900, 50, 200, 25);
+		
+		panel.add(phase1Button);
+		panel.add(phase2Button);
+		panel.add(phaseFinalButton);
+		panel.add(teamsButton);
+		
+		initAction();
 		
 		JPanel pane2 =new TableauPhaseFinal(worldCup);
 		pane2.setBounds(100, 150, 1200, 800);
@@ -57,6 +71,35 @@ public class FinalPhaseFrame extends JFrame {
 		
 		
 		contentPane.add(panel);
+	}
+	
+	public void initAction() {
+		phase1Button.addActionListener(new Phase1());
+		phase2Button.addActionListener(new Phase2());
+		teamsButton.addActionListener(new Teams());
+	}
+	
+	
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	public class Phase2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase2Frame(worldCup,"WCS");
+		}
+	}
+	
+	
+	public class Teams implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new ListTeamsFrame("TEAMS",worldCup);
+		}
 	}
 	
 	
@@ -81,7 +124,7 @@ public class FinalPhaseFrame extends JFrame {
 			 
 			 Image icone2;
 			 int k=0;
-			 System.out.print(quarterFinal.size());
+			 
 			 for(int i = 0;i<2;i++) {
 				 for(int j = 0 ;j<2;j++) {
 					 Game quarterGame=quarterFinal.get(k);
