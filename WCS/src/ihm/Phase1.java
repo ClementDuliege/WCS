@@ -3,6 +3,7 @@ package ihm;
 import java.awt.Container;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -73,7 +74,9 @@ public class Phase1 extends JFrame {
 	
 	public void displayGameGroup(String group,int i, int j) {
 		ArrayList<Game> listGameGroupA = worldCup.getGroupStage1().get(group).getGames();
-		
+		ImageIcon ii = new ImageIcon("score.jpg");
+		JLabel ji = new JLabel(ii);
+		panel.add(ji);
 		for(int k = 0; k<listGameGroupA.size();k++) {
 			Game game = listGameGroupA.get(k);
 			String res="";
