@@ -15,6 +15,21 @@ public class WorldCupSimulator {
 		worldCup.creationGroupStage1();
 		
 		worldCup.simulateGameGroupStage1();
+		worldCup.creationGroupStage2();
+		
+		worldCup.simulateGameGroupStage2();
+		
+	
+		worldCup.simulationQuarterFinal();
+		
+		
+		worldCup.simulateSemiFinal();
+		
+		
+		worldCup.simulateSmallFinal();
+		
+		
+		worldCup.simulateFinal();
 		
 		JFrame main = new MainFrame("WCS",worldCup);
 		

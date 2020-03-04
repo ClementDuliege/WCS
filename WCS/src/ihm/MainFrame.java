@@ -90,7 +90,7 @@ public class MainFrame extends JFrame {
 	public class SimulationStart implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
-			new Phase1(worldCup, "Phase1");
+			new Phase1Frame(worldCup, "Phase1");
 			
 			
 			

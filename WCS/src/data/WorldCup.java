@@ -157,6 +157,8 @@ public class WorldCup {
 		team2 = groupStage2.get("GROUPE L").getRanking().getRankingTeams()[1];
 		Game quarterGame2 = new Game(team1,team2);
 		
+		quarterFinal.add(quarterGame1);
+		quarterFinal.add(quarterGame2);
 		
 		gameSimulation.play(quarterGame1);
 		System.out.println(quarterGame1.toString());
@@ -192,6 +194,8 @@ public class WorldCup {
 		team2 = groupStage2.get("GROUPE K").getRanking().getRankingTeams()[1];
 		Game quarterGame4 = new Game(team1,team2);
 		
+		quarterFinal.add(quarterGame3);
+		quarterFinal.add(quarterGame4);
 		
 		gameSimulation.play(quarterGame3);
 		System.out.println(quarterGame3.toString());

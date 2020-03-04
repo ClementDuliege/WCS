@@ -6,26 +6,32 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import data.Game;
 import data.WorldCup;
+import ihm.TeamFrame.Back;
 
-public class Phase1 extends JFrame {
+public class Phase1Frame extends JFrame {
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
+	private JButton backButton=new JButton("Back");
+	private JButton phase2Button=new JButton("Phase2");
 	
-	public Phase1(WorldCup worldCup, String windowsTitle) {
+	public Phase1Frame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
 		setResizable(false);
@@ -36,9 +42,8 @@ public class Phase1 extends JFrame {
 		this.worldCup=worldCup;
 		contentPane=getContentPane();
 		windows=this;
-		panel.setLayout(null);
-		panel.setBackground(Color.WHITE);
-		displayGroup();
+		
+		initLayout();
 		String listGroup[]= {"GROUPE A","GROUPE B","GROUPE C","GROUPE D","GROUPE E","GROUPE F","GROUPE G","GROUPE H"};
 		int k=0;
 		for(int i = 0 ;i<2;i++) {
@@ -49,23 +54,47 @@ public class Phase1 extends JFrame {
 		}
 	}
 	
+	public void initLayout() {
+		panel.setLayout(null);
+		panel.setBackground(Color.WHITE);
+		
+		backButton.setBounds(1200, 750, 100, 40);
+		backButton.addActionListener(new Back());
+		
+		phase2Button.setBounds(200, 50, 70, 25);
+		phase2Button.addActionListener(new Phase2());
+		panel.add(backButton);
+		panel.add(phase2Button);
+		
+		displayGroup();
+		contentPane.add(panel);
+	}
+	
 	public void displayGroup() {
 		JLabel groupA=new JLabel("GROUPE A");
-		groupA.setBounds(100, 100, 200, 30);
+		groupA.setBounds(145, 100, 200, 30);
+		groupA.setForeground(new Color(239,144,52));
 		JLabel groupB=new JLabel("GROUPE B");
-		groupB.setBounds(400, 100, 200, 30);
+		groupB.setBounds(445, 100, 200, 30);
+		groupB.setForeground(new Color(239,144,52));
 		JLabel groupC=new JLabel("GROUPE C");
-		groupC.setBounds(700, 100, 200, 30);
+		groupC.setBounds(745, 100, 200, 30);
+		groupC.setForeground(new Color(239,144,52));
 		JLabel groupD=new JLabel("GROUPE D");
-		groupD.setBounds(1000, 100, 200, 30);
+		groupD.setBounds(1045, 100, 200, 30);
+		groupD.setForeground(new Color(239,144,52));
 		JLabel groupE=new JLabel("GROUPE E");
-		groupE.setBounds(100, 450, 200, 30);
+		groupE.setBounds(145, 450, 200, 30);
+		groupE.setForeground(new Color(239,144,52));
 		JLabel groupF=new JLabel("GROUPE F");
-		groupF.setBounds(400, 450, 200, 30);
+		groupF.setBounds(445, 450, 200, 30);
+		groupF.setForeground(new Color(239,144,52));
 		JLabel groupG=new JLabel("GROUPE G");
-		groupG.setBounds(700, 450, 200, 30);
+		groupG.setBounds(745, 450, 200, 30);
+		groupG.setForeground(new Color(239,144,52));
 		JLabel groupH=new JLabel("GROUPE H");
-		groupH.setBounds(1000, 450, 200, 30);
+		groupH.setBounds(1045, 450, 200, 30);
+		groupH.setForeground(new Color(239,144,52));
 		
 		panel.add(groupA);
 		panel.add(groupB);
@@ -76,7 +105,7 @@ public class Phase1 extends JFrame {
 		panel.add(groupG);
 		panel.add(groupH);
 		
-		contentPane.add(panel);
+		
 		
 		
 	}
@@ -124,5 +153,27 @@ public class Phase1 extends JFrame {
 			
 			
 		 }
+	}
+	
+	public class Back implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			windows.dispose();
+			new MainFrame("WCS",worldCup);
+			
+		   
+			
+		}
+	}
+	
+	public class Phase2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			windows.dispose();
+			new Phase2Frame(worldCup,"WCS");
+			
+		   
+			
+		}
 	}
 }
