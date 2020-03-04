@@ -20,12 +20,12 @@ public class MainFrame extends JFrame {
 	public Container contentPane;
 	protected JLabel titleJLabel;
 	private JButton informationTeamButton;
-	private JButton lotteryButton;
+	private JButton simulationStartButton;
 	protected WorldCup worldCup;
 	
 	public MainFrame(String titleWindows,WorldCup worldCup) {
 		super(titleWindows);
-		setSize(900,600);
+		setSize(1300,800);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +39,7 @@ public class MainFrame extends JFrame {
 		titleJLabel.setFont(new Font("Serif", Font.BOLD,30));
 		
 		informationTeamButton=new JButton("Informations Teams");
-		lotteryButton=new JButton("Tirage au sort");
+		simulationStartButton=new JButton("Simulation");
 		
 		initLayoutMain();
 		initActionMain();
@@ -57,44 +57,40 @@ public class MainFrame extends JFrame {
 		panel.setLayout(null);
 		
 		titleJLabel.setBounds(310, 30, 275, 75);
+		
 		panel.add(titleJLabel);
 		
 		informationTeamButton.setBounds(325, 150, 250, 75);
 		panel.add(informationTeamButton);
 		
-		lotteryButton.setBounds(325, 250, 250, 75);
-		panel.add(lotteryButton);
+		simulationStartButton.setBounds(325, 250, 250, 75);
+		panel.add(simulationStartButton);
 		
 		contentPane.add(panel);
 		
 	}
 	
-	public void initLayoutListTeams() {
-		GridLayout grid = new GridLayout(1,1);
-		contentPane.setLayout(grid);
-		
-		JPanel panel=new JPanel();
-		panel.setLayout(null);
-		
-		ArrayList<Team> teams = worldCup.getTeams();
-		
-		String test="";
-		for(Team t :teams) {
-			test+=t.getName()+"\n";
-		}
-		JLabel j=new JLabel(test);
-		contentPane.add(j);
-	
-	}
+
 	
 	public void initActionMain() {
 		informationTeamButton.addActionListener(new ListTeamAction());
+		simulationStartButton.addActionListener(new SimulationStart());
 	}
 	
 	public class ListTeamAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
 			new ListTeamsFrame("listTeams", worldCup);
+			
+			
+			
+		}
+	}
+	
+	public class SimulationStart implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1(worldCup, "Phase1");
 			
 			
 			

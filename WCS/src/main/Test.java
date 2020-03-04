@@ -25,9 +25,7 @@ public class Test {
 		
 		ArrayList<Team> teams = worldCup.getTeams();
 		
-		for(Team team : teams) {
-			System.out.println(team.toString());
-		}
+		
 		
 		worldCup.creationGroupStage1();
 		System.out.println("----------- GROUP STAGE 1 -------------\n");

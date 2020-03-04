@@ -301,6 +301,92 @@ public class WorldCup {
 		}
 	}
 
+
+
+
+
+
+	/**
+	 * @return the groupStage1
+	 */
+	public HashMap<String, GroupStage> getGroupStage1() {
+		return groupStage1;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the groupStage2
+	 */
+	public HashMap<String, GroupStage> getGroupStage2() {
+		return groupStage2;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the quarterFinal
+	 */
+	public ArrayList<Game> getQuarterFinal() {
+		return quarterFinal;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the semiFinal
+	 */
+	public ArrayList<Game> getSemiFinal() {
+		return semiFinal;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the finalGame
+	 */
+	public Game getFinalGame() {
+		return finalGame;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the smallFinalGame
+	 */
+	public Game getSmallFinalGame() {
+		return smallFinalGame;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the gameSimulation
+	 */
+	public GameSimulation getGameSimulation() {
+		return gameSimulation;
+	}
+	
+	
+
 	
 	
 	
