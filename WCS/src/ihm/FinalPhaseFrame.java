@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import data.Game;
+import data.Team;
 import data.WorldCup;
 import ihm.Phase2Frame.Phase1;
 import ihm.Phase2Frame.PhaseFinale;
@@ -107,8 +108,8 @@ public class FinalPhaseFrame extends JFrame {
 	class TableauPhaseFinal extends JPanel{
 
 		WorldCup worldCup;
-		private ArrayList<Game> quarterFinal = new ArrayList<Game>();
-		private ArrayList<Game> semiFinal = new ArrayList<Game>();
+		private Game[] quarterFinal;
+		private Game[] semiFinal;
 		private Game finalGame;
 		private Game smallFinalGame;
 		public TableauPhaseFinal(WorldCup worldCup) {
@@ -127,7 +128,7 @@ public class FinalPhaseFrame extends JFrame {
 			 
 			 for(int i = 0;i<2;i++) {
 				 for(int j = 0 ;j<2;j++) {
-					 Game quarterGame=quarterFinal.get(k);
+					 Game quarterGame=quarterFinal[k];
 					 try {
 							icone2 = ImageIO.read(new File("score.jpg"));
 							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
@@ -148,7 +149,7 @@ public class FinalPhaseFrame extends JFrame {
 			 }
 			 
 			 for(int i2= 0;i2<2;i2++) {
-				 Game semiGame=semiFinal.get(i2);
+				 Game semiGame=semiFinal[i2];
 				 try {
 						icone2 = ImageIO.read(new File("score.jpg"));
 						g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
@@ -223,9 +224,17 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
 			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
 			 
-			 
-			 
-			 
+			 try {
+					icone2 = ImageIO.read(new File("trophee.png"));
+					g2.drawImage(icone2,360,350,320,320,this);
+							
+			}catch(IOException exc){
+						exc.printStackTrace();
+			}
+			 g2.setColor(Color.black);
+			Team winner = worldCup.getWinnerTeam();
+			 g2.drawString(winner.getName(), 450, 412);
+			
 			
 			
 		 }

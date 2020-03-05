@@ -20,13 +20,14 @@ public class WorldCup {
 	 */
 	private HashMap<String, GroupStage> groupStage1; 
 	private HashMap<String, GroupStage> groupStage2; 
-	private ArrayList<Game> quarterFinal = new ArrayList<Game>();
-	private ArrayList<Game> semiFinal = new ArrayList<Game>();
+	private Game[] quarterFinal = new Game[4];
+	private Game[] semiFinal = new Game[2];
 	private Game finalGame;
 	private Game smallFinalGame;
 	private ArrayList<Team> teams;
 	private RankingWorldCup ranking;
 	private GameSimulation gameSimulation = new GameSimulation();
+	private Team winnerTeam;
 	
 	
 	
@@ -157,15 +158,15 @@ public class WorldCup {
 		team2 = groupStage2.get("GROUPE L").getRanking().getRankingTeams()[1];
 		Game quarterGame2 = new Game(team1,team2);
 		
-		quarterFinal.add(quarterGame1);
-		quarterFinal.add(quarterGame2);
+		quarterFinal[0]=quarterGame1;
+		quarterFinal[2]=quarterGame2;
 		
 		gameSimulation.play(quarterGame1);
-		//System.out.println(quarterGame1.toString());
+		System.out.println(quarterGame1.toString());
 	
 	
 		gameSimulation.play(quarterGame2);
-		//System.out.println(quarterGame2.toString());
+		System.out.println(quarterGame2.toString());
 		
 		Team teamWin1 ,teamWin2;
 		if(quarterGame1.getScore1()<quarterGame1.getScore2()) {
@@ -194,15 +195,15 @@ public class WorldCup {
 		team2 = groupStage2.get("GROUPE K").getRanking().getRankingTeams()[1];
 		Game quarterGame4 = new Game(team1,team2);
 		
-		quarterFinal.add(quarterGame3);
-		quarterFinal.add(quarterGame4);
+		quarterFinal[1]=quarterGame3;
+		quarterFinal[3]=quarterGame4;
 		
 		gameSimulation.play(quarterGame3);
-		//System.out.println(quarterGame3.toString());
+		System.out.println(quarterGame3.toString());
 		
 		
 		gameSimulation.play(quarterGame4);
-		//System.out.println(quarterGame4.toString());
+		System.out.println(quarterGame4.toString());
 		
 		Team teamWin3 ,teamWin4;
 		if(quarterGame3.getScore1()<quarterGame3.getScore2()) {
@@ -224,8 +225,8 @@ public class WorldCup {
 		}
 		Game semiGame2 = new Game(teamWin3,teamWin4);
 		
-		semiFinal.add(semiGame1);
-		semiFinal.add(semiGame2);
+		semiFinal[0]=semiGame1;
+		semiFinal[1]=semiGame2;
 		
 		
 	}
@@ -237,10 +238,10 @@ public class WorldCup {
 		
 		Team teamWin1, teamWin2, teamLose1, teamLose2;
 		
-		Game semiFinal1 = semiFinal.get(0);
+		Game semiFinal1 = semiFinal[0];
 	
 		gameSimulation.play(semiFinal1);
-		//System.out.println(semiFinal1.toString());
+		System.out.println(semiFinal1.toString());
 		
 		if(semiFinal1.getScore1()<semiFinal1.getScore2()) {
 			teamWin1=semiFinal1.getTeam2();
@@ -253,10 +254,10 @@ public class WorldCup {
 			ranking.addPointWinningTeam(semiFinal1.getTeam1().getName(),16);
 		}
 		
-		Game semiFinal2 = semiFinal.get(1);
+		Game semiFinal2 = semiFinal[1];
 
 		gameSimulation.play(semiFinal2);
-		//.out.println(semiFinal2.toString());
+		System.out.println(semiFinal2.toString());
 		
 		if(semiFinal2.getScore1()<semiFinal2.getScore2()) {
 			teamWin2=semiFinal2.getTeam2();
@@ -277,7 +278,7 @@ public class WorldCup {
 	public void simulateSmallFinal() {
 		
 		gameSimulation.play(smallFinalGame);
-		//System.out.println(smallFinalGame.toString());
+		System.out.println(smallFinalGame.toString());
 		if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
 			ranking.addPointWinningTeam(smallFinalGame.getTeam2().getName(),35);
 			
@@ -292,16 +293,18 @@ public class WorldCup {
 	public void simulateFinal() {
 		
 		gameSimulation.play(finalGame);
-		//System.out.println(finalGame.toString());
+		System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
-			//System.out.println("WINNER : "+finalGame.getTeam2().getName());
+			System.out.println("WINNER : "+finalGame.getTeam2().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),60);
+			winnerTeam=finalGame.getTeam2();
 		}
 		else {
-			//System.out.println("WINNER : "+finalGame.getTeam1().getName());
+			System.out.println("WINNER : "+finalGame.getTeam1().getName());
 			ranking.addPointWinningTeam(finalGame.getTeam1().getName(),100);
 			ranking.addPointWinningTeam(finalGame.getTeam2().getName(),60);
+			winnerTeam=finalGame.getTeam1();
 		}
 	}
 
@@ -315,6 +318,19 @@ public class WorldCup {
 	 */
 	public HashMap<String, GroupStage> getGroupStage1() {
 		return groupStage1;
+	}
+
+	
+
+
+
+
+
+	/**
+	 * @return the winnerTeam
+	 */
+	public Team getWinnerTeam() {
+		return winnerTeam;
 	}
 
 
@@ -337,7 +353,7 @@ public class WorldCup {
 	/**
 	 * @return the quarterFinal
 	 */
-	public ArrayList<Game> getQuarterFinal() {
+	public Game[] getQuarterFinal() {
 		return quarterFinal;
 	}
 
@@ -349,7 +365,7 @@ public class WorldCup {
 	/**
 	 * @return the semiFinal
 	 */
-	public ArrayList<Game> getSemiFinal() {
+	public Game[] getSemiFinal() {
 		return semiFinal;
 	}
 

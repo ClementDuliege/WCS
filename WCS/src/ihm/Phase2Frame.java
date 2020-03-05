@@ -2,12 +2,15 @@ package ihm;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,6 +81,8 @@ public class Phase2Frame extends JFrame {
 		contentPane.add(panel);
 	}
 	
+	
+	
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phaseFinalButton.addActionListener(new PhaseFinale());
@@ -131,13 +136,35 @@ public class Phase2Frame extends JFrame {
 		groupL.setForeground(Color.WHITE);
 		groupL.setOpaque(true);
 		groupL.setBackground(new Color(239,144,52));
-		
+		JLabel[] listLabel = {groupI,groupJ,groupK,groupL};
+		addActionToLabel(listLabel);
 		panel.add(groupI);
 		panel.add(groupJ);
 		panel.add(groupK);
 		panel.add(groupL);	
 	}
 	
+	public void addActionToLabel(JLabel[] listLabel) {
+		for(int i = 0;i<4;i++) {
+			JLabel j = listLabel[i];
+			j.addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent e) {
+					Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+		            setCursor(handCursor);
+		           
+		         }
+				public void mousePressed(MouseEvent e) {
+					 windows.dispose();
+			         new RankingGroup2Frame(worldCup,"Rangink Group 1");
+				}
+				 public void mouseExited(MouseEvent e) {
+					 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			            setCursor(defaultCursor);
+			         }
+				
+			});
+		}
+	}
 	
 	public void displayGameGroup(String group, int j) {
 		ArrayList<Game> listGameGroup2 = worldCup.getGroupStage2().get(group).getGames();
