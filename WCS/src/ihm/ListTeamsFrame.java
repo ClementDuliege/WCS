@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -55,6 +56,7 @@ public class ListTeamsFrame extends JFrame {
 		
 		JPanel panel=new JPanel();
 		panel.setLayout(null);
+		panel.setBackground(Color.WHITE);
 		 
 		teamsLabel= new JLabel("Equipes");
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,30));
@@ -82,6 +84,8 @@ public class ListTeamsFrame extends JFrame {
 			for(int j=0; j<8; j++) {
 				tabButton[k] = new JButton(teams.get(k).getName());
 				tabButton[k].setBounds(x, y, 180, 30);
+				tabButton[k].setBackground(new Color(239,144,52));
+				tabButton[k].setForeground(Color.white);
 				tabButton[k].setActionCommand(Integer.toString(k));
 				tabButton[k].addActionListener(new ListTeamAction());
 				panel.add(tabButton[k]);

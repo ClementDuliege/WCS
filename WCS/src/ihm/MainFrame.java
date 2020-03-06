@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -27,7 +28,7 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(String titleWindows,WorldCup worldCup) {
 		super(titleWindows);
-		setSize(1300,800);
+		setSize(900,400);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,15 +58,16 @@ public class MainFrame extends JFrame {
 		
 		JPanel panel=new JPanel();
 		panel.setLayout(null);
+		panel.setBackground(Color.white);
 		
 		titleJLabel.setBounds(310, 30, 275, 75);
+		titleJLabel.setForeground(new Color(239,144,52));
 		
 		panel.add(titleJLabel);
 		
-		informationTeamButton.setBounds(325, 150, 250, 75);
-		panel.add(informationTeamButton);
-		
-		simulationStartButton.setBounds(325, 250, 250, 75);
+		simulationStartButton.setBounds(325, 150, 250, 75);
+		simulationStartButton.setBackground(new Color(239,144,52));
+		simulationStartButton.setForeground(Color.white);
 		panel.add(simulationStartButton);
 		
 		contentPane.add(panel);
