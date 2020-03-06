@@ -113,7 +113,7 @@ public class Phase1Frame extends JFrame {
 		groupE.setForeground(Color.WHITE);
 		groupE.setOpaque(true);
 		groupE.setBackground(new Color(225,82,11));
-		
+		 
 		JButton groupF=new JButton("GROUPE F");
 		groupF.setBounds(380, 450, 200, 30);
 		groupF.setForeground(Color.WHITE);

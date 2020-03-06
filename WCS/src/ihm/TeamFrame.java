@@ -157,7 +157,7 @@ public class TeamFrame extends JFrame {
 			playerLabel.setForeground(Color.WHITE);
 			playerLabel.setOpaque(true);
 			playerLabel.setBackground(new Color(225,82,11));
-			
+			 
 			
 			panel.add(playerLabel);
 			listLabel[i]=playerLabel;
