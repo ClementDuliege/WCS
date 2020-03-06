@@ -1,3 +1,6 @@
+package ihm;
+
+
 import javax.swing.JPanel;
 
 import data.WorldCup;
