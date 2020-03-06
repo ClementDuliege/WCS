@@ -87,49 +87,41 @@ public class Phase1Frame extends JFrame {
 		JButton groupA=new JButton("GROUPE A");	
 		groupA.setBounds(80, 100, 200, 30);
 		groupA.setForeground(Color.WHITE);
-		groupA.setOpaque(true);
 		groupA.setBackground(new Color(225,82,11));
 		
 		JButton groupB=new JButton("GROUPE B");
 		groupB.setBounds(380, 100, 200, 30);
 		groupB.setForeground(Color.WHITE);
-		groupB.setOpaque(true);
 		groupB.setBackground(new Color(225,82,11));
 		
 		JButton groupC=new JButton("GROUPE C");
 		groupC.setBounds(680, 100, 200, 30);
 		groupC.setForeground(Color.WHITE);
-		groupC.setOpaque(true);
 		groupC.setBackground(new Color(225,82,11));
 		
 		JButton groupD=new JButton("GROUPE D");
 		groupD.setBounds(980, 100, 200, 30);
 		groupD.setForeground(Color.WHITE);
-		groupD.setOpaque(true);
 		groupD.setBackground(new Color(225,82,11));
 		
 		JButton groupE=new JButton("GROUPE E");
 		groupE.setBounds(80, 450, 200, 30);
 		groupE.setForeground(Color.WHITE);
-		groupE.setOpaque(true);
 		groupE.setBackground(new Color(225,82,11));
 		 
 		JButton groupF=new JButton("GROUPE F");
 		groupF.setBounds(380, 450, 200, 30);
 		groupF.setForeground(Color.WHITE);
-		groupF.setOpaque(true);
 		groupF.setBackground(new Color(225,82,11));
 		
 		JButton groupG=new JButton("GROUPE G");
 		groupG.setBounds(680, 450, 200, 30);
 		groupG.setForeground(Color.WHITE);
-		groupG.setOpaque(true);
 		groupG.setBackground(new Color(225,82,11));
 		
 		JButton groupH=new JButton("GROUPE H");
 		groupH.setBounds(980, 450, 200, 30);
 		groupH.setForeground(Color.WHITE);
-		groupH.setOpaque(true);
 		groupH.setBackground(new Color(225,82,11));
 		
 		JButton[] listLabel = {groupA,groupB,groupC,groupD,groupE,groupF,groupG,groupH};

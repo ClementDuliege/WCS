@@ -155,7 +155,6 @@ public class TeamFrame extends JFrame {
 			JButton playerLabel = new JButton(players.get(i).getName());
 			playerLabel.setBounds(100, 200+(i*40), 150, 30);
 			playerLabel.setForeground(Color.WHITE);
-			playerLabel.setOpaque(true);
 			playerLabel.setBackground(new Color(225,82,11));
 			 
 			

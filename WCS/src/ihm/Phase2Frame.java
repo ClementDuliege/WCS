@@ -115,25 +115,21 @@ public class Phase2Frame extends JFrame {
 		JButton groupI=new JButton("GROUPE I");
 		groupI.setBounds(80, 100, 200, 30);
 		groupI.setForeground(Color.WHITE);
-		groupI.setOpaque(true);
 		groupI.setBackground(new Color(225,82,11));
 		 
 		JButton groupJ=new JButton("GROUPE J");
 		groupJ.setBounds(380, 100, 200, 30);
 		groupJ.setForeground(Color.WHITE);
-		groupJ.setOpaque(true);
 		groupJ.setBackground(new Color(225,82,11));
 		
 		JButton groupK=new JButton("GROUPE K");
 		groupK.setBounds(680, 100, 200, 30);
 		groupK.setForeground(Color.WHITE);
-		groupK.setOpaque(true);
 		groupK.setBackground(new Color(225,82,11));
 		
 		JButton groupL=new JButton("GROUPE L");
 		groupL.setBounds(980, 100, 200, 30);
 		groupL.setForeground(Color.WHITE);
-		groupL.setOpaque(true);
 		groupL.setBackground(new Color(225,82,11));
 		JButton[] listLabel = {groupI,groupJ,groupK,groupL};
 		addActionToLabel(listLabel);
