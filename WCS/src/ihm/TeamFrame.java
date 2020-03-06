@@ -26,6 +26,9 @@ import javax.swing.SwingConstants;
 import data.Player;
 import data.Team;
 import data.WorldCup;
+import ihm.Phase2Frame.Phase1;
+import ihm.Phase2Frame.PhaseFinale;
+import ihm.Phase2Frame.Teams;
 
 public class TeamFrame extends JFrame {
 	/**
@@ -42,6 +45,10 @@ public class TeamFrame extends JFrame {
 	private Team team;
 	private JPanel panel;
 	private PlayerPanel playerPanel;
+	private JButton phase1Button=new JButton("Phase 1");
+	private JButton phase2Button=new JButton("Phase 2");
+	private JButton phaseFinalButton=new JButton("Phase Finale");
+	private JButton teamsButton=new JButton("Equipes");
 	
 	public TeamFrame(String windowsTitle, WorldCup worldCup, int indexTeam) {
 		super(windowsTitle);
@@ -79,14 +86,61 @@ public class TeamFrame extends JFrame {
 		
 		teamsLabel=new JLabel(team.getName());
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,40));
-		teamsLabel.setBounds(280, 15, 500, 40);
+		teamsLabel.setBounds(120, 150, 500, 40);
 		
-		panel.add(backButton);
+		phase1Button.setBounds(150, 50, 200, 25);
+		phase2Button.setBounds(400, 50, 200, 25);
+		phaseFinalButton.setBounds(650, 50, 200, 25);
+		teamsButton.setBounds(900, 50, 200, 25);
+		
+		panel.add(phase1Button);
+		panel.add(phase2Button);
+		panel.add(phaseFinalButton);
+		panel.add(teamsButton);
+		
+		initAction();
 		panel.add(teamsLabel);
 		
 		contentPane.add(panel);
 		
 		
+	}
+	
+	public void initAction() {
+		phase1Button.addActionListener(new Phase1());
+		phaseFinalButton.addActionListener(new PhaseFinale());
+		phase2Button.addActionListener(new Phase2());
+		teamsButton.addActionListener(new TeamAction());
+	}
+	
+	
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	public class PhaseFinale implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new FinalPhaseFrame(worldCup,"WCS");
+		}
+	}
+	
+	
+	public class Phase2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase2Frame(worldCup,"TEAMS");
+		}
+	}
+	
+	public class TeamAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new ListTeamsFrame("TEAMS",worldCup);
+		}
 	}
 	
 	
@@ -99,7 +153,7 @@ public class TeamFrame extends JFrame {
 		
 		for(int i = 0;i<players.size();i++) {
 			JLabel playerLabel = new JLabel(players.get(i).getName(),SwingConstants.CENTER);
-			playerLabel.setBounds(100, 100+(i*40), 150, 30);
+			playerLabel.setBounds(100, 200+(i*40), 150, 30);
 			playerLabel.setForeground(Color.WHITE);
 			playerLabel.setOpaque(true);
 			playerLabel.setBackground(new Color(239,144,52));
@@ -112,7 +166,7 @@ public class TeamFrame extends JFrame {
 		addActionToLabel(listLabel);
 		
 		playerPanel= new PlayerPanel(players.get(0));
-		playerPanel.setBounds(550, 60, 400, 700);
+		playerPanel.setBounds(550, 60, 600, 700);
 		panel.add(playerPanel);
 		
 		
@@ -169,6 +223,20 @@ public class TeamFrame extends JFrame {
 		 */
 		private static final long serialVersionUID = 1L;
 		private Player player;
+		private int attack;
+		private int shot2Pts;
+		private int shot3Pts;
+		private int freeThrows;
+		private int pass;
+		private int ballHandle;
+		private int reboundOff;
+		private int defense;
+		private int block;
+		private int steal;
+		private int reboundDef;
+		private int strenght;
+		private int reactionTime;
+		private int speed;
 		public PlayerPanel(Player p) {
 			
 			this.player=p;
@@ -186,6 +254,53 @@ public class TeamFrame extends JFrame {
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
 			 String[] names= player.getName().split("\\.");
 			 g2.drawString(names[0]+" "+names[1], 50, 115);
+			 
+			 //colonne 1
+			 g2.drawString("ATTAQUE : ", 15, 450);
+			 g2.drawString(""+player.getAttack(), 170, 450);
+			 
+			 g2.drawString("Shot 2 Pts : ", 15, 490);
+			 g2.drawString(""+player.getShot2Pts(), 170, 490);
+			 
+			 g2.drawString("Shot 3 Pts : ", 15, 530);
+			 g2.drawString(""+player.getShot3Pts(), 170, 530);
+			 
+			 g2.drawString("Free throws : ", 15, 570);
+			 g2.drawString(""+player.getFreeThrows(), 170, 570);
+			 
+			 g2.drawString("Pass : ", 15, 610);
+			 g2.drawString(""+player.getPass(), 170, 610);
+			 
+			 g2.drawString("Ball handle : ", 15, 650);
+			 g2.drawString(""+player.getBallHandle(), 170, 650);
+			 
+			 g2.drawString("Spedd : ", 15, 690);
+			 g2.drawString(""+player.getSpeed(), 170, 690);
+			 
+			 //Colonne 2
+			 g2.drawString("DEFENSE : ", 250, 450);
+			 g2.drawString(""+player.getDefense(), 405, 450);
+			 
+			 g2.drawString("Block : ", 250, 490);
+			 g2.drawString(""+player.getBlock(), 405, 490);
+			 
+			 g2.drawString("Steal : ", 250, 530);
+			 g2.drawString(""+player.getSteal(), 405, 530);
+			 
+			 g2.drawString("Rebound off : ", 250, 570);
+			 g2.drawString(""+player.getReboundOff(), 405, 570);
+			 
+			 g2.drawString("Rebound def : ", 250, 610);
+			 g2.drawString(""+player.getReboundDef(), 405, 610);
+			 
+			 g2.drawString("Strenght : ", 250, 650);
+			 g2.drawString(""+player.getStrenght(), 405, 650);
+			 
+			 g2.drawString("Reaction : ", 250, 690);
+			 g2.drawString(""+player.getReactionTime(), 405, 690);
+			 
+			 g2.drawString("speed : ", 250, 730);
+			 g2.drawString(""+player.getBallHandle(), 405, 730);
 			
 		 }
 		 

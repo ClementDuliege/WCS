@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 
 import data.Team;
 import data.WorldCup;
+import ihm.Phase2Frame.Phase1;
+import ihm.Phase2Frame.PhaseFinale;
+import ihm.Phase2Frame.Teams;
 
 public class ListTeamsFrame extends JFrame {
 	/**
@@ -25,10 +28,13 @@ public class ListTeamsFrame extends JFrame {
 	private Container contentPane;
 	private JButton tabButton[]= new JButton[32];
 	private JLabel teamsLabel;
-	private JButton backButton=new JButton("Back");
+	private JButton phase1Button=new JButton("Phase 1");
+	private JButton phase2Button=new JButton("Phase 2");
+	private JButton phaseFinalButton=new JButton("Phase Finale");
+	private JButton teamsButton=new JButton("Equipes");
 	public ListTeamsFrame(String windowsTitle, WorldCup worldCup) {
 		super(windowsTitle);
-		setSize(900,600);
+		setSize(1300,850);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,16 +58,25 @@ public class ListTeamsFrame extends JFrame {
 		
 		teamsLabel= new JLabel("Equipes");
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,30));
-		teamsLabel.setBounds(300, 15, 275, 75);
+		teamsLabel.setBounds(150, 115, 275, 75);
 		panel.add(teamsLabel);
 		
-		backButton.setBounds(750, 500, 70, 40);
-		backButton.addActionListener(new Back());
-		panel.add(backButton);
+		phase1Button.setBounds(150, 50, 200, 25);
+		phase2Button.setBounds(400, 50, 200, 25);
+		phaseFinalButton.setBounds(650, 50, 200, 25);
+		teamsButton.setBounds(900, 50, 200, 25);
+		
+		panel.add(phase1Button);
+		panel.add(phase2Button);
+		panel.add(phaseFinalButton);
+		panel.add(teamsButton);
+		
+		initAction();
+		
 		
 		ArrayList<Team> teams=worldCup.getTeams();
-		int x = 70;
-		int y= 100;
+		int x = 150;
+		int y= 190;
 		int k= 0;
 		for(int i =0 ; i<4 ; i++) {
 			for(int j=0; j<8; j++) {
@@ -71,14 +86,43 @@ public class ListTeamsFrame extends JFrame {
 				tabButton[k].addActionListener(new ListTeamAction());
 				panel.add(tabButton[k]);
 				
-				y+=50;
+				y+=70;
 				k++;
 			}
-			y=100;
-			x+=200;
+			y=190;
+			x+=250;
 		}
 		contentPane.add(panel);
 		
+	}
+	
+	public void initAction() {
+		phase1Button.addActionListener(new Phase1());
+		phaseFinalButton.addActionListener(new PhaseFinale());
+		phase2Button.addActionListener(new Phase2());
+	}
+	
+	
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	public class PhaseFinale implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new FinalPhaseFrame(worldCup,"WCS");
+		}
+	}
+	
+	
+	public class Phase2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase2Frame(worldCup,"TEAMS");
+		}
 	}
 	
 	public class ListTeamAction implements ActionListener{

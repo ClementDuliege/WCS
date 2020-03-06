@@ -35,7 +35,7 @@ public class FinalPhaseFrame extends JFrame {
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
-	private JButton teamsButton=new JButton("Equipe");
+	private JButton teamsButton=new JButton("Equipes");
 	public FinalPhaseFrame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);

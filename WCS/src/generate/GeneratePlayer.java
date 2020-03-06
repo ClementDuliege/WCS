@@ -22,7 +22,7 @@ public class GeneratePlayer {
 		this.playerCreated.setPass(generateValueAttack());
 		this.playerCreated.setBallHandle(generateValueAttack());
 		this.playerCreated.setSpeed(generateValueAttack());
-
+		this.playerCreated.setFreeThrows(generateValueAttack());
 		
 		this.playerCreated.setReboundOff(generateValueDefense());
 		this.playerCreated.setBlock(generateValueDefense());
