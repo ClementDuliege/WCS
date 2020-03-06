@@ -84,55 +84,55 @@ public class Phase1Frame extends JFrame {
 
 	
 	public void displayGroup() {
-		JLabel groupA=new JLabel("GROUPE A",SwingConstants.CENTER);	
+		JButton groupA=new JButton("GROUPE A");	
 		groupA.setBounds(80, 100, 200, 30);
 		groupA.setForeground(Color.WHITE);
 		groupA.setOpaque(true);
 		groupA.setBackground(new Color(225,82,11));
 		
-		JLabel groupB=new JLabel("GROUPE B",SwingConstants.CENTER);
+		JButton groupB=new JButton("GROUPE B");
 		groupB.setBounds(380, 100, 200, 30);
 		groupB.setForeground(Color.WHITE);
 		groupB.setOpaque(true);
 		groupB.setBackground(new Color(225,82,11));
 		
-		JLabel groupC=new JLabel("GROUPE C",SwingConstants.CENTER);
+		JButton groupC=new JButton("GROUPE C");
 		groupC.setBounds(680, 100, 200, 30);
 		groupC.setForeground(Color.WHITE);
 		groupC.setOpaque(true);
 		groupC.setBackground(new Color(225,82,11));
 		
-		JLabel groupD=new JLabel("GROUPE D",SwingConstants.CENTER);
+		JButton groupD=new JButton("GROUPE D");
 		groupD.setBounds(980, 100, 200, 30);
 		groupD.setForeground(Color.WHITE);
 		groupD.setOpaque(true);
 		groupD.setBackground(new Color(225,82,11));
 		
-		JLabel groupE=new JLabel("GROUPE E",SwingConstants.CENTER);
+		JButton groupE=new JButton("GROUPE E");
 		groupE.setBounds(80, 450, 200, 30);
 		groupE.setForeground(Color.WHITE);
 		groupE.setOpaque(true);
 		groupE.setBackground(new Color(225,82,11));
 		
-		JLabel groupF=new JLabel("GROUPE F",SwingConstants.CENTER);
+		JButton groupF=new JButton("GROUPE F");
 		groupF.setBounds(380, 450, 200, 30);
 		groupF.setForeground(Color.WHITE);
 		groupF.setOpaque(true);
 		groupF.setBackground(new Color(225,82,11));
 		
-		JLabel groupG=new JLabel("GROUPE G",SwingConstants.CENTER);
+		JButton groupG=new JButton("GROUPE G");
 		groupG.setBounds(680, 450, 200, 30);
 		groupG.setForeground(Color.WHITE);
 		groupG.setOpaque(true);
 		groupG.setBackground(new Color(225,82,11));
 		
-		JLabel groupH=new JLabel("GROUPE H",SwingConstants.CENTER);
+		JButton groupH=new JButton("GROUPE H");
 		groupH.setBounds(980, 450, 200, 30);
 		groupH.setForeground(Color.WHITE);
 		groupH.setOpaque(true);
 		groupH.setBackground(new Color(225,82,11));
 		
-		JLabel[] listLabel = {groupA,groupB,groupC,groupD,groupE,groupF,groupG,groupH};
+		JButton[] listLabel = {groupA,groupB,groupC,groupD,groupE,groupF,groupG,groupH};
 		addActionToLabel(listLabel);
 		panel.add(groupA);
 		panel.add(groupB);
@@ -145,13 +145,13 @@ public class Phase1Frame extends JFrame {
 			
 	}
 	
-	public void addActionToLabel(JLabel[] listLabel) {
+	public void addActionToLabel(JButton[] listLabel) {
 		for(int i = 0;i<8;i++) {
-			JLabel j = listLabel[i];
+			JButton j = listLabel[i];
 			j.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
-					Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-		            setCursor(handCursor);
+					//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+		           // setCursor(handCursor);
 		           
 		         }
 				public void mousePressed(MouseEvent e) {
@@ -159,8 +159,8 @@ public class Phase1Frame extends JFrame {
 			         new RankingGroup1Frame(worldCup,"Rangink Group 1");
 				}
 				 public void mouseExited(MouseEvent e) {
-					 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			            setCursor(defaultCursor);
+					// Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			           // setCursor(defaultCursor);
 			         }
 				
 			});

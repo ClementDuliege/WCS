@@ -112,30 +112,30 @@ public class Phase2Frame extends JFrame {
 	}
 	
 	public void displayGroup() {
-		JLabel groupI=new JLabel("GROUPE I",SwingConstants.CENTER);
+		JButton groupI=new JButton("GROUPE I");
 		groupI.setBounds(80, 100, 200, 30);
 		groupI.setForeground(Color.WHITE);
 		groupI.setOpaque(true);
 		groupI.setBackground(new Color(225,82,11));
 		
-		JLabel groupJ=new JLabel("GROUPE J",SwingConstants.CENTER);
+		JButton groupJ=new JButton("GROUPE J");
 		groupJ.setBounds(380, 100, 200, 30);
 		groupJ.setForeground(Color.WHITE);
 		groupJ.setOpaque(true);
 		groupJ.setBackground(new Color(225,82,11));
 		
-		JLabel groupK=new JLabel("GROUPE K",SwingConstants.CENTER);
+		JButton groupK=new JButton("GROUPE K");
 		groupK.setBounds(680, 100, 200, 30);
 		groupK.setForeground(Color.WHITE);
 		groupK.setOpaque(true);
 		groupK.setBackground(new Color(225,82,11));
 		
-		JLabel groupL=new JLabel("GROUPE L",SwingConstants.CENTER);
+		JButton groupL=new JButton("GROUPE L");
 		groupL.setBounds(980, 100, 200, 30);
 		groupL.setForeground(Color.WHITE);
 		groupL.setOpaque(true);
 		groupL.setBackground(new Color(225,82,11));
-		JLabel[] listLabel = {groupI,groupJ,groupK,groupL};
+		JButton[] listLabel = {groupI,groupJ,groupK,groupL};
 		addActionToLabel(listLabel);
 		panel.add(groupI);
 		panel.add(groupJ);
@@ -143,13 +143,13 @@ public class Phase2Frame extends JFrame {
 		panel.add(groupL);	
 	}
 	
-	public void addActionToLabel(JLabel[] listLabel) {
+	public void addActionToLabel(JButton[] listLabel) {
 		for(int i = 0;i<4;i++) {
-			JLabel j = listLabel[i];
+			JButton j = listLabel[i];
 			j.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
-					Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-		            setCursor(handCursor);
+					//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+		           // setCursor(handCursor);
 		           
 		         }
 				public void mousePressed(MouseEvent e) {
@@ -157,8 +157,8 @@ public class Phase2Frame extends JFrame {
 			         new RankingGroup2Frame(worldCup,"Rangink Group 1");
 				}
 				 public void mouseExited(MouseEvent e) {
-					 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			            setCursor(defaultCursor);
+					// Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			            //setCursor(defaultCursor);
 			         }
 				
 			});

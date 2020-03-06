@@ -148,15 +148,15 @@ public class TeamFrame extends JFrame {
 		
 		ArrayList<Player>  players = team.getPlayers();
 
-		JLabel listLabel[]=new JLabel[10];
+		JButton listLabel[]=new JButton[10];
 		
 		
 		for(int i = 0;i<players.size();i++) {
-			JLabel playerLabel = new JLabel(players.get(i).getName(),SwingConstants.CENTER);
+			JButton playerLabel = new JButton(players.get(i).getName());
 			playerLabel.setBounds(100, 200+(i*40), 150, 30);
 			playerLabel.setForeground(Color.WHITE);
 			playerLabel.setOpaque(true);
-			playerLabel.setBackground(new Color(239,144,52));
+			playerLabel.setBackground(new Color(225,82,11));
 			
 			
 			panel.add(playerLabel);
@@ -166,24 +166,24 @@ public class TeamFrame extends JFrame {
 		addActionToLabel(listLabel);
 		
 		playerPanel= new PlayerPanel(players.get(0));
-		playerPanel.setBounds(550, 60, 600, 700);
+		playerPanel.setBounds(550, 60, 600, 750);
 		panel.add(playerPanel);
 		
 		
 	}
 	
-	public void addActionToLabel(JLabel[] listLabel) {
+	public void addActionToLabel(JButton[] listLabel) {
 		for(int i = 0;i<10;i++) {
-			JLabel j = listLabel[i];
+			JButton j = listLabel[i];
 			j.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
-					Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-		            setCursor(handCursor);
+					//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+		            ///setCursor(handCursor);
 		           
 		         }
 				public void mousePressed(MouseEvent e) {
 					panel.remove(playerPanel);
-					JLabel playerLabel = (JLabel)e.getSource();
+					JButton playerLabel = (JButton)e.getSource();
 					String name = playerLabel.getText();
 					ArrayList<Player>  players = team.getPlayers();
 			        int i =0;
@@ -197,8 +197,8 @@ public class TeamFrame extends JFrame {
 			        panel.repaint();
 				}
 				 public void mouseExited(MouseEvent e) {
-					 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			            setCursor(defaultCursor);
+					 //Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			           // setCursor(defaultCursor);
 			         }
 				
 			});
@@ -252,9 +252,12 @@ public class TeamFrame extends JFrame {
 					exc.printStackTrace();
 			}
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			 g2.setColor(new Color(225,82,11));
 			 String[] names= player.getName().split("\\.");
 			 g2.drawString(names[0]+" "+names[1], 50, 115);
-			 
+			 g2.setColor(Color.black);
+			
+			 g2.drawRect(0, 400, 450, 310);
 			 //colonne 1
 			 g2.drawString("ATTAQUE : ", 15, 450);
 			 g2.drawString(""+player.getAttack(), 170, 450);
@@ -299,8 +302,6 @@ public class TeamFrame extends JFrame {
 			 g2.drawString("Reaction : ", 250, 690);
 			 g2.drawString(""+player.getReactionTime(), 405, 690);
 			 
-			 g2.drawString("speed : ", 250, 730);
-			 g2.drawString(""+player.getBallHandle(), 405, 730);
 			
 		 }
 		 

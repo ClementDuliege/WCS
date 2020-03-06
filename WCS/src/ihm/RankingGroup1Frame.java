@@ -146,7 +146,7 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.drawLine(x+280, y+300, x, y+300);
 			 g2.drawLine(x, y+300, x, y);
 			
-			 g2.setColor(new Color(239,144,52));
+			 g2.setColor(new Color(225,82,11));
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
