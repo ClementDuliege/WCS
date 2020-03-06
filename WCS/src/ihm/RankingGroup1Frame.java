@@ -20,7 +20,7 @@ import data.RankingGroupStage;
 
 public class RankingGroup1Frame extends JFrame {
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private WorldCup worldCup;

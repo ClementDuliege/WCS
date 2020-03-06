@@ -33,7 +33,7 @@ import ihm.Phase2Frame.Teams;
 public class TeamFrame extends JFrame {
 	/**
 	 *
-	 */
+	 */ 
 	private static final long serialVersionUID = 1L;
 	protected JFrame windows;
 	private WorldCup worldCup;

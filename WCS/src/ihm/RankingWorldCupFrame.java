@@ -8,7 +8,7 @@ import data.RankingWorldCup;
 
 public class RankingWorldCupFrame extends JPanel {
     /**
-     *
+     * 
      */
     private static final long serialVersionUID = 1L;
 

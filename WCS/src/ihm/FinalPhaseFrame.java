@@ -25,7 +25,7 @@ import data.WorldCup;
 public class FinalPhaseFrame extends JFrame {
 	/**
 	 *
-	 */
+	 */ 
 	private static final long serialVersionUID = 1L;
 	
 	private WorldCup worldCup;

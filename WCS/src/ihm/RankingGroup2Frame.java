@@ -21,7 +21,7 @@ import data.WorldCup;
 public class RankingGroup2Frame extends JFrame {
 	/**
 	 *
-	 */
+	 */ 
 	private static final long serialVersionUID = 1L;
 	private WorldCup worldCup;
 	private JFrame windows;

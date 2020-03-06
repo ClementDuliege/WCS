@@ -15,7 +15,7 @@ public class GeneratePlayer {
 	public Player generatePlayer(String name) {
 		
 		this.playerCreated=new Player(name);
-		
+		 
 		this.playerCreated.setAttack(generateValueAttack());
 		this.playerCreated.setShot2Pts(generateValueAttack());
 		this.playerCreated.setShot3Pts(generateValueAttack());

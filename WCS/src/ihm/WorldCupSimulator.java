@@ -25,7 +25,7 @@ public class WorldCupSimulator {
 		
 		
 		worldCup.simulateSmallFinal();
-		
+		 
 		
 		worldCup.simulateFinal();
 		

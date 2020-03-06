@@ -55,7 +55,7 @@ public class ListTeamsFrame extends JFrame {
 		
 		JPanel panel=new JPanel();
 		panel.setLayout(null);
-		
+		 
 		teamsLabel= new JLabel("Equipes");
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,30));
 		teamsLabel.setBounds(150, 115, 275, 75);
