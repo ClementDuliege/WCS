@@ -14,9 +14,12 @@ import javax.swing.JPanel;
 
 import data.Team;
 import data.WorldCup;
-import ihm.TeamFrame.Back;
 
 public class ListTeamsFrame extends JFrame {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JFrame windows;
 	private WorldCup worldCup;
 	private Container contentPane;
@@ -99,7 +102,7 @@ public class ListTeamsFrame extends JFrame {
 			JFrame main = new MainFrame("WCS",worldCup);
 			
 		   
-			
+	
 		}
 	}
 	

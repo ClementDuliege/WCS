@@ -6,7 +6,6 @@ import data.Player;
 
 public class GeneratePlayer {
 	private Player playerCreated;
-	private String name;
 	
 	
 	public GeneratePlayer() {

@@ -16,16 +16,18 @@ import javax.swing.JPanel;
 
 import data.GroupStage;
 import data.WorldCup;
-import ihm.Phase2Frame.Phase1;
-import ihm.Phase2Frame.PhaseFinale;
-import ihm.Phase2Frame.Teams;
+import data.RankingGroupStage;
 
 public class RankingGroup1Frame extends JFrame {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	private JButton backButton=new JButton("Back");
+	//private JButton backButton=new JButton("Back");
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
@@ -119,10 +121,16 @@ public class RankingGroup1Frame extends JFrame {
 	}
 	
 	public class tableGroupPanel extends JPanel {
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
 		private GroupStage group;
+		private RankingGroupStage rankingGroupStage;
 		private int x,y;
-		public tableGroupPanel(GroupStage group, int x,int y) {
+		public tableGroupPanel(GroupStage group ,int x,int y) {
 			this.group=group;
+			this.rankingGroupStage = group.getRanking();
 			this.x=x;
 			this.y=y;
 		}
@@ -141,14 +149,37 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-			 g2.drawString("1 - "+group.getRanking().getRankingTeams()[0].getName(), x+15, y+60);
-			 g2.drawString("2 - "+group.getRanking().getRankingTeams()[1].getName(), x+15, y+90);
-			 g2.drawString("3 - "+group.getRanking().getRankingTeams()[2].getName(), x+15, y+120);
-			 g2.drawString("4 - "+group.getRanking().getRankingTeams()[3].getName(), x+15, y+150);
+			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15));
+
+			 g2.drawString("Rang", x+5, y+60);
+			 g2.drawString("Pays", x+60, y+60);
+			 g2.drawString("Score", x+220, y+60);
+
+
+			 g2.drawString("1", x+15, y+90);
+			 g2.drawString("2", x+15, y+120);
+			 g2.drawString("3", x+15, y+150);
+			 g2.drawString("4", x+15, y+180);
+
+
+			 g2.drawString(""+group.getRanking().getRankingTeams()[0].getName(), x+50, y+90);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[1].getName(), x+50, y+120);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[2].getName(), x+50, y+150);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[3].getName(), x+50, y+180);
 			 
-			 
-			 
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[0].getName()), x+250, y+90);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[1].getName()), x+250, y+120);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+250, y+150);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+250, y+180);
+
+
+			 g2.drawLine(x+0, y+40, x+280, y+40);
+			 g2.drawLine(x+0, y+70, x+280, y+70);
+			 g2.drawLine(x+0, y+100, x+280, y+100);
+			 g2.drawLine(x+0, y+130, x+280, y+130);
+			 g2.drawLine(x+0, y+160, x+280, y+160);
+			 g2.drawLine(x+0, y+190, x+280, y+190);
+
 		}
 	}
 

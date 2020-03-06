@@ -10,16 +10,17 @@ public class GenerateInformations {
 	public String[][] informationPlayerTeam = new String[32][11];
 	
 	public String[][] infoTeam() {
-	     String csvFile = "teamWCS.csv";
+
+	     String csvFile = "C:\\Users\\yask\\WCS\\WCS\\teamWCS.csv"; //C'Ã©tait "teamWCS.csv" si Ã§a fonctionne pas chez vous
 	     String line = "";
 	     String cvsSplitBy = ";";
 	     int i = 0;
 
 	     try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-	    	 reader.readLine();/*On lit la première ligne car c'est les infos des colonnes*/
+	    	 reader.readLine();/*On lit la premiï¿½re ligne car c'est les infos des colonnes*/
 	         while ((line = reader.readLine()) != null && i < 32) {/*On lit toutes les lignes de notre fichier*/
 
-	            //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
+	            //On stocke dans notre tableau nos diffï¿½rents ï¿½lï¿½ments graï¿½e ï¿½ notre sï¿½parateur
 	             String[]payslip = line.split(cvsSplitBy);
 	             
 	             
@@ -32,19 +33,23 @@ public class GenerateInformations {
 	             }
 	                
 		         i++;
-	         }              
+			 }   
+			 reader.close();           
 	        
 		}
 		
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return informationPlayerTeam;
 	     
 	}
+
+
+
+	
 
 }

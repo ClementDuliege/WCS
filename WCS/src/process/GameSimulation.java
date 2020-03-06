@@ -1,8 +1,5 @@
 package process;
 
-import java.time.Duration;
-
-import java.util.Random;
 
 import data.*;
 import usual.*;
@@ -71,7 +68,6 @@ public class GameSimulation {
 		Team team2 = game.getTeam2();
 		
 		
-		int quarter = 0;
 		int actionTime = 0;
 		Team teamHadBall = betweenTwo(team1,team2);
 		Team teamDontHadBall = otherTeam(teamHadBall);

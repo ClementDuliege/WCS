@@ -1,5 +1,4 @@
 package usual;
-import java.util.Random;
 
 public class MyRandom {
 

@@ -1,16 +1,7 @@
 package main;
 
-import java.util.ArrayList;
-import data.RankingGroupStage;
-import java.util.HashMap;
 
-import data.Game;
-import data.GroupStage;
-import data.Team;
 import data.WorldCup;
-import generate.GenerateGroupStage;
-import generate.GenerateTeam;
-import process.GameSimulation;
 
 public class Test {
 	
@@ -20,11 +11,10 @@ public class Test {
 		
 		 
 		 
-	
+
 		WorldCup worldCup = new WorldCup();
 		
-		ArrayList<Team> teams = worldCup.getTeams();
-		
+		//ArrayList<Team> teams = worldCup.getTeams();
 		
 		
 		worldCup.creationGroupStage1();

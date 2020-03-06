@@ -23,16 +23,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import data.Game;
 import data.Player;
 import data.Team;
 import data.WorldCup;
 
 public class TeamFrame extends JFrame {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JFrame windows;
 	private WorldCup worldCup;
 	private Container contentPane;
-	private JButton tabButton[]= new JButton[32];
+	//private JButton tabButton[]= new JButton[32];
 	private JLabel teamsLabel;
 	private JButton backButton=new JButton("Back");
 	private int indexTeam;
@@ -54,7 +57,7 @@ public class TeamFrame extends JFrame {
 		contentPane.setBackground(Color.YELLOW);
 		this.indexTeam=indexTeam;
 		ArrayList<Team> teams=worldCup.getTeams();
-		team=teams.get(indexTeam);
+		team=teams.get(this.indexTeam);
 		panel=new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
@@ -161,6 +164,10 @@ public class TeamFrame extends JFrame {
 	
 	
 	public class PlayerPanel extends JPanel{
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
 		private Player player;
 		public PlayerPanel(Player p) {
 			
@@ -170,7 +177,7 @@ public class TeamFrame extends JFrame {
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 try {
-				Image icone2 = ImageIO.read(new File("player.png"));
+				Image icone2 = ImageIO.read(new File("WCS\\player.png"));//"player.png"
 				g2.drawImage(icone2,15,130,191,245,this);
 						
 			}catch(IOException exc){

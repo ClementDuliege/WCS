@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -21,12 +20,14 @@ import javax.swing.JPanel;
 import data.Game;
 import data.Team;
 import data.WorldCup;
-import ihm.Phase2Frame.Phase1;
-import ihm.Phase2Frame.PhaseFinale;
-import ihm.Phase2Frame.Teams;
 
 
 public class FinalPhaseFrame extends JFrame {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
@@ -107,6 +108,10 @@ public class FinalPhaseFrame extends JFrame {
 	
 	class TableauPhaseFinal extends JPanel{
 
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
 		WorldCup worldCup;
 		private Game[] quarterFinal;
 		private Game[] semiFinal;
@@ -130,7 +135,7 @@ public class FinalPhaseFrame extends JFrame {
 				 for(int j = 0 ;j<2;j++) {
 					 Game quarterGame=quarterFinal[k];
 					 try {
-							icone2 = ImageIO.read(new File("score.jpg"));
+							icone2 = ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
 							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 									
 						}catch(IOException exc){
@@ -151,7 +156,7 @@ public class FinalPhaseFrame extends JFrame {
 			 for(int i2= 0;i2<2;i2++) {
 				 Game semiGame=semiFinal[i2];
 				 try {
-						icone2 = ImageIO.read(new File("score.jpg"));
+						icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
 						g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
 								
 				}catch(IOException exc){
@@ -171,7 +176,7 @@ public class FinalPhaseFrame extends JFrame {
 			 
 			 
 			 try {
-					icone2 = ImageIO.read(new File("score.jpg"));
+					icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
 					g2.drawImage(icone2,400,200,250,43,this);
 							
 			}catch(IOException exc){
@@ -208,7 +213,7 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawLine(650, 222, 710, 222);
 			 
 			 try {
-					icone2 = ImageIO.read(new File("score.jpg"));
+					icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
 					g2.drawImage(icone2,400,300,250,43,this);
 							
 			}catch(IOException exc){
@@ -224,8 +229,8 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
 			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
 			 
-			 try {
-					icone2 = ImageIO.read(new File("trophee.png"));
+			try {
+					icone2 = ImageIO.read(new File("WCS\\trophee.png")); // "score.jpg"
 					g2.drawImage(icone2,360,350,320,320,this);
 							
 			}catch(IOException exc){

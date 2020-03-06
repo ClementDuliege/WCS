@@ -1,6 +1,5 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RankingGroupStage {
@@ -70,7 +69,11 @@ public class RankingGroupStage {
 		return value;
 		
 	}
-	
+
+
+	public HashMap<String,Integer> getScoreTeams(){
+		return scoreTeams;
+	}
 	
 	
 

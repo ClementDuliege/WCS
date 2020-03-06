@@ -1,10 +1,8 @@
 package ihm;
 
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import data.Team;
 import data.WorldCup;
 
 public class WorldCupSimulator {
