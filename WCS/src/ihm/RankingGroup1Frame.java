@@ -140,18 +140,18 @@ public class RankingGroup1Frame extends JFrame {
 			 Graphics2D g2 = (Graphics2D)g;
 			 
 			 g2.setStroke(new BasicStroke(5));
-			 g2.setColor(new Color(225,82,11));
+			 //g2.setColor(new Color(225,82,11));
 			 g2.drawLine(x, y, x+280, y);
 			 g2.drawLine(x+280, y, x+280, y+300);
 			 g2.drawLine(x+280, y+300, x, y+300);
 			 g2.drawLine(x, y+300, x, y);
 			
-			 g2.setColor(new Color(225,82,11));
+			 //g2.setColor(new Color(225,82,11));
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15));
-			 g2.setColor(new Color(225,82,11));
+			 //g2.setColor(new Color(225,82,11));
 			 g2.drawString("Rang", x+5, y+60);
 			 g2.drawString("Pays", x+60, y+60);
 			 g2.drawString("Score", x+220, y+60);
@@ -162,7 +162,7 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.drawString("3", x+15, y+150);
 			 g2.drawString("4", x+15, y+180);
 
-			 g2.setColor(new Color(239,144,52));
+			 //g2.setColor(new Color(239,144,52));
 			 g2.drawString(""+group.getRanking().getRankingTeams()[0].getName(), x+50, y+90);
 			 g2.drawString(""+group.getRanking().getRankingTeams()[1].getName(), x+50, y+120);
 			 g2.drawString(""+group.getRanking().getRankingTeams()[2].getName(), x+50, y+150);
@@ -173,7 +173,7 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+250, y+150);
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+250, y+180);
 
-			 g2.setColor(new Color(225,82,11));
+			// g2.setColor(new Color(225,82,11));
 			 g2.drawLine(x+0, y+40, x+280, y+40);
 			 g2.drawLine(x+0, y+70, x+280, y+70);
 			 g2.drawLine(x+0, y+100, x+280, y+100);
