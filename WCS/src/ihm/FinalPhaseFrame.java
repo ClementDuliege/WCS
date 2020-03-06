@@ -25,7 +25,7 @@ import data.WorldCup;
 public class FinalPhaseFrame extends JFrame {
 	/**
 	 *
-	 */ 
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	private WorldCup worldCup;
@@ -36,6 +36,8 @@ public class FinalPhaseFrame extends JFrame {
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
+	private JButton rankButton=new JButton("Classement");
+
 	public FinalPhaseFrame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
@@ -59,11 +61,13 @@ public class FinalPhaseFrame extends JFrame {
 		phase2Button.setBounds(400, 50, 200, 25);
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
-		
+		rankButton.setBounds(1000, 750, 200, 40);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
+		panel.add(rankButton);
+		
 		
 		initAction();
 		
@@ -79,6 +83,7 @@ public class FinalPhaseFrame extends JFrame {
 		phase1Button.addActionListener(new Phase1());
 		phase2Button.addActionListener(new Phase2());
 		teamsButton.addActionListener(new Teams());
+		rankButton.addActionListener(new RankingAction());
 	}
 	
 	
@@ -104,6 +109,13 @@ public class FinalPhaseFrame extends JFrame {
 		}
 	}
 	
+		
+	public class RankingAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new RankingWorldCupFrame("Classement",worldCup);
+		}
+	}
 	
 	
 	class TableauPhaseFinal extends JPanel{
@@ -228,6 +240,7 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.setColor(Color.white);
 			 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
 			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
+			 //g2.draw
 			 
 			try {
 					icone2 = ImageIO.read(new File("trophee.png")); // "score.jpg"

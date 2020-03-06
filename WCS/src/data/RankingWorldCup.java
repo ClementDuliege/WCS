@@ -49,6 +49,34 @@ public class RankingWorldCup {
 		return value;
 		
 	}
+
+	/**
+	 * @return the rankingTeams
+	 */
+	public Team[] getRankingTeams() {
+		return rankingTeams;
+	}
+
+	/**
+	 * @return the scoreTeams
+	 */
+	public HashMap<String, Integer> getScoreTeams() {
+		return scoreTeams;
+	}
+
+	/**
+	 * @param rankingTeams the rankingTeams to set
+	 */
+	public void setRankingTeams(Team[] rankingTeams) {
+		this.rankingTeams = rankingTeams;
+	}
+
+	/**
+	 * @param scoreTeams the scoreTeams to set
+	 */
+	public void setScoreTeams(HashMap<String, Integer> scoreTeams) {
+		this.scoreTeams = scoreTeams;
+	}
 	
 	
 
