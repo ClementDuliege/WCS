@@ -3,10 +3,16 @@ package ihm;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +32,9 @@ public class MainFrame extends JFrame {
 	private JButton simulationStartButton;
 	protected WorldCup worldCup;
 	
+	
+	
+	
 	public MainFrame(String titleWindows,WorldCup worldCup) {
 		super(titleWindows);
 		setSize(900,400);
@@ -34,6 +43,8 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setVisible(true);
+		
+
 		
 		windows=this;
 		contentPane=getContentPane();
@@ -50,6 +61,21 @@ public class MainFrame extends JFrame {
 		this.worldCup=worldCup;
 		
 		
+	}
+	
+	public static JPanel setBackgroundImage(final JFrame frame, final File img) throws IOException {
+	    JPanel panel = new JPanel() {
+	        private static final long serialVersionUID = 1;
+	        private BufferedImage buf = ImageIO.read(img);
+	 
+	        @Override
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            g.drawImage(buf, 0, 0, null);
+	        }
+	    };
+	    frame.setContentPane(panel);
+	    return panel;
 	}
 	
 	public void initLayoutMain() {

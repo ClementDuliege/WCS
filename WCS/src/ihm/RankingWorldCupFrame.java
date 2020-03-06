@@ -155,9 +155,9 @@ public class RankingWorldCupFrame extends JFrame {
 			 
 			 g2.setStroke(new BasicStroke(5));
 			 g2.drawLine(x, y, x+280, y);//ligne haut
-			 g2.drawLine(x+280, y, x+280, y+750);//ligne droite
-			 g2.drawLine(x+280, y+700, x, y+700);//ligne bas
-			 g2.drawLine(x, y+750, x, y);
+			 g2.drawLine(x+280, y, x+280, y+550);//ligne droite
+			 g2.drawLine(x+280, y+550, x, y+550);//ligne bas
+			 g2.drawLine(x, y+550, x, y);
 			
 			 g2.setColor(Color.black);
 			 g2.drawString("Rang", x+5, y+60);
@@ -229,7 +229,6 @@ public class RankingWorldCupFrame extends JFrame {
 			 g2.drawLine(x+0, y+490, x+280, y+490);
 			 g2.drawLine(x+0, y+520, x+280, y+520);
 			 g2.drawLine(x+0, y+550, x+280, y+550);
-			 g2.drawLine(x+0, y+580, x+280, y+580);
 
 
 			 

@@ -253,6 +253,8 @@ public class FinalPhaseFrame extends JFrame {
 			}
 			 g2.setColor(Color.black);
 			Team winner = worldCup.getWinnerTeam();
+			 g2.setFont(new Font("TimesRoman", Font.BOLD, 20)); 
+
 			 g2.drawString(winner.getName(), 450, 412);
 			
 			

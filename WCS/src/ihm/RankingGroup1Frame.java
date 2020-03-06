@@ -142,9 +142,9 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.setStroke(new BasicStroke(5));
 			 //g2.setColor(new Color(225,82,11));
 			 g2.drawLine(x, y, x+280, y);
-			 g2.drawLine(x+280, y, x+280, y+300);
-			 g2.drawLine(x+280, y+300, x, y+300);
-			 g2.drawLine(x, y+300, x, y);
+			 g2.drawLine(x+280, y, x+280, y+190);
+			 g2.drawLine(x+280, y+190, x, y+190);
+			 g2.drawLine(x, y+190, x, y);
 			
 			 //g2.setColor(new Color(225,82,11));
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
