@@ -61,12 +61,12 @@ public class MainFrame extends JFrame {
 		panel.setBackground(Color.white);
 		
 		titleJLabel.setBounds(310, 30, 275, 75);
-		titleJLabel.setForeground(new Color(239,144,52));
+		titleJLabel.setForeground(new Color(225,82,11));
 		
 		panel.add(titleJLabel);
 		
 		simulationStartButton.setBounds(325, 150, 250, 75);
-		simulationStartButton.setBackground(new Color(239,144,52));
+		simulationStartButton.setBackground(new Color(225,82,11));
 		simulationStartButton.setForeground(Color.white);
 		panel.add(simulationStartButton);
 		

@@ -88,49 +88,49 @@ public class Phase1Frame extends JFrame {
 		groupA.setBounds(80, 100, 200, 30);
 		groupA.setForeground(Color.WHITE);
 		groupA.setOpaque(true);
-		groupA.setBackground(new Color(239,144,52));
+		groupA.setBackground(new Color(225,82,11));
 		
 		JLabel groupB=new JLabel("GROUPE B",SwingConstants.CENTER);
 		groupB.setBounds(380, 100, 200, 30);
 		groupB.setForeground(Color.WHITE);
 		groupB.setOpaque(true);
-		groupB.setBackground(new Color(239,144,52));
+		groupB.setBackground(new Color(225,82,11));
 		
 		JLabel groupC=new JLabel("GROUPE C",SwingConstants.CENTER);
 		groupC.setBounds(680, 100, 200, 30);
 		groupC.setForeground(Color.WHITE);
 		groupC.setOpaque(true);
-		groupC.setBackground(new Color(239,144,52));
+		groupC.setBackground(new Color(225,82,11));
 		
 		JLabel groupD=new JLabel("GROUPE D",SwingConstants.CENTER);
 		groupD.setBounds(980, 100, 200, 30);
 		groupD.setForeground(Color.WHITE);
 		groupD.setOpaque(true);
-		groupD.setBackground(new Color(239,144,52));
+		groupD.setBackground(new Color(225,82,11));
 		
 		JLabel groupE=new JLabel("GROUPE E",SwingConstants.CENTER);
 		groupE.setBounds(80, 450, 200, 30);
 		groupE.setForeground(Color.WHITE);
 		groupE.setOpaque(true);
-		groupE.setBackground(new Color(239,144,52));
+		groupE.setBackground(new Color(225,82,11));
 		
 		JLabel groupF=new JLabel("GROUPE F",SwingConstants.CENTER);
 		groupF.setBounds(380, 450, 200, 30);
 		groupF.setForeground(Color.WHITE);
 		groupF.setOpaque(true);
-		groupF.setBackground(new Color(239,144,52));
+		groupF.setBackground(new Color(225,82,11));
 		
 		JLabel groupG=new JLabel("GROUPE G",SwingConstants.CENTER);
 		groupG.setBounds(680, 450, 200, 30);
 		groupG.setForeground(Color.WHITE);
 		groupG.setOpaque(true);
-		groupG.setBackground(new Color(239,144,52));
+		groupG.setBackground(new Color(225,82,11));
 		
 		JLabel groupH=new JLabel("GROUPE H",SwingConstants.CENTER);
 		groupH.setBounds(980, 450, 200, 30);
 		groupH.setForeground(Color.WHITE);
 		groupH.setOpaque(true);
-		groupH.setBackground(new Color(239,144,52));
+		groupH.setBackground(new Color(225,82,11));
 		
 		JLabel[] listLabel = {groupA,groupB,groupC,groupD,groupE,groupF,groupG,groupH};
 		addActionToLabel(listLabel);

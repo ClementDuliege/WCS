@@ -116,25 +116,25 @@ public class Phase2Frame extends JFrame {
 		groupI.setBounds(80, 100, 200, 30);
 		groupI.setForeground(Color.WHITE);
 		groupI.setOpaque(true);
-		groupI.setBackground(new Color(239,144,52));
+		groupI.setBackground(new Color(225,82,11));
 		
 		JLabel groupJ=new JLabel("GROUPE J",SwingConstants.CENTER);
 		groupJ.setBounds(380, 100, 200, 30);
 		groupJ.setForeground(Color.WHITE);
 		groupJ.setOpaque(true);
-		groupJ.setBackground(new Color(239,144,52));
+		groupJ.setBackground(new Color(225,82,11));
 		
 		JLabel groupK=new JLabel("GROUPE K",SwingConstants.CENTER);
 		groupK.setBounds(680, 100, 200, 30);
 		groupK.setForeground(Color.WHITE);
 		groupK.setOpaque(true);
-		groupK.setBackground(new Color(239,144,52));
+		groupK.setBackground(new Color(225,82,11));
 		
 		JLabel groupL=new JLabel("GROUPE L",SwingConstants.CENTER);
 		groupL.setBounds(980, 100, 200, 30);
 		groupL.setForeground(Color.WHITE);
 		groupL.setOpaque(true);
-		groupL.setBackground(new Color(239,144,52));
+		groupL.setBackground(new Color(225,82,11));
 		JLabel[] listLabel = {groupI,groupJ,groupK,groupL};
 		addActionToLabel(listLabel);
 		panel.add(groupI);

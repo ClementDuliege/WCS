@@ -84,7 +84,7 @@ public class ListTeamsFrame extends JFrame {
 			for(int j=0; j<8; j++) {
 				tabButton[k] = new JButton(teams.get(k).getName());
 				tabButton[k].setBounds(x, y, 180, 30);
-				tabButton[k].setBackground(new Color(239,144,52));
+				tabButton[k].setBackground(new Color(225,82,11));
 				tabButton[k].setForeground(Color.white);
 				tabButton[k].setActionCommand(Integer.toString(k));
 				tabButton[k].addActionListener(new ListTeamAction());
