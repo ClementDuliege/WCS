@@ -11,7 +11,7 @@ public class GenerateInformations {
 	
 	public String[][] infoTeam() {
 
-	     String csvFile = "C:\\Users\\yask\\WCS\\WCS\\teamWCS.csv"; //C'était "teamWCS.csv" si ça fonctionne pas chez vous
+	     String csvFile = "teamWCS.csv"; //C'était "teamWCS.csv" si ça fonctionne pas chez vous
 	     String line = "";
 	     String cvsSplitBy = ";";
 	     int i = 0;

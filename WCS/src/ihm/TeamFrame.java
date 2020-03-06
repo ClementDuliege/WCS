@@ -177,7 +177,7 @@ public class TeamFrame extends JFrame {
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 try {
-				Image icone2 = ImageIO.read(new File("WCS\\player.png"));//"player.png"
+				Image icone2 = ImageIO.read(new File("player.png"));//"player.png"
 				g2.drawImage(icone2,15,130,191,245,this);
 						
 			}catch(IOException exc){

@@ -192,7 +192,7 @@ public class Phase2Frame extends JFrame {
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 try {
-				Image icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
+				Image icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
 				g2.drawImage(icone2,0,0,250,43,this);
 						
 			}catch(IOException exc){

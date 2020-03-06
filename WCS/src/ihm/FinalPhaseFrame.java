@@ -135,7 +135,7 @@ public class FinalPhaseFrame extends JFrame {
 				 for(int j = 0 ;j<2;j++) {
 					 Game quarterGame=quarterFinal[k];
 					 try {
-							icone2 = ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
+							icone2 = ImageIO.read(new File("score.jpg")); // "score.jpg"
 							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 									
 						}catch(IOException exc){
@@ -156,7 +156,7 @@ public class FinalPhaseFrame extends JFrame {
 			 for(int i2= 0;i2<2;i2++) {
 				 Game semiGame=semiFinal[i2];
 				 try {
-						icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
+						icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
 						g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
 								
 				}catch(IOException exc){
@@ -176,7 +176,7 @@ public class FinalPhaseFrame extends JFrame {
 			 
 			 
 			 try {
-					icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
+					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
 					g2.drawImage(icone2,400,200,250,43,this);
 							
 			}catch(IOException exc){
@@ -213,7 +213,7 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawLine(650, 222, 710, 222);
 			 
 			 try {
-					icone2 =  ImageIO.read(new File("WCS\\score.jpg")); // "score.jpg"
+					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
 					g2.drawImage(icone2,400,300,250,43,this);
 							
 			}catch(IOException exc){
@@ -230,7 +230,7 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
 			 
 			try {
-					icone2 = ImageIO.read(new File("WCS\\trophee.png")); // "score.jpg"
+					icone2 = ImageIO.read(new File("trophee.png")); // "score.jpg"
 					g2.drawImage(icone2,360,350,320,320,this);
 							
 			}catch(IOException exc){
