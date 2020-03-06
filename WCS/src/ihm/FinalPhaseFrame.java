@@ -139,8 +139,28 @@ public class FinalPhaseFrame extends JFrame {
 		 public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
-			 
 			 Image icone2;
+			 
+			 g2.setStroke(new BasicStroke(10));
+			 g2.setColor(new Color(225,82,11));
+			 g2.drawLine(125, 43, 125, 121);
+			 g2.drawLine(125, 400, 125, 322);
+			 g2.drawLine(925, 43, 925, 121);
+			 g2.drawLine(925, 400, 925, 322);
+			 
+			 g2.drawLine(125, 121, 220, 121);
+			 g2.drawLine(125, 322, 220, 322);
+			 g2.drawLine(925, 121, 830, 121);
+			 g2.drawLine(925, 322, 830, 322);
+			 
+			 g2.drawLine(220, 121, 220, 201);
+			 g2.drawLine(830, 121, 830, 201);
+			 g2.drawLine(220, 322, 220, 242);
+			 g2.drawLine(830, 322, 830, 242);
+			 
+			 g2.drawLine(350, 222, 400, 222);
+			 g2.drawLine(650, 222, 710, 222);
+			 
 			 int k=0;
 			 
 			 for(int i = 0;i<2;i++) {
@@ -204,25 +224,7 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawString(""+finalGame.getScore1(), 483, 225);
 			 g2.drawString(""+finalGame.getScore2(), 550, 225);
 			 
-			 g2.setStroke(new BasicStroke(10));
-			 g2.setColor(new Color(239,144,52));
-			 g2.drawLine(125, 43, 125, 121);
-			 g2.drawLine(125, 400, 125, 322);
-			 g2.drawLine(925, 43, 925, 121);
-			 g2.drawLine(925, 400, 925, 322);
 			 
-			 g2.drawLine(125, 121, 220, 121);
-			 g2.drawLine(125, 322, 220, 322);
-			 g2.drawLine(925, 121, 830, 121);
-			 g2.drawLine(925, 322, 830, 322);
-			 
-			 g2.drawLine(220, 121, 220, 201);
-			 g2.drawLine(830, 121, 830, 201);
-			 g2.drawLine(220, 322, 220, 242);
-			 g2.drawLine(830, 322, 830, 242);
-			 
-			 g2.drawLine(350, 222, 400, 222);
-			 g2.drawLine(650, 222, 710, 222);
 			 
 			 try {
 					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
