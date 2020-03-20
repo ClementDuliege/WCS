@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 	protected JFrame windows;
 	public Container contentPane;
 	protected JLabel titleJLabel;
-	private JButton informationTeamButton;
+	private JButton simulationGamesButton;
 	private JButton simulationStartButton;
 	protected WorldCup worldCup;
 	
@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(String titleWindows,WorldCup worldCup) {
 		super(titleWindows);
-		setSize(900,400);
+		setSize(900,500);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +52,8 @@ public class MainFrame extends JFrame {
 		this.titleJLabel=new JLabel("World Cup Simulator");
 		titleJLabel.setFont(new Font("Serif", Font.BOLD,30));
 		
-		informationTeamButton=new JButton("Informations Teams");
-		simulationStartButton=new JButton("Simulation");
+		simulationGamesButton=new JButton("Simulations des matchs");
+		simulationStartButton=new JButton("Simulation de la compétition");
 		
 		initLayoutMain();
 		initActionMain();
@@ -94,7 +94,13 @@ public class MainFrame extends JFrame {
 		simulationStartButton.setBounds(325, 150, 250, 75);
 		simulationStartButton.setBackground(new Color(225,82,11));
 		simulationStartButton.setForeground(Color.white);
+		
+		simulationGamesButton.setBounds(325, 275, 250, 75);
+		simulationGamesButton.setBackground(new Color(225,82,11));
+		simulationGamesButton.setForeground(Color.white);
+		
 		panel.add(simulationStartButton);
+		panel.add(simulationGamesButton);
 		
 		contentPane.add(panel);
 		
@@ -103,14 +109,14 @@ public class MainFrame extends JFrame {
 
 	
 	public void initActionMain() {
-		informationTeamButton.addActionListener(new ListTeamAction());
+		simulationGamesButton.addActionListener(new SimulationGamesAction());
 		simulationStartButton.addActionListener(new SimulationStart());
 	}
 	
-	public class ListTeamAction implements ActionListener{
+	public class SimulationGamesAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
-			new ListTeamsFrame("listTeams", worldCup);
+			new Phase1SimulationGameFrame("Phase1", worldCup);
 			
 			
 			
