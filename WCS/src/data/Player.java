@@ -8,6 +8,7 @@ package data;
 public class Player {
 
 	private String name;
+	private int position;
 	private int attack;
 	private int shot2Pts;
 	private int shot3Pts;
@@ -46,7 +47,43 @@ public class Player {
 		this.reactionTime = reactionTime;
 		this.speed = speed;
 	}
+	
+	
 
+	/**
+	 * @return the position
+	 */
+	public int getPosition() {
+		return position;
+	}
+	/**
+	 * @return the position
+	 */
+	public String getPositionString() {
+		String positionString="";
+		if(position==1) {
+			positionString+="Meneur";
+		}
+		else if(position==2) {
+			positionString+="Arrière";
+		}
+		else if(position==3) {
+			positionString+="Aillier";
+		}
+		else if(position==4) {
+			positionString+="Ailier Fort";
+		}
+		else if(position==5) {
+			positionString+="Pivot";
+		}
+		return positionString;
+	}
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(int position) {
+		this.position = position;
+	}
 	/**
 	 * @return the name
 	 */

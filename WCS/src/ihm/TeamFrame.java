@@ -243,6 +243,9 @@ public class TeamFrame extends JFrame {
 		 public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
+			 
+			
+			 
 			 try {
 				Image icone2 = ImageIO.read(new File("player.png"));//"player.png"
 				g2.drawImage(icone2,15,130,191,245,this);
@@ -301,7 +304,7 @@ public class TeamFrame extends JFrame {
 			 g2.drawString("Reaction : ", 250, 690);
 			 g2.drawString(""+player.getReactionTime(), 405, 690);
 			 
-			
+			 g2.drawString("Poste : "+player.getPositionString(), 150, 350);
 		 }
 		 
 		 public void setPlayer(Player p) {
