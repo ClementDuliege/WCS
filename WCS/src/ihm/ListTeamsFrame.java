@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 
 import data.Team;
 import data.WorldCup;
-import ihm.Phase2Frame.Phase1;
-import ihm.Phase2Frame.PhaseFinale;
-import ihm.Phase2Frame.Teams;
+
 
 public class ListTeamsFrame extends JFrame {
 	/**

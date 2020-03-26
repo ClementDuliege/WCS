@@ -130,6 +130,9 @@ public class WorldCup {
 			for(Game game : listGames) {
 				
 				gameSimulation.play(game);
+				for(String action : gameSimulation.getActions().values()){
+					System.out.println(action);
+				}
 				//System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
 				//System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
 				//System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
