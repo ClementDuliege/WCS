@@ -130,9 +130,6 @@ public class WorldCup {
 			for(Game game : listGames) {
 				
 				gameSimulation.play(game);
-				for(String action : gameSimulation.getActions().values()){
-					System.out.println(action);
-				}
 				//System.out.println(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
 				//System.out.println("	"+game.getTeam1().getName()+" : "+game.getScore1());
 				//System.out.println("	"+game.getTeam2().getName()+" : "+game.getScore2());
@@ -296,6 +293,10 @@ public class WorldCup {
 	public void simulateFinal() {
 		
 		gameSimulation.play(finalGame);
+		for(String action : gameSimulation.getActions().values()){
+			System.out.println(action);
+		}
+
 		//System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
 			//System.out.println("WINNER : "+finalGame.getTeam2().getName());

@@ -3,6 +3,8 @@ package process;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import data.*;
 import usual.*;
@@ -16,13 +18,13 @@ public class GameSimulation {
 	private ArrayList<Player> playersInTeam1;
 	private ArrayList<Player> playersInTeam2;
 	Player playerHadBall;
-	private HashMap<Integer,String> actions = new HashMap<Integer,String>();
+	private SortedMap<Integer,String> actions = new TreeMap<Integer,String>();
 	
 
 	/**
 	 * @return the duration
 	 */
-	public HashMap<Integer,String> getActions() {
+	public SortedMap<Integer,String> getActions() {
 		return actions;
 	}
 
@@ -78,6 +80,8 @@ public class GameSimulation {
 	public void play(Game game) {
 		this.game=game;
 		this.duration=0;
+		this.durationTotal=2881;
+		this.actions.clear();
 		
 		Team team1 = game.getTeam1();
 		Team team2 = game.getTeam2();
@@ -113,7 +117,7 @@ public class GameSimulation {
 				if(action == 1){  // dribble
 					actionTime +=3;
 					this.duration+=3;
-					actions.put(duration, "Le joueur "+ playerHadBall.getName() +" dribble");
+					actions.put(duration, "Le joueur "+ playerHadBall.getName() +" dribble"+ " A " + duration);
 				}
 			}
 			else if(action == 2) {//Shot
@@ -140,11 +144,9 @@ public class GameSimulation {
 			else if(action == 3) {//change player
 				int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);//Choose the team which will change its players in
 				if(chooseTeam==0){
-					System.out.println("La team 1 change");
 					changment(playersInTeam1,team1);
 				}
 				else{
-					System.out.println("La team 2 change");
 					changment(playersInTeam2,team2);
 
 				}
@@ -172,10 +174,11 @@ public class GameSimulation {
 		
 		int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);
 		if(chooseTeam==0){
-			this.actions.put(0, "L'équipe "+game.getTeam1()+" a gagné l'entre deux");
+			
+			this.actions.put(0, "L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux");
 			return playersInTeam1;
 		}
-		this.actions.put(0, "L'équipe "+game.getTeam2()+" a gagné l'entre deux");
+		this.actions.put(0, "L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
 
 		return playersInTeam2;
 
@@ -191,7 +194,7 @@ public class GameSimulation {
 	public ArrayList<Player> getPlayersIn(Team team){
 		ArrayList<Player> playersIn = new ArrayList<Player>();
 		int i = 0;
-		for(Iterator<Player> it = team.getPlayers().iterator();it.hasNext()&&i>5;){
+		for(Iterator<Player> it = team.getPlayers().iterator();it.hasNext()&&i<5;){
 			playersIn.add(it.next());
 			i++;
 		}
@@ -218,11 +221,11 @@ public class GameSimulation {
 					team = game.getTeam2();
 				}
 				this.game.addPoint(team, 2);
-				actions.put(duration,"Le joueur " + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un panier à 2 points");
+				actions.put(duration,"Le joueur " + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un panier à 2 points" + " A " + duration);
 				//System.out.println("shot 2pts");
 			}
 			else {
-				actions.put(duration,"Le joueur " + interceptorPlayor.getName()+" a intercepté un shot à 2 point de "+ playerHadBall.getName());
+				actions.put(duration,"Le joueur " + interceptorPlayor.getName()+" a intercepté un shot à 2 point de "+ playerHadBall.getName()+ " A " + duration);
 
 				//System.out.println("shot 2pts raté");
 			}
@@ -269,12 +272,12 @@ public class GameSimulation {
 		
 		if(!team.getPlayers().get(positionToChange-1).equals(playerIn)){
 			players.add(team.getPlayers().get(positionToChange-1));
-			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1).getName());
+			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1).getName()+ " A " + duration);
 
 		}
 		else{
 			players.add(team.getPlayers().get(positionToChange-1+5));
-			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1+5));
+			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1+5)+ " A " + duration);
 		}
 	}
 	
@@ -327,11 +330,11 @@ public class GameSimulation {
 
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 		if(succesRate>lessThan) {
-			actions.put(duration, "Le joueur" + playerHadBall.getName() +" a passé la balle à "+ destinatorPlayer.getName());
+		actions.put(duration, "Le joueur" + playerHadBall.getName() +" a passé la balle à "+ destinatorPlayer.getName()+ " A " + duration);
 			this.playerHadBall=destinatorPlayer;
 			return true;
 		}
-		actions.put(duration, "Le joueur" + interceptorPlayor.getName() +" a pris la balle à "+ playerHadBall.getName());
+		actions.put(duration, "Le joueur" + interceptorPlayor.getName() +" a pris la balle à "+ playerHadBall.getName()+ " A " + duration);
 		this.playerHadBall=interceptorPlayor;
 		return false;
 	}
