@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>BeTrueToYourSchool.ttf</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AppData/Local/Temp/Rar$DRa0.210/BeTrueToYourSchool.ttf</locationURI>
+		</link>
+		<link>
+			<name>Freshman.ttf</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AppData/Local/Temp/Rar$DRa0.175/Freshman.ttf</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

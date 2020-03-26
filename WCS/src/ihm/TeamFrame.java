@@ -1,19 +1,26 @@
 package ihm;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.AttributedString;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -50,6 +57,23 @@ public class TeamFrame extends JFrame {
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
 	
+	private boolean varStatTeam = false;
+	private int numberPlayers = 0;
+	private int attackGen;
+	private int shot2PtsGen;
+	private int shot3PtsGen;
+	private int freeThrowsGen;
+	private int passGen;
+	private int ballHandleGen;
+	private int reboundOffGen;
+	private int defenseGen;
+	private int blockGen;
+	private int stealGen;
+	private int reboundDefGen;
+	private int strenghtGen;
+	private int reactionTimeGen;
+	private int speedGen;
+	
 	public TeamFrame(String windowsTitle, WorldCup worldCup, int indexTeam) {
 		super(windowsTitle);
 		setSize(1300,850);
@@ -70,7 +94,7 @@ public class TeamFrame extends JFrame {
 		panel.setBackground(Color.WHITE);
 		
 		initLayout();
-		
+		statsTeams();
 		 writePlayerName();
 		
 	}
@@ -81,12 +105,21 @@ public class TeamFrame extends JFrame {
 		
 		GridLayout grid = new GridLayout(1,1);
 		contentPane.setLayout(grid);
+		Font freshman = null;
 		
 		
-		
+		//Nom d'équipe
 		teamsLabel=new JLabel(team.getName());
-		teamsLabel.setFont(new Font("Serif", Font.BOLD,40));
-		teamsLabel.setBounds(120, 150, 500, 40);
+		try {
+			freshman = Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")).deriveFont(45f);
+		     GraphicsEnvironment ge =
+		         GraphicsEnvironment.getLocalGraphicsEnvironment();
+		     ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")));
+		} catch (IOException|FontFormatException e) {
+		     //Handle exception
+		}
+		teamsLabel.setFont(freshman);
+		teamsLabel.setBounds(120, 130, 500, 50);
 		
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
@@ -170,6 +203,69 @@ public class TeamFrame extends JFrame {
 		
 		
 	}
+	public void statsTeams() {
+		
+		
+		JButton button = new JButton("Equipe");
+		button.setBounds(100, 650, 150, 30);
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(225,82,11));
+		panel.add(button);
+		addActionStatsTeams(button);
+	}
+	public void addActionStatsTeams(JButton button) {
+		ArrayList<Player>  players = team.getPlayers();
+		numberPlayers = players.size();
+		button.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+	            ///setCursor(handCursor);
+	           
+	         }
+			public void mousePressed(MouseEvent e) {
+				attackGen = 0;
+				shot2PtsGen = 0;
+				shot3PtsGen = 0;
+				freeThrowsGen = 0;
+				passGen = 0;
+				ballHandleGen = 0;
+				reboundOffGen = 0;
+				defenseGen = 0;
+				blockGen = 0;
+				stealGen = 0;
+				reboundDefGen = 0;
+				strenghtGen = 0;
+				reactionTimeGen = 0;
+				speedGen = 0;
+				varStatTeam = true;
+				for(int i = 0;i<players.size();i++) {
+					attackGen += players.get(i).getAttack();
+					shot2PtsGen += players.get(i).getShot2Pts();
+					shot3PtsGen += players.get(i).getShot3Pts();
+					freeThrowsGen += players.get(i).getFreeThrows();
+					passGen += players.get(i).getPass();
+					ballHandleGen += players.get(i).getBallHandle();
+					reboundOffGen += players.get(i).getReboundOff();
+					defenseGen += players.get(i).getDefense();
+					blockGen += players.get(i).getBlock();
+					stealGen += players.get(i).getSteal();
+					reboundDefGen += players.get(i).getReboundDef();
+					strenghtGen += players.get(i).getStrenght();
+					reactionTimeGen += players.get(i).getReactionTime();
+					speedGen += players.get(i).getSpeed();
+				}
+				 panel.repaint();
+				
+				
+				
+			}
+			 public void mouseExited(MouseEvent e) {
+				 //Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		           // setCursor(defaultCursor);
+		         }
+			
+		});
+	}
 	
 	public void addActionToLabel(JButton[] listLabel) {
 		for(int i = 0;i<10;i++) {
@@ -190,8 +286,10 @@ public class TeamFrame extends JFrame {
 			        	i++;
 			        }
 			        playerPanel.setPlayer(players.get(i));
+			        varStatTeam = false;
 			        playerPanel.repaint();
 					panel.add(playerPanel);
+					
 			  
 			        panel.repaint();
 				}
@@ -243,9 +341,94 @@ public class TeamFrame extends JFrame {
 		 public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
+			 Font subscribe = null;
+			 Font test = null;
 			 
+			 if(varStatTeam) {
+				 try {
+						Image icone3 = ImageIO.read(new File("koroko.jpg"));//"player.png"
+						g2.drawImage(icone3,15,100,420,235,this);
+								
+					}catch(IOException exc){
+							exc.printStackTrace();
+					}
+				 
+				 //rect
+				 g2.setStroke(new BasicStroke(5));
+				 g2.setColor(Color.black);
+				 g2.drawRect(0, 400, 470, 310);
+				 g2.setColor(new Color(219,219,219));
+				 g2.fillRect(3, 402, 467, 308);
+				 g2.setColor(Color.black);
+				 g2.drawLine(0, 460, 470, 460);
+				 g2.drawLine(225, 400, 225, 710);
+				 
+				 //Caractéristiques équipe
+				 g2.setColor(Color.red);
+				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+				 g2.drawString("ATTAQUE : ", 9, 445);
+				 g2.drawString((Integer.toString(attackGen/numberPlayers)), 162, 442);
+				
+				 
+				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+				 g2.drawString("Shot 2 Pts : ", 15, 500);
+				 g2.drawString((Integer.toString(shot2PtsGen/numberPlayers)), 140, 500);
+				 
+				
+				 g2.drawString("Shot 3 Pts : ", 15, 540);
+				 g2.drawString((Integer.toString(shot3PtsGen/numberPlayers)), 140, 540);
+				 
+				 g2.drawString("Free throws : ", 15, 580);
+				 g2.drawString((Integer.toString(freeThrowsGen/numberPlayers)), 159, 580);
+				 
+				 g2.drawString("Pass : ", 15, 620);
+				 g2.drawString((Integer.toString(passGen/numberPlayers)), 80, 620);
+				 
+				 g2.drawString("Ball handle : ", 15, 660);
+				 g2.drawString((Integer.toString(ballHandleGen/numberPlayers)), 150, 660);
+				 
+				 g2.drawString("Speed : ", 15, 700);
+				 g2.drawString((Integer.toString(speedGen/numberPlayers)), 102, 700);
+				 
+				 //colonne 2
+				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+				 g2.setColor(Color.blue);
+				 g2.drawString("DEFENSE : ", 245, 445);
+				 g2.drawString((Integer.toString(defenseGen/numberPlayers)), 395, 445);
+				 
+				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+				 g2.drawString("Block : ", 250, 500);
+				 g2.drawString((Integer.toString(blockGen/numberPlayers)), 328, 500);
+				 
+				 g2.drawString("Steal : ", 250, 540);
+				 g2.drawString((Integer.toString(stealGen/numberPlayers)), 325, 540);
+				 
+				 
+				 g2.drawString("Rebound off : ", 250, 580);
+				 g2.drawString((Integer.toString(reboundOffGen/numberPlayers)), 400, 580);
+				 
+				 g2.drawString("Rebound def : ", 250, 620);
+				 g2.drawString((Integer.toString(reboundDefGen/numberPlayers)), 403, 620);
+				 
+				 g2.drawString("Strenght : ", 250, 660);
+				 g2.drawString((Integer.toString(strenghtGen/numberPlayers)), 359, 660);
+				 
+				 g2.drawString("Reaction : ", 250, 700);
+				 g2.drawString((Integer.toString(reactionTimeGen/numberPlayers)), 359, 700);
+				 
+				 g2.setColor(Color.black);
+				 try {
+					subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")).deriveFont(25f);
 			
-			 
+				} catch (FontFormatException|IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 g2.setFont(subscribe);
+				 g2.drawString("STATS GENERALES DE L'EQUIPE", 20, 380);
+			 }
+		
+			 else {
 			 try {
 				Image icone2 = ImageIO.read(new File("player.png"));//"player.png"
 				g2.drawImage(icone2,15,130,191,245,this);
@@ -253,58 +436,83 @@ public class TeamFrame extends JFrame {
 			}catch(IOException exc){
 					exc.printStackTrace();
 			}
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			 g2.setFont(new Font("Calibri", Font.BOLD, 25)); 
 			 g2.setColor(new Color(225,82,11));
 			 String[] names= player.getName().split("\\.");
 			 g2.drawString(names[0]+" "+names[1], 50, 115);
 			 g2.setColor(Color.black);
-			
-			 g2.drawRect(0, 400, 450, 310);
+			 
+			 //rect
+			 g2.setStroke(new BasicStroke(5));
+			 g2.setColor(Color.black);
+			 g2.drawRect(0, 400, 470, 310);
+			 g2.setColor(new Color(219,219,219));
+			 g2.fillRect(3, 402, 467, 308);
+			 g2.setColor(Color.black);
+			 g2.drawLine(0, 460, 470, 460);
+			 g2.drawLine(225, 400, 225, 710);
+			 
 			 //colonne 1
-			 g2.drawString("ATTAQUE : ", 15, 450);
-			 g2.drawString(""+player.getAttack(), 170, 450);
+			 g2.setColor(Color.red);
+			 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+			 g2.drawString("ATTAQUE : ", 9, 445);
+			 g2.drawString(""+player.getAttack(), 162, 442);
 			 
-			 g2.drawString("Shot 2 Pts : ", 15, 490);
-			 g2.drawString(""+player.getShot2Pts(), 170, 490);
+			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+			 g2.drawString("Shot 2 Pts : ", 15, 500);
+			 g2.drawString(""+player.getShot2Pts(), 140, 500);
 			 
-			 g2.drawString("Shot 3 Pts : ", 15, 530);
-			 g2.drawString(""+player.getShot3Pts(), 170, 530);
+			 g2.drawString("Shot 3 Pts : ", 15, 540);
+			 g2.drawString(""+player.getShot3Pts(), 140, 540);
 			 
-			 g2.drawString("Free throws : ", 15, 570);
-			 g2.drawString(""+player.getFreeThrows(), 170, 570);
+			 g2.drawString("Free throws : ", 15, 580);
+			 g2.drawString(""+player.getFreeThrows(), 160, 580);
 			 
-			 g2.drawString("Pass : ", 15, 610);
-			 g2.drawString(""+player.getPass(), 170, 610);
+			 g2.drawString("Pass : ", 15, 620);
+			 g2.drawString(""+player.getPass(), 80, 620);
 			 
-			 g2.drawString("Ball handle : ", 15, 650);
-			 g2.drawString(""+player.getBallHandle(), 170, 650);
+			 g2.drawString("Ball handle : ", 15, 660);
+			 g2.drawString(""+player.getBallHandle(), 150, 660);
 			 
-			 g2.drawString("Spedd : ", 15, 690);
-			 g2.drawString(""+player.getSpeed(), 170, 690);
+			 g2.drawString("Speed : ", 15, 700);
+			 g2.drawString(""+player.getSpeed(), 95, 700);
 			 
 			 //Colonne 2
-			 g2.drawString("DEFENSE : ", 250, 450);
-			 g2.drawString(""+player.getDefense(), 405, 450);
+			 g2.setColor(Color.blue);
+			 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+			 g2.drawString("DEFENSE : ", 245, 445);
+			 g2.drawString(""+player.getDefense(), 395, 445);
 			 
-			 g2.drawString("Block : ", 250, 490);
-			 g2.drawString(""+player.getBlock(), 405, 490);
+			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+			 g2.drawString("Block : ", 250, 500);
+			 g2.drawString(""+player.getBlock(), 323, 500);
 			 
-			 g2.drawString("Steal : ", 250, 530);
-			 g2.drawString(""+player.getSteal(), 405, 530);
+			 g2.drawString("Steal : ", 250, 540);
+			 g2.drawString(""+player.getSteal(), 323, 540);
 			 
-			 g2.drawString("Rebound off : ", 250, 570);
-			 g2.drawString(""+player.getReboundOff(), 405, 570);
+			 g2.drawString("Rebound off : ", 250, 580);
+			 g2.drawString(""+player.getReboundOff(), 400, 580);
 			 
-			 g2.drawString("Rebound def : ", 250, 610);
-			 g2.drawString(""+player.getReboundDef(), 405, 610);
+			 g2.drawString("Rebound def : ", 250, 620);
+			 g2.drawString(""+player.getReboundDef(), 400, 620);
 			 
-			 g2.drawString("Strenght : ", 250, 650);
-			 g2.drawString(""+player.getStrenght(), 405, 650);
+			 g2.drawString("Strenght : ", 250, 660);
+			 g2.drawString(""+player.getStrenght(), 360, 660);
 			 
-			 g2.drawString("Reaction : ", 250, 690);
-			 g2.drawString(""+player.getReactionTime(), 405, 690);
+			 g2.drawString("Reaction : ", 250, 700);
+			 g2.drawString(""+player.getReactionTime(), 360, 700);
 			 
-			 g2.drawString("Poste : "+player.getPositionString(), 150, 350);
+			 g2.setColor(Color.BLACK);
+			 try {
+					subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("BeTrueToYourSchool.ttf")).deriveFont(35f);
+			
+				} catch (FontFormatException|IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 g2.setFont(subscribe);
+			 g2.drawString("Poste : "+player.getPositionString(), 150, 380);
+			 }
 		 }
 		 
 		 public void setPlayer(Player p) {
