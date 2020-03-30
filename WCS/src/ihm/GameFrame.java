@@ -32,7 +32,7 @@ public class GameFrame extends JFrame {
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	private JLabel gameLabel;
+	private JPanel gamePanel;
 	private JLabel displayActionsLabel;
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
@@ -57,9 +57,9 @@ public class GameFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		gameLabel=new JLabel(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
-		gameLabel.setBounds(500, 100, 300, 25);
-		gameLabel.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+		gamePanel= new ScorePanel(game);
+		gamePanel.setBounds(470, 100, 250, 43);
+	
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
 		phaseFinalButton.setBounds(650, 50, 200, 25);
@@ -76,7 +76,7 @@ public class GameFrame extends JFrame {
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
-		panel.add(gameLabel);
+		panel.add(gamePanel);
 		panel.add(jp);
 		initAction();
 		displayStatsTeam(game.getTeam1(),0);
