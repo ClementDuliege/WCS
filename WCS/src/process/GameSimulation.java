@@ -273,12 +273,12 @@ public class GameSimulation {
 					team = game.getTeam2();
 				}
 				this.game.addPoint(team, 2);
-				actions.put(duration,"<p color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  2 points" + "</p>");
+				actions.put(duration,"<p  style= \"margin-bottom: 10px;\" color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  2 points" + "</p>");
 				int points=statsPoints.get(playerHadBall.getName())+2;
 				statsPoints.put(playerHadBall.getName(), points);
 			}
 			else {
-				actions.put(duration,"<p color=\"red\">" + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
+				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"red\">" + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
 
 				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
 				statsBlocks.put(interceptorPlayor.getName(), blocks);
@@ -298,13 +298,13 @@ public class GameSimulation {
 					team = game.getTeam2();
 				}
 				this.game.addPoint(team, 3);
-				actions.put(duration,"<p color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  3 points" + "</p>");
+				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  3 points" + "</p>");
 				int points=statsPoints.get(playerHadBall.getName())+3;
 				statsPoints.put(playerHadBall.getName(), points);
 				//System.out.println("shot 3pts");
 			}
 			else {
-				actions.put(duration,"<p color=\"red\">" + interceptorPlayor.getName()+" a contré© un shot à  3 point de "+ playerHadBall.getName()+"</p>");
+				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"red\">" + interceptorPlayor.getName()+" a contré© un shot à  3 point de "+ playerHadBall.getName()+"</p>");
 				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
 				statsBlocks.put(interceptorPlayor.getName(), blocks);
 				//System.out.println("shot 3pts ratÃ©");
@@ -330,14 +330,14 @@ public class GameSimulation {
 			playersOutGameTeam1.remove(positionToChange);
 			playersOutGameTeam1.add(positionToChange, p);
 			
-			actions.put(duration,"<p color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam1.get(positionToChange).getName()+ "</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam1.get(positionToChange).getName()+ "</p>");
 		}
 		else {
 			Player p = playersInGameTeam2.get(positionToChange);
 			playersInGameTeam2.set(positionToChange, playersOutGameTeam2.get(positionToChange));
 			playersOutGameTeam2.set(positionToChange, p);
 			
-			actions.put(duration,"<p color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
 		}
 		
 		/*Player playerIn =players.get(positionToChange-1);
@@ -368,7 +368,7 @@ public class GameSimulation {
 				team = game.getTeam2();
 			}
 			this.game.addPoint(team, 1);
-			actions.put(duration,"<p color=\"orange\">" + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un lancer franc</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"orange\">" +team.getName()+" : " + playerHadBall.getName() + " de l'equipe "+" a mis un lancer franc</p>");
 			int points=statsPoints.get(playerHadBall.getName())+1;
 			statsPoints.put(playerHadBall.getName(), points);
 	}
@@ -409,7 +409,7 @@ public class GameSimulation {
 			this.playerHadBall=destinatorPlayer;
 			return true;
 		}
-		actions.put(duration, "<p>" + interceptorPlayor.getName() +" a intercepté la balle Ã  "+ playerHadBall.getName()+ "</p> ");
+		actions.put(duration, "<p style= \"margin-bottom: 10px;\">" + interceptorPlayor.getName() +" a intercepté la balle Ã  "+ playerHadBall.getName()+ "</p> ");
 		int steals=statsSteals.get(interceptorPlayor.getName())+1;
 		statsSteals.put(interceptorPlayor.getName(), steals);
 		this.playerHadBall=interceptorPlayor;

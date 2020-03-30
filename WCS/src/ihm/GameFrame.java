@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import data.Game;
 import data.Player;
@@ -30,6 +32,8 @@ public class GameFrame extends JFrame {
 	private WorldCup worldCup;
 	private Game game;
 	private JFrame windows;
+	private JButton seeGameButton=new JButton("Voir le match");
+	private JButton resumeGameButton=new JButton("Résumé du match");
 	private Container contentPane;
 	private JPanel panel = new JPanel();
 	private JPanel gamePanel;
@@ -65,25 +69,50 @@ public class GameFrame extends JFrame {
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
 		
-		JScrollPane jp ;
-		displayActionsLabel=new JLabel(getActions());
-	
-		jp =new JScrollPane(displayActionsLabel);
-		jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jp.setBounds(370, 150, 500, 650);
 		
+		
+		seeGameButton.setBounds(320, 105, 150, 30);
+		resumeGameButton.setBounds(750, 105, 150, 30);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
 		panel.add(gamePanel);
-		panel.add(jp);
+		
+		panel.add(seeGameButton);
+		panel.add(resumeGameButton);
 		initAction();
 		displayStatsTeam(game.getTeam1(),0);
 		displayStatsTeam(game.getTeam2(),1);
 		contentPane.add(panel);
 	}
 	
+	
+	public class ResumeGame implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			JScrollPane jp ;
+			displayActionsLabel=new JLabel(getActions());
+		
+			jp =new JScrollPane(displayActionsLabel);
+			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			jp.setBounds(370, 150, 500, 650);
+			panel.add(jp);
+		}
+	}
+	
+	public class SeeGame implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			JScrollPane jp ;
+			displayActionsLabel=new JLabel();
+			jp =new JScrollPane(displayActionsLabel);
+			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			jp.setBounds(370, 150, 500, 650);
+			panel.add(jp);
+			
+			seeActions(jp);
+			
+		}
+	}
 	
 	public void displayStatsTeam(Team team,int t) {
 		HashMap<String,Integer> statsPoints = game.getStatsPoints();
@@ -157,6 +186,52 @@ public class GameFrame extends JFrame {
 	 	
 	}
 	
+	public void seeActions(JScrollPane jp) {
+		
+  
+        	
+        	SwingUtilities.invokeLater(new Runnable() {
+        	    public void run() {
+        	    	String res="<html>";
+            		Set s = game.getActions().entrySet(); 
+            		  
+                    // Using iterator in SortedMap 
+                    Iterator i = s.iterator(); 
+                    int j=0;
+                	 while (i.hasNext()) 
+                     { 
+                		 if(j==10) {
+                			 res="<html>";
+                			 j=0;
+                		 }
+                		 j++;
+                         Map.Entry m = (Map.Entry)i.next(); 
+               
+                         int key = (Integer)m.getKey(); 
+                         String value = (String)m.getValue(); 
+               
+                         res+=value;
+                         displayActionsLabel.setText(res);
+                         panel.paintImmediately(370, 150, 500, 650);;
+                       try {
+             			Thread.sleep(500);
+             		} catch (InterruptedException e) {
+             			// TODO Auto-generated catch block
+             			e.printStackTrace();
+             		}
+                       System.out.print("tes");
+                       
+                   }
+                     res+="</html>";
+        	    }
+        	});
+        	
+        	
+          
+        
+       
+	}
+	
 	public String getActions() {
 		String res="<html>";
 		Set s = game.getActions().entrySet(); 
@@ -184,6 +259,8 @@ public class GameFrame extends JFrame {
 		phase2Button.addActionListener(new Phase2());
 		phaseFinalButton.addActionListener(new PhaseFinale());
 		teamsButton.addActionListener(new Teams());
+		resumeGameButton.addActionListener(new ResumeGame());
+		seeGameButton.addActionListener(new SeeGame());
 	}
 	
 	public class Phase1 implements ActionListener{
