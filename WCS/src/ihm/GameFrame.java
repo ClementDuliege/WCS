@@ -2,11 +2,13 @@ package ihm;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import data.Game;
@@ -17,9 +19,11 @@ import ihm.Phase1Frame.Teams;
 
 public class GameFrame extends JFrame {
 	private WorldCup worldCup;
+	private Game game;
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
+	private JLabel gameLabel;
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
@@ -33,6 +37,7 @@ public class GameFrame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
+		this.game=game;
 		contentPane=getContentPane();
 		windows=this;
 		initLayout();
@@ -42,6 +47,9 @@ public class GameFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
+		gameLabel=new JLabel(game.getTeam1().getName()+" VS "+game.getTeam2().getName());
+		gameLabel.setBounds(500, 100, 300, 25);
+		gameLabel.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
 		phaseFinalButton.setBounds(650, 50, 200, 25);
@@ -51,6 +59,7 @@ public class GameFrame extends JFrame {
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
+		panel.add(gameLabel);
 		
 		initAction();
 		contentPane.add(panel);

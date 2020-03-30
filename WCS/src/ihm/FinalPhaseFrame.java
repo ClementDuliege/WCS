@@ -75,10 +75,10 @@ public class FinalPhaseFrame extends JFrame {
 		initAction();
 		
 		JPanel pane2 =new TableauPhaseFinal(worldCup);
+		pane2.setLayout(null);
 		pane2.setBounds(100, 150, 1200, 800);
+		
 		panel.add(pane2);
-		
-		
 		contentPane.add(panel);
 	}
 	
@@ -154,16 +154,13 @@ public class FinalPhaseFrame extends JFrame {
 		private Game[] semiFinal;
 		private Game finalGame;
 		private Game smallFinalGame;
-		private JPanel panel;
+	
 		public TableauPhaseFinal(WorldCup worldCup) {
 			this.worldCup=worldCup;
 			quarterFinal=worldCup.getQuarterFinal();
 			semiFinal=worldCup.getSemiFinal();
 			finalGame=worldCup.getFinalGame();
 			smallFinalGame=worldCup.getSmallFinalGame();
-			panel=this;
-			setVisible(true);
-			setLayout(null);
 		}
 		 public void paint(Graphics g) {  
 			  
@@ -191,18 +188,17 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawLine(650, 222, 710, 222);
 			 
 			 int k=0;
-			 JPanel []panelQuarter=new JPanel[4];
-			 int counter=0;
+			 
+			
 			 for(int i = 0;i<2;i++) {
 				 for(int j = 0 ;j<2;j++) {
 					 Game quarterGame=quarterFinal[k];
 					 
-					 panelQuarter[counter]=new ScorePanel(quarterGame);
-					
-					 panelQuarter[counter].setBounds(0 +(j*800),0+(i*400),250,43);
-					 addActionToPanelScore(panelQuarter[counter],quarterGame);
-					 panel.add(panelQuarter[counter]);
-					 /*try {
+					 JPanel panelQuarter=new ScorePanel(quarterGame);
+					 panelQuarter.setBounds(0 +(j*800),0+(i*400),250,43);
+					 addActionToPanelScore(panelQuarter,quarterGame);
+					 add(panelQuarter);
+					 try {
 							icone2 = ImageIO.read(new File("score.jpg")); // "score.jpg"
 							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 									
@@ -217,12 +213,16 @@ public class FinalPhaseFrame extends JFrame {
 					 g2.setColor(Color.white);
 					 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
 					 g2.drawString(""+quarterGame.getScore2(), 150+(j*800), 25+(i*400));
-					 k++;*/
+					 k++;
 				 }
 			 }
 			 
 			 for(int i2= 0;i2<2;i2++) {
 				 Game semiGame=semiFinal[i2];
+				 JPanel panelSemi=new ScorePanel(semiGame);
+				 panelSemi.setBounds(100 +(i2*610),200,250,43);
+				 addActionToPanelScore(panelSemi,semiGame);
+				 add(panelSemi);
 				 try {
 						icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
 						g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
@@ -251,6 +251,11 @@ public class FinalPhaseFrame extends JFrame {
 						exc.printStackTrace();
 			}
 			 
+			 JPanel panelFinal=new ScorePanel(finalGame);
+			 panelFinal.setBounds(400,200,250,43);
+			 addActionToPanelScore(panelFinal,finalGame);
+			 add(panelFinal);
+			 
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
 			 //g2.setColor(Color.blue);
 			 g2.setColor(Color.black);
@@ -269,6 +274,11 @@ public class FinalPhaseFrame extends JFrame {
 			}catch(IOException exc){
 						exc.printStackTrace();
 			}
+			 
+			 JPanel panelSmallFinal=new ScorePanel(smallFinalGame);
+			 panelSmallFinal.setBounds(400,300,250,43);
+			 addActionToPanelScore(panelSmallFinal,smallFinalGame);
+			 add(panelSmallFinal);
 			 
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
 			 //g2.setColor(Color.blue);
