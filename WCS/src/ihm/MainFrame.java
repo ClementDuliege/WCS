@@ -28,7 +28,6 @@ public class MainFrame extends JFrame {
 	protected JFrame windows;
 	public Container contentPane;
 	protected JLabel titleJLabel;
-	private JButton simulationGamesButton;
 	private JButton simulationStartButton;
 	protected WorldCup worldCup;
 	
@@ -52,7 +51,6 @@ public class MainFrame extends JFrame {
 		this.titleJLabel=new JLabel("World Cup Simulator");
 		titleJLabel.setFont(new Font("Serif", Font.BOLD,30));
 		
-		simulationGamesButton=new JButton("Simulations des matchs");
 		simulationStartButton=new JButton("Simulation de la compétition");
 		
 		initLayoutMain();
@@ -95,12 +93,9 @@ public class MainFrame extends JFrame {
 		simulationStartButton.setBackground(new Color(225,82,11));
 		simulationStartButton.setForeground(Color.white);
 		
-		simulationGamesButton.setBounds(325, 275, 250, 75);
-		simulationGamesButton.setBackground(new Color(225,82,11));
-		simulationGamesButton.setForeground(Color.white);
+		
 		
 		panel.add(simulationStartButton);
-		panel.add(simulationGamesButton);
 		
 		contentPane.add(panel);
 		
@@ -109,19 +104,9 @@ public class MainFrame extends JFrame {
 
 	
 	public void initActionMain() {
-		simulationGamesButton.addActionListener(new SimulationGamesAction());
 		simulationStartButton.addActionListener(new SimulationStart());
 	}
 	
-	public class SimulationGamesAction implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			windows.dispose();
-			new Phase1SimulationGameFrame("Phase1", worldCup);
-			
-			
-			
-		}
-	}
 	
 	public class SimulationStart implements ActionListener{
 		public void actionPerformed(ActionEvent e) {

@@ -3,12 +3,15 @@ package ihm;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -118,23 +121,49 @@ public class FinalPhaseFrame extends JFrame {
 	}
 	
 	
+	public void addActionToPanelScore(JPanel panelScore,Game game) {
+		panelScore.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+	           setCursor(handCursor);
+	           
+	         }
+			public void mousePressed(MouseEvent e) {
+				 windows.dispose();
+		         new GameFrame("Game",worldCup,game);
+			}
+			 public void mouseExited(MouseEvent e) {
+				 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+				 setCursor(defaultCursor);
+			 }
+			
+		});
+		
+		
+	}
+	
+	
 	class TableauPhaseFinal extends JPanel{
 
 		/**
 		 *
 		 */
 		private static final long serialVersionUID = 1L;
-		WorldCup worldCup;
+		private WorldCup worldCup;
 		private Game[] quarterFinal;
 		private Game[] semiFinal;
 		private Game finalGame;
 		private Game smallFinalGame;
+		private JPanel panel;
 		public TableauPhaseFinal(WorldCup worldCup) {
 			this.worldCup=worldCup;
 			quarterFinal=worldCup.getQuarterFinal();
 			semiFinal=worldCup.getSemiFinal();
 			finalGame=worldCup.getFinalGame();
 			smallFinalGame=worldCup.getSmallFinalGame();
+			panel=this;
+			setVisible(true);
+			setLayout(null);
 		}
 		 public void paint(Graphics g) {  
 			  
@@ -162,11 +191,18 @@ public class FinalPhaseFrame extends JFrame {
 			 g2.drawLine(650, 222, 710, 222);
 			 
 			 int k=0;
-			 
+			 JPanel []panelQuarter=new JPanel[4];
+			 int counter=0;
 			 for(int i = 0;i<2;i++) {
 				 for(int j = 0 ;j<2;j++) {
 					 Game quarterGame=quarterFinal[k];
-					 try {
+					 
+					 panelQuarter[counter]=new ScorePanel(quarterGame);
+					
+					 panelQuarter[counter].setBounds(0 +(j*800),0+(i*400),250,43);
+					 addActionToPanelScore(panelQuarter[counter],quarterGame);
+					 panel.add(panelQuarter[counter]);
+					 /*try {
 							icone2 = ImageIO.read(new File("score.jpg")); // "score.jpg"
 							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 									
@@ -181,7 +217,7 @@ public class FinalPhaseFrame extends JFrame {
 					 g2.setColor(Color.white);
 					 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
 					 g2.drawString(""+quarterGame.getScore2(), 150+(j*800), 25+(i*400));
-					 k++;
+					 k++;*/
 				 }
 			 }
 			 
@@ -260,17 +296,52 @@ public class FinalPhaseFrame extends JFrame {
 			
 			
 		 }
+		 
+		
+	}
+	
+	public class ScorePanel extends JPanel{
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
+		private Game ga;
+		public ScorePanel(Game g) {
+			
+			this.ga=g;
+		}
+		 public void paint(Graphics g) {  
+			  
+			 Graphics2D g2 = (Graphics2D)g;
+			 try {
+				Image icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
+				g2.drawImage(icone2,0,0,250,43,this);
+						
+			}catch(IOException exc){
+					exc.printStackTrace();
+			}
+			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
+			 //g2.setColor(Color.blue);
+			 g2.setColor(Color.black);
+			 g2.drawString(ga.getTeam1().getName(), 5, 25);
+			 g2.drawString(ga.getTeam2().getName(), 170, 25);
+			 g2.setColor(Color.white);
+			 if(ga.getScore1()<ga.getScore2()) {
+				 g2.setColor(Color.red);
+			 }
+			 else {
+				 g2.setColor(Color.green);
+			 }
+			 g2.drawString(""+ga.getScore1(), 83, 25);
+			 if(ga.getScore1()>ga.getScore2()) {
+				 g2.setColor(Color.red);
+			 }
+			 else {
+				 g2.setColor(Color.green);
+			 }
+			 g2.drawString(""+ga.getScore2(), 150, 25);
+		 }
 	}
 
-	public class Back implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			windows.dispose();
-			new Phase2Frame(worldCup,"WCS");
-			
-			
-		   
-			
-		}
-	}
+	
 }

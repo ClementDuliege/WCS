@@ -9,10 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import data.Game;
 import data.WorldCup;
+import ihm.Phase1Frame.Phase2;
+import ihm.Phase1Frame.PhaseFinale;
+import ihm.Phase1Frame.Teams;
 
-
-public class Phase2SimulationGameFrame extends JFrame{
+public class GameFrame extends JFrame {
 	private WorldCup worldCup;
 	private JFrame windows;
 	private Container contentPane;
@@ -21,20 +24,18 @@ public class Phase2SimulationGameFrame extends JFrame{
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
-	
-	public Phase2SimulationGameFrame(String titleWindows,WorldCup worldCup) {
-		super(titleWindows);
+	public GameFrame(String windowsTitle,WorldCup worldCup, Game game) {
+		super(windowsTitle);
 		setSize(1300,850);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setVisible(true);
-		this.windows=this;
-		this.contentPane=getContentPane();
 		this.worldCup=worldCup;
+		contentPane=getContentPane();
+		windows=this;
 		initLayout();
-		
 	}
 	
 	public void initLayout() {
@@ -52,32 +53,39 @@ public class Phase2SimulationGameFrame extends JFrame{
 		panel.add(teamsButton);
 		
 		initAction();
-		
 		contentPane.add(panel);
 	}
 	
 	public void initAction() {
-		phase2Button.addActionListener(new Phase2SimulationGame());
-		phaseFinalButton.addActionListener(new PhaseFinaleSimulationGames());
+		phase1Button.addActionListener(new Phase1());
+		phase2Button.addActionListener(new Phase2());
+		phaseFinalButton.addActionListener(new PhaseFinale());
 		teamsButton.addActionListener(new Teams());
 	}
 	
-	public class Phase2SimulationGame implements ActionListener{
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new Phase1SimulationGameFrame("Phase 2", worldCup);
+			new Phase2Frame(worldCup,"WCS");
 			
 		   
 			
 		}
 	}
 	
-	public class PhaseFinaleSimulationGames implements ActionListener{
+	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new PhaseFinalSimulationGamesFrame(worldCup, "Final Phase");
+			new FinalPhaseFrame(worldCup,"WCS");
 			
 		   
 			
@@ -94,5 +102,4 @@ public class Phase2SimulationGameFrame extends JFrame{
 			
 		}
 	}
-		
 }

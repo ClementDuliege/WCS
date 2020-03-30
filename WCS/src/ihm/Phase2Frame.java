@@ -139,6 +139,27 @@ public class Phase2Frame extends JFrame {
 		panel.add(groupL);	
 	}
 	
+	public void addActionToPanelScore(JPanel panelScore,Game game) {
+		panelScore.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+	           setCursor(handCursor);
+	           
+	         }
+			public void mousePressed(MouseEvent e) {
+				 windows.dispose();
+		         new GameFrame("Game",worldCup,game);
+			}
+			 public void mouseExited(MouseEvent e) {
+				 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+				 setCursor(defaultCursor);
+			 }
+			
+		});
+		
+		
+	}
+	
 	public void addActionToLabel(JButton[] listLabel) {
 		for(int i = 0;i<4;i++) {
 			JButton j = listLabel[i];
@@ -168,6 +189,7 @@ public class Phase2Frame extends JFrame {
 			Game game = listGameGroup2.get(k);
 			JPanel panelScore = new ScorePanel(game);
 			panelScore.setBounds(50+(j*300) , 150+(50*k), 250, 43);
+			addActionToPanelScore(panelScore, game);
 			panel.add(panelScore);
 			
 		}

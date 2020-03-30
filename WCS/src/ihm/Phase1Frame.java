@@ -48,6 +48,16 @@ public class Phase1Frame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
+		
+		worldCup.creationGroupStage1();
+		worldCup.simulateGameGroupStage1();
+		worldCup.creationGroupStage2();
+		worldCup.simulateGameGroupStage2();
+		worldCup.simulationQuarterFinal();
+		worldCup.simulateSemiFinal();
+		worldCup.simulateSmallFinal();
+		worldCup.simulateFinal();
+		
 		contentPane=getContentPane();
 		windows=this;
 		
@@ -166,10 +176,32 @@ public class Phase1Frame extends JFrame {
 			Game game = listGameGroupA.get(k);
 			JPanel panelScore = new ScorePanel(game);
 			panelScore.setBounds(50+(j*300) , 150+(i*350)+(50*k), 250, 43);
+			addActionToPanelScore(panelScore, game);
 			panel.add(panelScore);
 			
 		}
 		
+		
+		
+	}
+	
+	public void addActionToPanelScore(JPanel panelScore,Game game) {
+		panelScore.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+	           setCursor(handCursor);
+	           
+	         }
+			public void mousePressed(MouseEvent e) {
+				 windows.dispose();
+		         new GameFrame("Game",worldCup,game);
+			}
+			 public void mouseExited(MouseEvent e) {
+				 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+				 setCursor(defaultCursor);
+			 }
+			
+		});
 		
 		
 	}
