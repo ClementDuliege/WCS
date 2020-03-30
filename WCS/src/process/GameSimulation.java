@@ -17,11 +17,16 @@ public class GameSimulation {
 	private Game game;
 	private ArrayList<Player> playersInGameTeam1;
 	private ArrayList<Player> playersInGameTeam2;
+	private ArrayList<Player> playersOutGameTeam1;
+	private ArrayList<Player> playersOutGameTeam2;
 	private ArrayList<Player> teamHadBall;
 	private ArrayList<Player> teamDontHadBall;
+	private HashMap<String,Integer> statsPoints;
+	private HashMap<String,Integer> statsBlocks;
+	private HashMap<String,Integer> statsSteals;
 	
 	private Player playerHadBall;
-	private SortedMap<Integer,String> actions = new TreeMap<Integer,String>();
+	private SortedMap<Integer,String> actions;
 	
 
 	/**
@@ -84,6 +89,7 @@ public class GameSimulation {
 		this.game=game;
 		this.duration=-1;
 		this.durationTotal=2881;
+		actions=game.getActions();
 		this.actions.clear();
 		
 		Team team1 = game.getTeam1();
@@ -91,6 +97,12 @@ public class GameSimulation {
 		
 		this.playersInGameTeam1 = getPlayersInGame(team1);
 		this.playersInGameTeam2 = getPlayersInGame(team2);
+		this.playersOutGameTeam1 = getPlayersOutGame(team1);
+		this.playersOutGameTeam2 = getPlayersOutGame(team2);
+		this.statsBlocks=game.getStatsBlocks();
+		this.statsPoints=game.getStatsPoints();
+		this.statsSteals=game.getStatsSteals();
+		
 		
 		int actionTime = 0;
 		
@@ -122,7 +134,7 @@ public class GameSimulation {
 				if(action == 1){  // dribble
 					actionTime +=3;
 					this.duration+=3;
-					actions.put(duration, "Le joueur "+ playerHadBall.getName() +" dribble"+ " A " + duration);
+					//actions.put(duration, "<p>"+playerHadBall.getName() +" dribble</p>");
 				}
 			}
 			else if(action == 2) {//Shot
@@ -150,17 +162,17 @@ public class GameSimulation {
 			else if(action == 3) {//change player
 				int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);//Choose the team which will change its players in
 				if(chooseTeam==0){
-					changment(playersInGameTeam1,team1);
+					changment(0);
 				}
 				else{
-					changment(playersInGameTeam2,team2);
+					changment(1);
 
 				}
 				this.duration+=1;
 			}
 
 
-			if(duration==durationTotal-1) {
+			if(duration>=durationTotal) {
 				if(game.getScore1()==game.getScore2()) {
 					durationTotal+=300;	
 				}
@@ -183,12 +195,12 @@ public class GameSimulation {
 		int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);
 		if(chooseTeam==0){
 			
-			this.actions.put(duration, "L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux");
+			this.actions.put(duration, "<p style= \"margin-bottom: 10px;\">L'�quipe "+game.getTeam1().getName()+" a gagn� l'entre deux</p>");
 			teamHadBall= playersInGameTeam1;
 			teamDontHadBall= playersInGameTeam2;
 		}
 		else {
-			this.actions.put(duration, "L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
+			this.actions.put(duration, "L'�quipe "+game.getTeam2().getName()+" a gagn� l'entre deux");
 			teamHadBall= playersInGameTeam2;
 			teamDontHadBall= playersInGameTeam1;
 		}
@@ -211,6 +223,15 @@ public class GameSimulation {
 		}
 		return playersIn;
 	}
+	
+	public ArrayList<Player> getPlayersOutGame(Team team){
+		ArrayList<Player> playersOut = new ArrayList<Player>();
+		for(int i =5;i<10;i++){
+			playersOut.add(team.getPlayers().get(i));
+			
+		}
+		return playersOut;
+	}
 
 
 	public void shot(ArrayList<Player> teamHadBall, Player playerHadBall) {
@@ -232,13 +253,15 @@ public class GameSimulation {
 					team = game.getTeam2();
 				}
 				this.game.addPoint(team, 2);
-				actions.put(duration,"Le joueur " + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un panier à 2 points" + " A " + duration);
-				//System.out.println("shot 2pts");
+				actions.put(duration,"<p color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier � 2 points" + "</p>");
+				int points=statsPoints.get(playerHadBall.getName())+2;
+				statsPoints.put(playerHadBall.getName(), points);
 			}
 			else {
-				actions.put(duration,"Le joueur " + interceptorPlayor.getName()+" a intercepté un shot à 2 point de "+ playerHadBall.getName()+ " A " + duration);
+				actions.put(duration,"<p color=\"red\">" + interceptorPlayor.getName()+" a contr� un shot � 2 point de "+ playerHadBall.getName()+ "</p> ");
 
-				//System.out.println("shot 2pts raté");
+				int blocks=statsBlocks.get(playerHadBall.getName())+1;
+				statsBlocks.put(playerHadBall.getName(), blocks);
 			}
 
 		}
@@ -255,13 +278,15 @@ public class GameSimulation {
 					team = game.getTeam2();
 				}
 				this.game.addPoint(team, 3);
-				actions.put(duration,"Le joueur " + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un panier à 3 points");
-
+				actions.put(duration,"<p color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier � 3 points" + "</p>");
+				int points=statsPoints.get(playerHadBall.getName())+3;
+				statsPoints.put(playerHadBall.getName(), points);
 				//System.out.println("shot 3pts");
 			}
 			else {
-				actions.put(duration,"Le joueur " + interceptorPlayor.getName()+" a intercepté un shot à 3 point de "+ playerHadBall.getName());
-
+				actions.put(duration,"<p color=\"red\">" + interceptorPlayor.getName()+" a contr� un shot � 3 point de "+ playerHadBall.getName()+"</p>");
+				int blocks=statsBlocks.get(playerHadBall.getName())+1;
+				statsBlocks.put(playerHadBall.getName(), blocks);
 				//System.out.println("shot 3pts raté");
 			}
 		}
@@ -276,26 +301,43 @@ public class GameSimulation {
 	 * @param duration
 	 *  
 	 */
-	public void changment(ArrayList<Player> players, Team team){
-		int positionToChange = MyRandom.getIntIntoMinMax(1, 5);
-		Player playerIn =players.get(positionToChange-1);
+	public void changment(int team){
+		int positionToChange = MyRandom.getIntIntoMinMax(1, 5)-1;
+		if(team==0) {
+			Player p = playersInGameTeam1.get(positionToChange);
+			playersInGameTeam1.remove(positionToChange);
+			playersInGameTeam1.add(positionToChange, playersOutGameTeam1.get(positionToChange));
+			playersOutGameTeam1.remove(positionToChange);
+			playersOutGameTeam1.add(positionToChange, p);
+			
+			actions.put(duration,"<p color=\"blue\">"+p.getName()+" est remplacé par "+ playersInGameTeam1.get(positionToChange).getName()+ "</p>");
+		}
+		else {
+			Player p = playersInGameTeam2.get(positionToChange);
+			playersInGameTeam2.set(positionToChange, playersOutGameTeam2.get(positionToChange));
+			playersOutGameTeam2.set(positionToChange, p);
+			
+			actions.put(duration,"<p color=\"blue\">"+p.getName()+" est remplacé par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
+		}
+		
+		/*Player playerIn =players.get(positionToChange-1);
 		players.remove(positionToChange-1);
 		
 		if(!team.getPlayers().get(positionToChange-1).equals(playerIn)){
 			players.add(team.getPlayers().get(positionToChange-1));
-			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1).getName()+ " A " + duration);
+			actions.put(duration,"<p color=\"blue\">"+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1).getName()+ "</p>");
 
 		}
 		else{
 			players.add(team.getPlayers().get(positionToChange-1+5));
-			actions.put(duration,"Le joueur "+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1+5)+ " A " + duration);
-		}
+			actions.put(duration,"<p color=\"blue\">"+players.get(positionToChange-1).getName()+" est remplacé par "+ team.getPlayers().get(positionToChange-1+5).getName()+ "</p>");
+		}*/
 	}
 	
 
 
 	public void freeThrow(Player playerHadBall) {
-		float succesRate = playerHadBall.getFreeThrows() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ;
+		float succesRate = playerHadBall.getFreeThrows() * MyRandom.getFloatIntoMinMax((float)1.1,(float)1.3) ;
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 		if(succesRate>lessThan) {
 			Team team;
@@ -306,7 +348,9 @@ public class GameSimulation {
 				team = game.getTeam2();
 			}
 			this.game.addPoint(team, 1);
-			actions.put(duration,"Le joueur " + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un lancer franc");
+			actions.put(duration,"<p color=\"orange\">" + playerHadBall.getName() + " de l'equipe "+ team.getName()+" a mis un lancer franc</p>");
+			int points=statsPoints.get(playerHadBall.getName())+1;
+			statsPoints.put(playerHadBall.getName(), points);
 	}
 	}
 	
@@ -337,15 +381,17 @@ public class GameSimulation {
 		Player interceptorPlayor = teamDontHadBall.get(MyRandom.getIntIntoMinMax(0, 4));
 		
 		//Define succesRate of the pass
-		float succesRate = (playerHadBall.getPass() - interceptorPlayor.getSteal())* MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1);  
+		float succesRate = (playerHadBall.getPass() - interceptorPlayor.getSteal())* MyRandom.getFloatIntoMinMax((float)1.3,(float)1.6);  
 
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 		if(succesRate>lessThan) {
-		actions.put(duration, "Le joueur" + playerHadBall.getName() +" a passé la balle à "+ destinatorPlayer.getName()+ " A " + duration);
+		//actions.put(duration, "<p>" + playerHadBall.getName() +" a passé la balle à "+ destinatorPlayer.getName()+ "</p>");
 			this.playerHadBall=destinatorPlayer;
 			return true;
 		}
-		actions.put(duration, "Le joueur" + interceptorPlayor.getName() +" a pris la balle à "+ playerHadBall.getName()+ " A " + duration);
+		actions.put(duration, "<p>" + interceptorPlayor.getName() +" a intercept� la balle à "+ playerHadBall.getName()+ "</p> ");
+		int steals=statsSteals.get(playerHadBall.getName())+3;
+		statsSteals.put(playerHadBall.getName(), steals);
 		this.playerHadBall=interceptorPlayor;
 		return false;
 	}
@@ -354,16 +400,17 @@ public class GameSimulation {
 	 * @return what action will happen
 	 */
 	public int chooseActionToDo(int max,int actionTime) {
+		int doChange = MyRandom.getIntIntoMinMax(0, 99);
+		if(doChange < 5){
+			return 3;
+		}
 		if(actionTime<=9) {
 			return MyRandom.getIntIntoMinMax(0, 1);//pass or dribble
 		}
 		else if(actionTime==24) {
 			return 2;//shot
 		}
-		int doChange = MyRandom.getIntIntoMinMax(0, 99);
-		if(doChange == 40){
-			return 3;
-		}
+		
 		return MyRandom.getIntIntoMinMax(0, max);
 		
 	}

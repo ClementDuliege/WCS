@@ -299,7 +299,7 @@ public class WorldCup {
 		
 		gameSimulation.play(finalGame);
 		
-		Set s = gameSimulation.getActions().entrySet(); 
+		/*Set s = gameSimulation.getActions().entrySet(); 
 		  
         // Using iterator in SortedMap 
         Iterator i = s.iterator(); 
@@ -316,7 +316,7 @@ public class WorldCup {
             System.out.println("Key : " + key + 
                             "  value : " + value); 
         } 
-		
+		*/
 		
 		/*for(String action : gameSimulation.getActions().values()){
 			System.out.println(action);

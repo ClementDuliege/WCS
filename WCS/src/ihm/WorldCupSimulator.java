@@ -12,6 +12,14 @@ public class WorldCupSimulator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		WorldCup worldCup = new WorldCup();
+		worldCup.creationGroupStage1();
+		worldCup.simulateGameGroupStage1();
+		worldCup.creationGroupStage2();
+		worldCup.simulateGameGroupStage2();
+		worldCup.simulationQuarterFinal();
+		worldCup.simulateSemiFinal();
+		worldCup.simulateSmallFinal();
+		worldCup.simulateFinal();
 		
 		try {
 			UIManager.setLookAndFeel ("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");

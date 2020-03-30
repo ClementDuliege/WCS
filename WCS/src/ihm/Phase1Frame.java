@@ -49,14 +49,7 @@ public class Phase1Frame extends JFrame {
 		setVisible(true);
 		this.worldCup=worldCup;
 		
-		worldCup.creationGroupStage1();
-		worldCup.simulateGameGroupStage1();
-		worldCup.creationGroupStage2();
-		worldCup.simulateGameGroupStage2();
-		worldCup.simulationQuarterFinal();
-		worldCup.simulateSemiFinal();
-		worldCup.simulateSmallFinal();
-		worldCup.simulateFinal();
+		
 		
 		contentPane=getContentPane();
 		windows=this;

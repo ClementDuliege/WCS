@@ -427,10 +427,12 @@ public class TeamFrame extends JFrame {
 				 g2.setFont(subscribe);
 				 g2.drawString("STATS GENERALES DE L'EQUIPE", 20, 380);
 			 }
-		
+			 
 			 else {
 			 try {
-				Image icone2 = ImageIO.read(new File("player.png"));//"player.png"
+				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
+				Image icone2 = ImageIO.read(new File("pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
+				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
 				g2.drawImage(icone2,15,130,191,245,this);
 						
 			}catch(IOException exc){

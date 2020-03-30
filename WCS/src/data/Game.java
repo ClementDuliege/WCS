@@ -1,6 +1,8 @@
 package data;
 
+import java.util.HashMap;
 import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class Game {
 	
@@ -9,6 +11,9 @@ public class Game {
 	private int score1;
 	private int score2;
 	private SortedMap<Integer,String> actions;
+	private HashMap<String,Integer> statsPoints = new HashMap<String,Integer>();
+	private HashMap<String,Integer> statsBlocks = new HashMap<String,Integer>();
+	private HashMap<String,Integer> statsSteals = new HashMap<String,Integer>();
 	
 	
 	public Game(Team team1, Team team2) {
@@ -16,7 +21,73 @@ public class Game {
 		this.team2 = team2;
 		this.score1=0;
 		this.score2=0;
+		actions= new TreeMap<Integer,String>();
+		initStats();
 	}
+
+	public void initStats() {
+		for(int i =0; i<10;i++) {
+			statsPoints.put(team1.getPlayers().get(i).getName(), 0);
+			statsBlocks.put(team1.getPlayers().get(i).getName(), 0);
+			statsSteals.put(team1.getPlayers().get(i).getName(), 0);
+			statsPoints.put(team2.getPlayers().get(i).getName(), 0);
+			statsBlocks.put(team2.getPlayers().get(i).getName(), 0);
+			statsSteals.put(team2.getPlayers().get(i).getName(), 0);
+		}
+	}
+	
+	/**
+	 * @return the statsPoints
+	 */
+	public HashMap<String, Integer> getStatsPoints() {
+		return statsPoints;
+	}
+
+
+
+	/**
+	 * @return the statsBlocks
+	 */
+	public HashMap<String, Integer> getStatsBlocks() {
+		return statsBlocks;
+	}
+
+
+
+	/**
+	 * @return the statsSteals
+	 */
+	public HashMap<String, Integer> getStatsSteals() {
+		return statsSteals;
+	}
+
+
+
+	/**
+	 * @param statsPoints the statsPoints to set
+	 */
+	public void setStatsPoints(HashMap<String, Integer> statsPoints) {
+		this.statsPoints = statsPoints;
+	}
+
+
+
+	/**
+	 * @param statsBlocks the statsBlocks to set
+	 */
+	public void setStatsBlocks(HashMap<String, Integer> statsBlocks) {
+		this.statsBlocks = statsBlocks;
+	}
+
+
+
+	/**
+	 * @param statsSteals the statsSteals to set
+	 */
+	public void setStatsSteals(HashMap<String, Integer> statsSteals) {
+		this.statsSteals = statsSteals;
+	}
+
 
 
 	/**
