@@ -1,11 +1,14 @@
 package data;
 
+import java.util.SortedMap;
+
 public class Game {
 	
 	private Team team1;
 	private Team team2;
 	private int score1;
 	private int score2;
+	private SortedMap<Integer,String> actions;
 	
 	
 	public Game(Team team1, Team team2) {
@@ -13,6 +16,22 @@ public class Game {
 		this.team2 = team2;
 		this.score1=0;
 		this.score2=0;
+	}
+
+
+	/**
+	 * @return the actions
+	 */
+	public SortedMap<Integer, String> getActions() {
+		return actions;
+	}
+
+
+	/**
+	 * @param actions the actions to set
+	 */
+	public void setActions(SortedMap<Integer, String> actions) {
+		this.actions = actions;
 	}
 
 

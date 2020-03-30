@@ -15,9 +15,12 @@ public class GameSimulation {
 	private int duration;
 	private int durationTotal;
 	private Game game;
-	private ArrayList<Player> playersInTeam1;
-	private ArrayList<Player> playersInTeam2;
-	Player playerHadBall;
+	private ArrayList<Player> playersInGameTeam1;
+	private ArrayList<Player> playersInGameTeam2;
+	private ArrayList<Player> teamHadBall;
+	private ArrayList<Player> teamDontHadBall;
+	
+	private Player playerHadBall;
 	private SortedMap<Integer,String> actions = new TreeMap<Integer,String>();
 	
 
@@ -79,19 +82,21 @@ public class GameSimulation {
 	
 	public void play(Game game) {
 		this.game=game;
-		this.duration=0;
+		this.duration=-1;
 		this.durationTotal=2881;
 		this.actions.clear();
 		
 		Team team1 = game.getTeam1();
 		Team team2 = game.getTeam2();
 		
-		this.playersInTeam1 = getPlayersIn(team1);
-		this.playersInTeam2 = getPlayersIn(team2);
+		this.playersInGameTeam1 = getPlayersInGame(team1);
+		this.playersInGameTeam2 = getPlayersInGame(team2);
 		
 		int actionTime = 0;
-		ArrayList<Player> teamHadBall = betweenTwo();
-		ArrayList<Player> teamDontHadBall = betweenTwo();
+		
+		betweenTwo();
+		this.duration++;
+		
 
 		this.playerHadBall = teamHadBall.get(4);//Le pivot possede l'index 4 dans la liste
 		
@@ -139,17 +144,19 @@ public class GameSimulation {
 					teamDontHadBall= otherTeam(teamHadBall);	
 				}
 				actionTime = 0;
+				this.duration+=3;
 
 			}
 			else if(action == 3) {//change player
 				int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);//Choose the team which will change its players in
 				if(chooseTeam==0){
-					changment(playersInTeam1,team1);
+					changment(playersInGameTeam1,team1);
 				}
 				else{
-					changment(playersInTeam2,team2);
+					changment(playersInGameTeam2,team2);
 
 				}
+				this.duration+=1;
 			}
 
 
@@ -161,6 +168,7 @@ public class GameSimulation {
 			
 			
 		}
+		game.setActions(actions);
 		
 	}
 	
@@ -170,17 +178,20 @@ public class GameSimulation {
 	 * 
 	 * @return   list of players who get the ball
 	 */
-	public ArrayList<Player> betweenTwo(){
+	public void betweenTwo(){
 		
 		int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);
 		if(chooseTeam==0){
 			
-			this.actions.put(0, "L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux");
-			return playersInTeam1;
+			this.actions.put(duration, "L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux");
+			teamHadBall= playersInGameTeam1;
+			teamDontHadBall= playersInGameTeam2;
 		}
-		this.actions.put(0, "L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
-
-		return playersInTeam2;
+		else {
+			this.actions.put(duration, "L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
+			teamHadBall= playersInGameTeam2;
+			teamDontHadBall= playersInGameTeam1;
+		}
 
 	}
 
@@ -191,7 +202,7 @@ public class GameSimulation {
 	 * @param team 
 	 * @return  a list of players titulars
 	 */
-	public ArrayList<Player> getPlayersIn(Team team){
+	public ArrayList<Player> getPlayersInGame(Team team){
 		ArrayList<Player> playersIn = new ArrayList<Player>();
 		int i = 0;
 		for(Iterator<Player> it = team.getPlayers().iterator();it.hasNext()&&i<5;){
@@ -307,10 +318,10 @@ public class GameSimulation {
 	 * @return the other team in the game
 	 */
 	public ArrayList <Player> otherTeam(ArrayList <Player> team) {
-		if(team.equals(playersInTeam1)) {
-			return playersInTeam2;
+		if(team.equals(playersInGameTeam1)) {
+			return playersInGameTeam2;
 		}
-		return playersInTeam1;
+		return playersInGameTeam1;
 	}
 	
 

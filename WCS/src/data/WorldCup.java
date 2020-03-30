@@ -2,6 +2,11 @@ package data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+
 
 import generate.GenerateGroupStage;
 import generate.GenerateTeam;
@@ -293,9 +298,29 @@ public class WorldCup {
 	public void simulateFinal() {
 		
 		gameSimulation.play(finalGame);
-		for(String action : gameSimulation.getActions().values()){
+		
+		Set s = gameSimulation.getActions().entrySet(); 
+		  
+        // Using iterator in SortedMap 
+        Iterator i = s.iterator(); 
+  
+        // Traversing map. Note that the traversal 
+        // produced sorted (by keys) output . 
+        while (i.hasNext()) 
+        { 
+            Map.Entry m = (Map.Entry)i.next(); 
+  
+            int key = (Integer)m.getKey(); 
+            String value = (String)m.getValue(); 
+  
+            System.out.println("Key : " + key + 
+                            "  value : " + value); 
+        } 
+		
+		
+		/*for(String action : gameSimulation.getActions().values()){
 			System.out.println(action);
-		}
+		}*/
 
 		//System.out.println(finalGame.toString());
 		if(finalGame.getScore1()<finalGame.getScore2()) {
