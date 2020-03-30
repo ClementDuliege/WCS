@@ -401,7 +401,7 @@ public class GameSimulation {
 	 */
 	public int chooseActionToDo(int max,int actionTime) {
 		int doChange = MyRandom.getIntIntoMinMax(0, 99);
-		if(doChange < 5){
+		if(doChange < 2){
 			return 3;
 		}
 		if(actionTime<=9) {

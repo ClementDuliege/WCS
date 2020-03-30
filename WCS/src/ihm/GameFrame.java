@@ -70,7 +70,7 @@ public class GameFrame extends JFrame {
 	
 		jp =new JScrollPane(displayActionsLabel);
 		jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jp.setBounds(350, 150, 500, 650);
+		jp.setBounds(370, 150, 500, 650);
 		
 		panel.add(phase1Button);
 		panel.add(phase2Button);
