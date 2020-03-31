@@ -18,7 +18,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import data.Game;
 import data.Team;
@@ -71,6 +73,10 @@ public class FinalPhaseFrame extends JFrame {
 		panel.add(teamsButton);
 		panel.add(rankButton);
 		
+		JLabel winnerLabel=new JLabel(worldCup.getWinnerTeam().getName(),SwingConstants.CENTER);
+		winnerLabel.setBounds(530, 540, 170, 30);
+		winnerLabel.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		panel.add(winnerLabel);
 		
 		initAction();
 		
@@ -298,11 +304,10 @@ public class FinalPhaseFrame extends JFrame {
 						exc.printStackTrace();
 			}
 			 g2.setColor(Color.black);
-			Team winner = worldCup.getWinnerTeam();
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 20)); 
-
-			 g2.drawString(winner.getName(), 450, 412);
 			
+
+			 
+			 
 			
 			
 		 }
