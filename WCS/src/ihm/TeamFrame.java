@@ -24,6 +24,7 @@ import java.text.AttributedString;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -118,6 +119,10 @@ public class TeamFrame extends JFrame {
 		} catch (IOException|FontFormatException e) {
 		     //Handle exception
 		}
+		
+		JLabel flag = new JLabel(new ImageIcon("Drapeau/"+team.getName()+".png"));
+		flag.setBounds(20, 101, 100, 100);
+		
 		teamsLabel.setFont(freshman);
 		teamsLabel.setBounds(120, 130, 500, 50);
 		
@@ -130,6 +135,7 @@ public class TeamFrame extends JFrame {
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
+		panel.add(flag);
 		
 		initAction();
 		panel.add(teamsLabel);
@@ -433,7 +439,7 @@ public class TeamFrame extends JFrame {
 				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
 				Image icone2 = ImageIO.read(new File("pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
 				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
-				g2.drawImage(icone2,15,130,191,245,this);
+				g2.drawImage(icone2,125,130,200,200,this);
 						
 			}catch(IOException exc){
 					exc.printStackTrace();
@@ -441,7 +447,7 @@ public class TeamFrame extends JFrame {
 			 g2.setFont(new Font("Calibri", Font.BOLD, 25)); 
 			 g2.setColor(new Color(225,82,11));
 			 String[] names= player.getName().split("\\.");
-			 g2.drawString(names[0]+" "+names[1], 20, 115);
+			 g2.drawString(names[0]+" "+names[1], 123, 115);
 			 g2.setColor(Color.black);
 			 
 			 //rect
@@ -513,7 +519,7 @@ public class TeamFrame extends JFrame {
 					e.printStackTrace();
 				}
 			 g2.setFont(subscribe);
-			 g2.drawString("Poste : "+player.getPositionString(), 230, 380);
+			 g2.drawString("Poste : "+player.getPositionString(), 125, 380);
 			 }
 		 }
 		 
