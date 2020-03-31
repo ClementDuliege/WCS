@@ -441,7 +441,7 @@ public class TeamFrame extends JFrame {
 			 g2.setFont(new Font("Calibri", Font.BOLD, 25)); 
 			 g2.setColor(new Color(225,82,11));
 			 String[] names= player.getName().split("\\.");
-			 g2.drawString(names[0]+" "+names[1], 50, 115);
+			 g2.drawString(names[0]+" "+names[1], 20, 115);
 			 g2.setColor(Color.black);
 			 
 			 //rect
@@ -513,7 +513,7 @@ public class TeamFrame extends JFrame {
 					e.printStackTrace();
 				}
 			 g2.setFont(subscribe);
-			 g2.drawString("Poste : "+player.getPositionString(), 150, 380);
+			 g2.drawString("Poste : "+player.getPositionString(), 230, 380);
 			 }
 		 }
 		 
