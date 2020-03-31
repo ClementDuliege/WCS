@@ -406,7 +406,7 @@ public class TeamFrame extends JFrame {
 				 
 				 g2.drawString("Rebound off : ", 250, 580);
 				 g2.drawString((Integer.toString(reboundOffGen/numberPlayers)), 400, 580);
-				 
+				    
 				 g2.drawString("Rebound def : ", 250, 620);
 				 g2.drawString((Integer.toString(reboundDefGen/numberPlayers)), 403, 620);
 				 

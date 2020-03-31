@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Team {
 	
-	private String name;
+	private String name;  
 	private ArrayList<Player>  players;
 	private int attack;
 	private int shot2Pts;

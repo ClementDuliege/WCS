@@ -260,7 +260,7 @@ public class Player {
 		this.block = block;
 	}
 
-	/**
+	/**  
 	 * @param steal the steal to set
 	 */
 	public void setSteal(int steal) {

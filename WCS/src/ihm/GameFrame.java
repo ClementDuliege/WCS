@@ -218,7 +218,7 @@ public class GameFrame extends JFrame implements Runnable {
             res+=value;
             displayActionsLabel.setText(res);
             panel.repaint();
-	        try {
+	        try { 
 	        	Thread.sleep(SPEED);
 	 		}catch (InterruptedException e) {
 	 			// TODO Auto-generated catch block

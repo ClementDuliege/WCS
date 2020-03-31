@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class Game {
 	
-	private Team team1;
+	private Team team1;  
 	private Team team2;
 	private int score1;
 	private int score2;

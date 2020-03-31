@@ -161,7 +161,7 @@ public class Phase1Frame extends JFrame {
 			});
 		}
 	}
-	
+	  
 	public void displayGameGroup(String group,int i, int j) {
 		ArrayList<Game> listGameGroupA = worldCup.getGroupStage1().get(group).getGames();
 		

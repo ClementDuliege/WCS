@@ -111,7 +111,7 @@ public class FinalPhaseFrame extends JFrame {
 			new ListTeamsFrame("TEAMS",worldCup);
 		}
 	}
-	
+	  
 		
 	public class RankingAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {

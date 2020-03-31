@@ -10,12 +10,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
+ 
 import data.Game;
 
 public class ScorePanel extends JPanel{
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Game ga;

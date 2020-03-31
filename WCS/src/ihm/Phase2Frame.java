@@ -110,7 +110,7 @@ public class Phase2Frame extends JFrame {
 			new ListTeamsFrame("TEAMS",worldCup);
 		}
 	}
-	
+	 
 	public void displayGroup() {
 		JButton groupI=new JButton("GROUPE I");
 		groupI.setBounds(80, 100, 200, 30);

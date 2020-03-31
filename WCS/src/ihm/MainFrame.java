@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 	protected JFrame windows;
 	public Container contentPane;
 	protected JLabel titleJLabel;
-	private JButton simulationStartButton;
+	private JButton simulationStartButton;  
 	protected WorldCup worldCup;
 	
 	

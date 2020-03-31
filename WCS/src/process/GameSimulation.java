@@ -343,7 +343,7 @@ public class GameSimulation {
 			
 			actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"blue\"><span style=\"font-size: 12px;font-weight:bold;\">"+ game.getTeam2().getName() +"</span> : "+p.getName()+" est remplacé par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
 		}
-		
+		  
 		/*Player playerIn =players.get(positionToChange-1);
 		players.remove(positionToChange-1);
 		
