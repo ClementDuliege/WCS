@@ -23,6 +23,7 @@ public class ScorePanel extends JPanel{
 	public ScorePanel(Game g) {
 		
 		this.ga=g;
+		setOpaque(true);
 		
 	}
 	 public void paint(Graphics g) {  

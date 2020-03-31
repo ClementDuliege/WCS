@@ -61,7 +61,7 @@ public class FinalPhaseFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-
+		displayNameTeamInScore();
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
 		phaseFinalButton.setBounds(650, 50, 200, 25);
@@ -80,12 +80,13 @@ public class FinalPhaseFrame extends JFrame {
 		
 		initAction();
 		
-		JPanel pane2 =new TableauPhaseFinal(worldCup);
+		JPanel pane2 =new TableauPhaseFinal(worldCup,windows);
 		pane2.setLayout(null);
 		pane2.setBounds(100, 150, 1200, 800);
 		
 		panel.add(pane2);
 		contentPane.add(panel);
+		
 	}
 	
 	public void initAction() {
@@ -127,193 +128,68 @@ public class FinalPhaseFrame extends JFrame {
 	}
 	
 	
-	public void addActionToPanelScore(JPanel panelScore,Game game) {
-		panelScore.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e) {
-				Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-	           setCursor(handCursor);
-	           
-	         }
-			public void mousePressed(MouseEvent e) {
-				 windows.dispose();
-				 new Thread(new GameFrame("Game",worldCup,game)).start();
-			}
-			 public void mouseExited(MouseEvent e) {
-				 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-				 setCursor(defaultCursor);
+	public void displayNameTeamInScore() {
+		Game[] quarterFinal=worldCup.getQuarterFinal();
+		Game[] semiFinal=worldCup.getSemiFinal();
+		Game finalGame=worldCup.getFinalGame();
+		Game smallFinalGame=worldCup.getSmallFinalGame();
+		int k=0;
+		 for(int i = 0;i<2;i++) {
+			 for(int j = 0 ;j<2;j++) {
+				Game game=quarterFinal[k];
+				JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
+				nameTeam1Label.setBounds(103 +(j*802), 163+(i*400), 73, 13);
+				nameTeam1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+				panel.add(nameTeam1Label);
+				JLabel nameTeam2Label=new JLabel(game.getTeam2().getName(),SwingConstants.CENTER);
+				nameTeam2Label.setBounds(273+(j*802), 163+(i*400), 73, 13);
+				nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+				panel.add(nameTeam2Label);
+				k++;
 			 }
-			
-		});
-		
-		
-	}
-	
-	
-	class TableauPhaseFinal extends JPanel{
-
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = 1L;
-		private WorldCup worldCup;
-		private Game[] quarterFinal;
-		private Game[] semiFinal;
-		private Game finalGame;
-		private Game smallFinalGame;
-	
-		public TableauPhaseFinal(WorldCup worldCup) {
-			this.worldCup=worldCup;
-			quarterFinal=worldCup.getQuarterFinal();
-			semiFinal=worldCup.getSemiFinal();
-			finalGame=worldCup.getFinalGame();
-			smallFinalGame=worldCup.getSmallFinalGame();
-		}
-		 public void paint(Graphics g) {  
-			  
-			 Graphics2D g2 = (Graphics2D)g;
-			 Image icone2;
-			 
-			 g2.setStroke(new BasicStroke(10));
-			 g2.setColor(new Color(225,82,11));
-			 g2.drawLine(125, 43, 125, 121);
-			 g2.drawLine(125, 400, 125, 322);
-			 g2.drawLine(925, 43, 925, 121);
-			 g2.drawLine(925, 400, 925, 322);
-			 
-			 g2.drawLine(125, 121, 220, 121);
-			 g2.drawLine(125, 322, 220, 322);
-			 g2.drawLine(925, 121, 830, 121);
-			 g2.drawLine(925, 322, 830, 322);
-			 
-			 g2.drawLine(220, 121, 220, 201);
-			 g2.drawLine(830, 121, 830, 201);
-			 g2.drawLine(220, 322, 220, 242);
-			 g2.drawLine(830, 322, 830, 242);
-			 
-			 g2.drawLine(350, 222, 400, 222);
-			 g2.drawLine(650, 222, 710, 222);
-			 
-			 int k=0;
-			 
-			
-			 for(int i = 0;i<2;i++) {
-				 for(int j = 0 ;j<2;j++) {
-					 Game quarterGame=quarterFinal[k];
-					 
-					 JPanel panelQuarter=new ScorePanel(quarterGame);
-					 panelQuarter.setBounds(0 +(j*800),0+(i*400),250,43);
-					 addActionToPanelScore(panelQuarter,quarterGame);
-					 add(panelQuarter);
-					 try {
-							icone2 = ImageIO.read(new File("score.jpg")); // "score.jpg"
-							g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
-									
-						}catch(IOException exc){
-								exc.printStackTrace();
-						}
-					 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-					 //g2.setColor(Color.blue);
-					 g2.setColor(Color.black);
-					 g2.drawString(quarterGame.getTeam1().getName(), 5 +(j*800), 25+(i*400));
-					 g2.drawString(quarterGame.getTeam2().getName(), 170+(j*800), 25+(i*400));
-					 g2.setColor(Color.white);
-					 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
-					 g2.drawString(""+quarterGame.getScore2(), 150+(j*800), 25+(i*400));
-					 k++;
-				 }
-			 }
-			 
-			 for(int i2= 0;i2<2;i2++) {
-				 Game semiGame=semiFinal[i2];
-				 JPanel panelSemi=new ScorePanel(semiGame);
-				 panelSemi.setBounds(100 +(i2*610),200,250,43);
-				 addActionToPanelScore(panelSemi,semiGame);
-				 add(panelSemi);
-				 try {
-						icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
-						g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
-								
-				}catch(IOException exc){
-							exc.printStackTrace();
-				}
-				 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-				 //g2.setColor(Color.blue);
-				 g2.setColor(Color.black);
-				 g2.drawString(semiGame.getTeam1().getName(), 105+(i2*610), 225);
-				 g2.drawString(semiGame.getTeam2().getName(), 270+(i2*610), 225);
-				 g2.setColor(Color.white);
-				 g2.drawString(""+semiGame.getScore1(), 183+(i2*610), 225);
-				 g2.drawString(""+semiGame.getScore2(), 250+(i2*610), 225);
-				 k++;
-				 
-			 }
-			 
-			 
-			 try {
-					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
-					g2.drawImage(icone2,400,200,250,43,this);
-							
-			}catch(IOException exc){
-						exc.printStackTrace();
-			}
-			 
-			 JPanel panelFinal=new ScorePanel(finalGame);
-			 panelFinal.setBounds(400,200,250,43);
-			 addActionToPanelScore(panelFinal,finalGame);
-			 add(panelFinal);
-			 
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-			 //g2.setColor(Color.blue);
-			 g2.setColor(Color.black);
-			 g2.drawString(finalGame.getTeam1().getName(), 405, 225);
-			 g2.drawString(finalGame.getTeam2().getName(), 575, 225);
-			 g2.setColor(Color.white);
-			 g2.drawString(""+finalGame.getScore1(), 483, 225);
-			 g2.drawString(""+finalGame.getScore2(), 550, 225);
-			 
-			 
-			 
-			 try {
-					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
-					g2.drawImage(icone2,400,300,250,43,this);
-							
-			}catch(IOException exc){
-						exc.printStackTrace();
-			}
-			 
-			 JPanel panelSmallFinal=new ScorePanel(smallFinalGame);
-			 panelSmallFinal.setBounds(400,300,250,43);
-			 addActionToPanelScore(panelSmallFinal,smallFinalGame);
-			 add(panelSmallFinal);
-			 
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-			 //g2.setColor(Color.blue);
-			 g2.setColor(Color.black);
-			 g2.drawString(smallFinalGame.getTeam1().getName(), 405, 325);
-			 g2.drawString(smallFinalGame.getTeam2().getName(), 575, 325);
-			 g2.setColor(Color.white);
-			 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
-			 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
-			 //g2.draw
-			 
-			try {
-					icone2 = ImageIO.read(new File("trophee.png")); // "score.jpg"
-					g2.drawImage(icone2,360,350,320,320,this);
-							
-			}catch(IOException exc){
-						exc.printStackTrace();
-			}
-			 g2.setColor(Color.black);
-			
-
-			 
-			 
-			
-			
 		 }
 		 
+		 for(int i2= 0;i2<2;i2++) {
+			 Game game=semiFinal[i2];
+			 JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
+			 nameTeam1Label.setBounds(205 +(i2*610), 363, 73, 13);
+			 nameTeam1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+			 panel.add(nameTeam1Label);
+			 JLabel nameTeam2Label=new JLabel(game.getTeam2().getName(),SwingConstants.CENTER);
+			 nameTeam2Label.setBounds(375+(i2*610), 363, 73, 13);
+			 nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+			 panel.add(nameTeam2Label);
+				
 		
+			
+			 k++;
+			 
+		 }
+		 JLabel nameTeamFinal1Label=new JLabel(finalGame.getTeam1().getName(),SwingConstants.CENTER);
+		 nameTeamFinal1Label.setBounds(505, 363, 73, 13);
+		 nameTeamFinal1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		 panel.add(nameTeamFinal1Label);
+		 JLabel nameTeamFinal2Label=new JLabel(finalGame.getTeam2().getName(),SwingConstants.CENTER);
+		 nameTeamFinal2Label.setBounds(675, 363, 73, 13);
+		 nameTeamFinal2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		 panel.add(nameTeamFinal2Label);
+		
+		 
+		 JLabel nameTeamFinal3Label=new JLabel(smallFinalGame.getTeam1().getName(),SwingConstants.CENTER);
+		 nameTeamFinal3Label.setBounds(505, 463, 73, 13);
+		 nameTeamFinal3Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		 panel.add(nameTeamFinal3Label);
+		 JLabel nameTeamFinal4Label=new JLabel(smallFinalGame.getTeam2().getName(),SwingConstants.CENTER);
+		 nameTeamFinal4Label.setBounds(675, 463, 73, 13);
+		 nameTeamFinal4Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		 panel.add(nameTeamFinal4Label);
 	}
+	
+	
+	
+	
+	
+
 	
 	
 
