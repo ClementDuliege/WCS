@@ -352,8 +352,8 @@ public class TeamFrame extends JFrame {
 			 
 			 if(varStatTeam) {
 				 try {
-						Image icone3 = ImageIO.read(new File("koroko.jpg"));//"player.png"
-						g2.drawImage(icone3,15,100,420,235,this);
+						Image icone3 = ImageIO.read(new File("pictureTeams/Equipes/"+team.getName()+".png"));//"player.png"
+						g2.drawImage(icone3,80,125,300,200,this);
 								
 					}catch(IOException exc){
 							exc.printStackTrace();
