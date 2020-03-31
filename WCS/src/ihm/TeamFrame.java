@@ -372,49 +372,49 @@ public class TeamFrame extends JFrame {
 				 
 				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
 				 g2.drawString("Tir 2 Pts : ", 15, 500);
-				 g2.drawString((Integer.toString(shot2PtsGen/numberPlayers)), 140, 500);
+				 g2.drawString((Integer.toString(shot2PtsGen/numberPlayers)), 162, 500);
 				 
 				
 				 g2.drawString("Tir 3 Pts : ", 15, 540);
-				 g2.drawString((Integer.toString(shot3PtsGen/numberPlayers)), 140, 540);
+				 g2.drawString((Integer.toString(shot3PtsGen/numberPlayers)), 162, 540);
 				 
 				 g2.drawString("Lancer Franc : ", 15, 580);
-				 g2.drawString((Integer.toString(freeThrowsGen/numberPlayers)), 159, 580);
+				 g2.drawString((Integer.toString(freeThrowsGen/numberPlayers)), 162, 580);
 				 
 				 g2.drawString("Passe : ", 15, 620);
-				 g2.drawString((Integer.toString(passGen/numberPlayers)), 80, 620);
+				 g2.drawString((Integer.toString(passGen/numberPlayers)), 162, 620);
 				 
 				 g2.drawString("Dribble : ", 15, 660);
-				 g2.drawString((Integer.toString(ballHandleGen/numberPlayers)), 150, 660);
+				 g2.drawString((Integer.toString(ballHandleGen/numberPlayers)), 162, 660);
 				 
 				 g2.drawString("Vitesse : ", 15, 700);
-				 g2.drawString((Integer.toString(speedGen/numberPlayers)), 102, 700);
+				 g2.drawString((Integer.toString(speedGen/numberPlayers)), 162, 700);
 				 
 				 //colonne 2
 				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
 				 g2.setColor(Color.blue);
 				 g2.drawString("DEFENSE : ", 245, 445);
-				 g2.drawString((Integer.toString(defenseGen/numberPlayers)), 395, 445);
+				 g2.drawString((Integer.toString(defenseGen/numberPlayers)), 400, 445);
 				 
 				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
 				 g2.drawString("Contre : ", 250, 500);
-				 g2.drawString((Integer.toString(blockGen/numberPlayers)), 328, 500);
+				 g2.drawString((Integer.toString(blockGen/numberPlayers)), 400, 500);
 				 
 				 g2.drawString("Interception : ", 250, 540);
-				 g2.drawString((Integer.toString(stealGen/numberPlayers)), 325, 540);
+				 g2.drawString((Integer.toString(stealGen/numberPlayers)), 400, 540);
 				 
 				 
 				 g2.drawString("Rebond off : ", 250, 580);
 				 g2.drawString((Integer.toString(reboundOffGen/numberPlayers)), 400, 580);
 				    
 				 g2.drawString("Rebond def : ", 250, 620);
-				 g2.drawString((Integer.toString(reboundDefGen/numberPlayers)), 403, 620);
+				 g2.drawString((Integer.toString(reboundDefGen/numberPlayers)), 400, 620);
 				 
 				 g2.drawString("Force : ", 250, 660);
-				 g2.drawString((Integer.toString(strenghtGen/numberPlayers)), 359, 660);
+				 g2.drawString((Integer.toString(strenghtGen/numberPlayers)), 400, 660);
 				 
 				 g2.drawString("Reaction : ", 250, 700);
-				 g2.drawString((Integer.toString(reactionTimeGen/numberPlayers)), 359, 700);
+				 g2.drawString((Integer.toString(reactionTimeGen/numberPlayers)), 400, 700);
 				 
 				 g2.setColor(Color.black);
 				 try {
@@ -426,7 +426,7 @@ public class TeamFrame extends JFrame {
 				}
 				 g2.setFont(subscribe);
 				 g2.drawString("STATS GENERALES DE L'EQUIPE", 20, 380);
-			 }
+			 } 
 			 
 			 else {
 			 try {
@@ -461,48 +461,48 @@ public class TeamFrame extends JFrame {
 			 g2.drawString(""+player.getAttack(), 162, 442);
 			 
 			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-			 g2.drawString("Shot 2 Pts : ", 15, 500);
-			 g2.drawString(""+player.getShot2Pts(), 140, 500);
+			 g2.drawString("Tir 2 Pts : ", 15, 500);
+			 g2.drawString(""+player.getShot2Pts(), 162, 500);
 			 
-			 g2.drawString("Shot 3 Pts : ", 15, 540);
-			 g2.drawString(""+player.getShot3Pts(), 140, 540);
+			 g2.drawString("Tir 3 Pts : ", 15, 540);
+			 g2.drawString(""+player.getShot3Pts(), 162, 540);
 			 
-			 g2.drawString("Free throws : ", 15, 580);
-			 g2.drawString(""+player.getFreeThrows(), 160, 580);
+			 g2.drawString("Lancer Franc : ", 15, 580);
+			 g2.drawString(""+player.getFreeThrows(), 162, 580);
 			 
-			 g2.drawString("Pass : ", 15, 620);
-			 g2.drawString(""+player.getPass(), 80, 620);
+			 g2.drawString("Passe : ", 15, 620);
+			 g2.drawString(""+player.getPass(), 162, 620);
 			 
-			 g2.drawString("Ball handle : ", 15, 660);
-			 g2.drawString(""+player.getBallHandle(), 150, 660);
+			 g2.drawString("Dribble : ", 15, 660);
+			 g2.drawString(""+player.getBallHandle(), 162, 660);
 			 
-			 g2.drawString("Speed : ", 15, 700);
-			 g2.drawString(""+player.getSpeed(), 95, 700);
+			 g2.drawString("Vitesse : ", 15, 700);
+			 g2.drawString(""+player.getSpeed(), 162, 700);
 			 
 			 //Colonne 2
 			 g2.setColor(Color.blue);
 			 g2.setFont(new Font("Georgia", Font.BOLD, 25));
 			 g2.drawString("DEFENSE : ", 245, 445);
-			 g2.drawString(""+player.getDefense(), 395, 445);
+			 g2.drawString(""+player.getDefense(), 400, 445);
 			 
 			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-			 g2.drawString("Block : ", 250, 500);
-			 g2.drawString(""+player.getBlock(), 323, 500);
+			 g2.drawString("Contre : ", 250, 500);
+			 g2.drawString(""+player.getBlock(), 400, 500);
 			 
-			 g2.drawString("Steal : ", 250, 540);
-			 g2.drawString(""+player.getSteal(), 323, 540);
+			 g2.drawString("Interception : ", 250, 540);
+			 g2.drawString(""+player.getSteal(), 400, 540);
 			 
-			 g2.drawString("Rebound off : ", 250, 580);
+			 g2.drawString("Rebond off : ", 250, 580);
 			 g2.drawString(""+player.getReboundOff(), 400, 580);
 			 
-			 g2.drawString("Rebound def : ", 250, 620);
+			 g2.drawString("Rebond def : ", 250, 620);
 			 g2.drawString(""+player.getReboundDef(), 400, 620);
 			 
-			 g2.drawString("Strenght : ", 250, 660);
-			 g2.drawString(""+player.getStrenght(), 360, 660);
+			 g2.drawString("Force : ", 250, 660);
+			 g2.drawString(""+player.getStrenght(), 400, 660);
 			 
 			 g2.drawString("Reaction : ", 250, 700);
-			 g2.drawString(""+player.getReactionTime(), 360, 700);
+			 g2.drawString(""+player.getReactionTime(), 400, 700);
 			 
 			 g2.setColor(Color.BLACK);
 			 try {
