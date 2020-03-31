@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
  
 import data.Game;
@@ -22,6 +23,7 @@ public class ScorePanel extends JPanel{
 	public ScorePanel(Game g) {
 		
 		this.ga=g;
+		
 	}
 	 public void paint(Graphics g) {  
 		  
@@ -36,22 +38,23 @@ public class ScorePanel extends JPanel{
 		 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
 		 //g2.setColor(Color.blue);
 		 g2.setColor(Color.black);
-		 g2.drawString(ga.getTeam1().getName(), 5, 25);
-		 g2.drawString(ga.getTeam2().getName(), 170, 25);
+		// g2.drawString(ga.getTeam1().getName(), 5, 25);
+		// g2.drawString(ga.getTeam2().getName(), 170, 25);
 		 g2.setColor(Color.white);
 		 if(ga.getScore1()<ga.getScore2()) {
-			 g2.setColor(Color.red);
+			 g2.setColor(new Color(210,20,0));
 		 }
 		 else {
-			 g2.setColor(Color.green);
+			 g2.setColor(new Color(30,130,60));
 		 }
-		 g2.drawString(""+ga.getScore1(), 83, 25);
+		 g2.drawString(""+ga.getScore1(), 78, 25);
 		 if(ga.getScore1()>ga.getScore2()) {
-			 g2.setColor(Color.red);
+			 g2.setColor(new Color(210,20,0));
 		 }
 		 else {
-			 g2.setColor(Color.green);
+			 g2.setColor(new Color(30,130,60));
 		 }
 		 g2.drawString(""+ga.getScore2(), 150, 25);
+		 
 	 }
 }

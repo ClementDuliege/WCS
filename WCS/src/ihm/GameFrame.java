@@ -73,6 +73,14 @@ public class GameFrame extends JFrame implements Runnable {
 		
 		gamePanel= new ScorePanel(game);
 		gamePanel.setBounds(470, 100, 250, 43);
+		JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
+		nameTeam1Label.setBounds(475, 115, 73, 13);
+		nameTeam1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		panel.add(nameTeam1Label);
+		JLabel nameTeam2Label=new JLabel(game.getTeam2().getName(),SwingConstants.CENTER);
+		nameTeam2Label.setBounds(643, 115, 73, 13);
+		nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		panel.add(nameTeam2Label);
 	
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);

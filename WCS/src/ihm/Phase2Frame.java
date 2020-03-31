@@ -190,6 +190,14 @@ public class Phase2Frame extends JFrame {
 			JPanel panelScore = new ScorePanel(game);
 			panelScore.setBounds(50+(j*300) , 150+(50*k), 250, 43);
 			addActionToPanelScore(panelScore, game);
+			JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
+			nameTeam1Label.setBounds(50+(j*300)+5, 150+(50*k)+15, 73, 13);
+			nameTeam1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+			panel.add(nameTeam1Label);
+			JLabel nameTeam2Label=new JLabel(game.getTeam2().getName(),SwingConstants.CENTER);
+			nameTeam2Label.setBounds(50+(j*300)+173, 150+(50*k)+15, 73, 13);
+			nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+			panel.add(nameTeam2Label);
 			panel.add(panelScore);
 			
 		}

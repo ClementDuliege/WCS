@@ -81,13 +81,16 @@ public class ListTeamsFrame extends JFrame {
 		int k= 0;
 		for(int i =0 ; i<4 ; i++) {
 			for(int j=0; j<8; j++) {
-				tabButton[k] = new JButton(new ImageIcon("Drapeau/"+teams.get(k).getName()+".png"));
-				tabButton[k].setBounds(x, y, 60, 36);
-				//tabButton[k].setBackground(new ImageIcon("Drapeau/"+teams.get(k).getName()));
-				//tabButton[k].setForeground(Color.white);
+				JLabel drapeauLabel =new JLabel(new ImageIcon("Drapeau/"+teams.get(k).getName()+".png"));
+				drapeauLabel.setBounds(x-60,y,60,36);
+				tabButton[k] = new JButton(teams.get(k).getName());
+				tabButton[k].setBounds(x, y, 150, 30);
+				tabButton[k].setBackground(new Color(225,82,11));
+				tabButton[k].setForeground(Color.white);
 				tabButton[k].setActionCommand(Integer.toString(k));
 				tabButton[k].addActionListener(new ListTeamAction());
 				panel.add(tabButton[k]);
+				panel.add(drapeauLabel);
 				
 				y+=70;
 				k++;
