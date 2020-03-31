@@ -28,7 +28,8 @@ import ihm.Phase1Frame.Phase2;
 import ihm.Phase1Frame.PhaseFinale;
 import ihm.Phase1Frame.Teams;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements Runnable {
+	private int SPEED;
 	private WorldCup worldCup;
 	private Game game;
 	private JFrame windows;
@@ -42,6 +43,12 @@ public class GameFrame extends JFrame {
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
+	private JButton speed1Button=new JButton("Speed 1");
+	private JButton speed2Button=new JButton("Speed 2");
+	private JButton speed3Button=new JButton("Speed 3");
+	private JButton endButton=new JButton("End");
+	private boolean gameIsFinish;
+	private boolean seeGame;
 	public GameFrame(String windowsTitle,WorldCup worldCup, Game game) {
 		super(windowsTitle);
 		setSize(1300,850);
@@ -55,6 +62,9 @@ public class GameFrame extends JFrame {
 		contentPane=getContentPane();
 		windows=this;
 		initLayout();
+		SPEED=3000;
+		gameIsFinish=false;
+		seeGame=false;
 	}
 	
 	public void initLayout() {
@@ -69,9 +79,20 @@ public class GameFrame extends JFrame {
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
 		
+		speed1Button.setBounds(15, 550, 80, 20);
+		speed2Button.setBounds(100, 550, 80, 20);
+		speed3Button.setBounds(185, 550, 80, 20);
+		endButton.setBounds(270, 550, 80, 20);
+		speed1Button.setVisible(false);
+		speed2Button.setVisible(false);
+		speed3Button.setVisible(false);
+		endButton.setVisible(false);
+		panel.add(speed1Button);
+		panel.add(speed2Button);
+		panel.add(speed3Button);
+		panel.add(endButton);
 		
-		
-		seeGameButton.setBounds(320, 105, 150, 30);
+		seeGameButton.setBounds(290, 105, 150, 30);
 		resumeGameButton.setBounds(750, 105, 150, 30);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
@@ -95,8 +116,9 @@ public class GameFrame extends JFrame {
 		
 			jp =new JScrollPane(displayActionsLabel);
 			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			jp.setBounds(370, 150, 500, 650);
+			jp.setBounds(360, 150, 530, 650);
 			panel.add(jp);
+			seeGameButton.setVisible(false);
 		}
 	}
 	
@@ -106,10 +128,16 @@ public class GameFrame extends JFrame {
 			displayActionsLabel=new JLabel();
 			jp =new JScrollPane(displayActionsLabel);
 			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			jp.setBounds(370, 150, 500, 650);
+			jp.setBounds(360, 150, 530, 650);
 			panel.add(jp);
+			speed1Button.setVisible(true);
+			speed2Button.setVisible(true);
+			speed3Button.setVisible(true);
+			endButton.setVisible(true);
+			seeGame=true;
+			resumeGameButton.setVisible(false);
+
 			
-			seeActions(jp);
 			
 		}
 	}
@@ -138,8 +166,6 @@ public class GameFrame extends JFrame {
  		blocks.setBounds(274+(t*900), 170, 62, 30);
  		panel.add(blocks);
 	 	for(int i =0;i<10;i++) {
-	 		String res="";
-	 		res+=players.get(i).getName()+"=> "+statsPoints.get(players.get(i).getName())+" Points";
 	 		JLabel nameLabel = new JLabel(players.get(i).getName());
 	 		nameLabel.setForeground(Color.WHITE);
 			nameLabel.setBackground(Color.GRAY);
@@ -171,66 +197,44 @@ public class GameFrame extends JFrame {
 	 	
 	}
 	
-	public void displayStatsTeam2() {
-		HashMap<String,Integer> statsPoints = game.getStatsPoints();
-		HashMap<String,Integer> statsBlocks =game.getStatsBlocks();
-	 	HashMap<String,Integer> statsSteals = game.getStatsSteals();
-	 	ArrayList<Player> players =game.getTeam2().getPlayers();
-	 	for(int i =0;i<10;i++) {
-	 		String res="";
-	 		res+=players.get(i).getName()+"=> "+statsPoints.get(players.get(i).getName())+" Points";
-	 		JLabel statsLabel = new JLabel(res);
-	 		statsLabel.setBounds(950, 100+(25*i), 250, 15);
-	 		panel.add(statsLabel);
-	 	}
-	 	
-	}
 	
-	public void seeActions(JScrollPane jp) {
-		
-  
+	public void seeActions() {
         	
-        	SwingUtilities.invokeLater(new Runnable() {
-        	    public void run() {
-        	    	String res="<html>";
-            		Set s = game.getActions().entrySet(); 
-            		  
-                    // Using iterator in SortedMap 
-                    Iterator i = s.iterator(); 
-                    int j=0;
-                	 while (i.hasNext()) 
-                     { 
-                		 if(j==10) {
-                			 res="<html>";
-                			 j=0;
-                		 }
-                		 j++;
-                         Map.Entry m = (Map.Entry)i.next(); 
-               
-                         int key = (Integer)m.getKey(); 
-                         String value = (String)m.getValue(); 
-               
-                         res+=value;
-                         displayActionsLabel.setText(res);
-                         panel.paintImmediately(370, 150, 500, 650);;
-                       try {
-             			Thread.sleep(500);
-             		} catch (InterruptedException e) {
-             			// TODO Auto-generated catch block
-             			e.printStackTrace();
-             		}
-                       System.out.print("tes");
-                       
-                   }
-                     res+="</html>";
-        	    }
-        	});
-        	
-        	
-          
-        
-       
-	}
+		String res="<html>";
+		Set s = game.getActions().entrySet(); 
+		  
+	    // Using iterator in SortedMap 
+	    Iterator i = s.iterator(); 
+	    int j=0;
+		while (i.hasNext()) { 
+			if(j==10) {
+				 res="<html>";
+				 j=0;
+	    	}
+    		j++;
+            Map.Entry m = (Map.Entry)i.next();
+            int key = (Integer)m.getKey(); 
+            String value = (String)m.getValue(); 
+            res+=value;
+            displayActionsLabel.setText(res);
+            panel.repaint();
+	        try {
+	        	Thread.sleep(SPEED);
+	 		}catch (InterruptedException e) {
+	 			// TODO Auto-generated catch block
+			e.printStackTrace();
+	 		}
+	    }
+		res="<html>"+getActions()+"</html>";
+		displayActionsLabel.setText(res);
+		panel.repaint();
+		gameIsFinish=true;
+		speed1Button.setVisible(false);
+		speed2Button.setVisible(false);
+		speed3Button.setVisible(false);
+		endButton.setVisible(false);
+		seeGameButton.setVisible(false);
+}
 	
 	public String getActions() {
 		String res="<html>";
@@ -261,6 +265,34 @@ public class GameFrame extends JFrame {
 		teamsButton.addActionListener(new Teams());
 		resumeGameButton.addActionListener(new ResumeGame());
 		seeGameButton.addActionListener(new SeeGame());
+		speed1Button.addActionListener(new Speed1());
+		speed2Button.addActionListener(new Speed2());
+		speed3Button.addActionListener(new Speed3());
+		endButton.addActionListener(new EndGame());
+	}
+	
+	public class Speed1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			SPEED=3000;
+		}
+	}
+	
+	public class Speed2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			SPEED=1000;
+		}
+	}
+	
+	public class Speed3 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			SPEED=500;
+		}
+	}
+	
+	public class EndGame implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			SPEED=0;
+		}
 	}
 	
 	public class Phase1 implements ActionListener{
@@ -301,5 +333,17 @@ public class GameFrame extends JFrame {
 		   
 			
 		}
+	}
+
+	@Override
+	public void run() {
+		while(!gameIsFinish) {
+			System.out.print("");
+			if(seeGame) {
+				seeActions();
+			}
+			
+		}
+		
 	}
 }

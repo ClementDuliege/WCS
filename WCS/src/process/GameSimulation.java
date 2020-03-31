@@ -109,7 +109,8 @@ public class GameSimulation {
 		
 		
 		int actionTime = 0;
-		
+		actions.put(duration, "<p style= \"margin: 10px;text-align:center;margin-left: 5px;font-size: 15px;\" color=\"#A14801\">DEBUT DU 1ER QUART TEMPS</p>");
+		this.duration++;
 		betweenTwo();
 		this.duration++;
 		
@@ -117,7 +118,7 @@ public class GameSimulation {
 		this.playerHadBall = teamHadBall.get(4);//Le pivot possede l'index 4 dans la liste
 		
 		int action;
-		actions.put(duration, "<p style= \"margin: 10px;text-align:center;\" color=\"#A14801\">DEBUT DU 1ER QUART TEMPS</p>");
+		
 		this.duration++;
 		while(duration<=durationTotal) {
 			action = chooseActionToDo(2,actionTime);
@@ -177,17 +178,17 @@ public class GameSimulation {
 			}
 
 			if(duration>=2160 && !q4) {
-				actions.put(duration, "<p style= \"margin: 10px;text-align:center;\" color=\"#A14801\">DEBUT DU 4EME QUART TEMPS</p>");
+				actions.put(duration, "<p style= \"margin: 10px;text-align:center;margin-left: 5px;font-size: 15px;\" color=\"#A14801\">DEBUT DU 4EME QUART TEMPS</p>");
 				this.duration++;
 				q4=true;
 			}
 			else if(duration>=1440 && !q3) {
-				actions.put(duration, "<p style= \"margin: 10px;text-align:center;\" color=\"#A14801\">DEBUT DU 3EME QUART TEMPS</p>");
+				actions.put(duration, "<p style= \"margin: 10px;text-align:center;margin-left: 5px;font-size: 15px;\" color=\"#A14801\">DEBUT DU 3EME QUART TEMPS</p>");
 				this.duration++;
 				q3=true;
 			}
 			else if(duration>=720 && !q2) {
-				actions.put(duration, "<p style= \"margin: 10px;text-align:center;\" color=\"#A14801\">DEBUT DU 2EME QUART TEMPS</p>");
+				actions.put(duration, "<p style= \"margin: 10px;text-align:center;margin-left: 5px;font-size: 15px;\" color=\"#A14801\">DEBUT DU 2EME QUART TEMPS</p>");
 				this.duration++;
 				q2=true;
 			}
@@ -200,6 +201,8 @@ public class GameSimulation {
 			
 			
 		}
+		actions.put(duration, "<p style= \"margin: 10px;text-align:center;margin-left: 5px;font-size: 15px;\" color=\"#A14801\">FIN DU MATCH</p>");
+		this.duration++;
 		game.setActions(actions);
 		
 	}
@@ -215,12 +218,12 @@ public class GameSimulation {
 		int chooseTeam = MyRandom.getIntIntoMinMax(0, 1);
 		if(chooseTeam==0){
 			
-			this.actions.put(duration, "<p style= \"margin-bottom: 10px;text-align:center;\">L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux</p>");
+			this.actions.put(duration, "<p style= \"margin-bottom: 10px;text-align:center;margin-left: 5px;\">L'équipe "+game.getTeam1().getName()+" a gagné l'entre deux</p>");
 			teamHadBall= playersInGameTeam1;
 			teamDontHadBall= playersInGameTeam2;
 		}
 		else {
-			this.actions.put(duration, "<p style= \"margin-bottom: 10px;text-align:center;\">L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
+			this.actions.put(duration, "<p style= \"margin-bottom: 10px;text-align:center;margin-left: 5px;\">L'équipe "+game.getTeam2().getName()+" a gagné l'entre deux");
 			teamHadBall= playersInGameTeam2;
 			teamDontHadBall= playersInGameTeam1;
 		}
@@ -258,27 +261,32 @@ public class GameSimulation {
 		ArrayList<Player> teamDontHadBall = otherTeam(teamHadBall);
 		int kindOfShot = MyRandom.getIntIntoMinMax(1, 100);
 		Player interceptorPlayor = teamDontHadBall.get(MyRandom.getIntIntoMinMax(0, 4));
-
+		Team teamBall;
+		Team teamDontBall;
+		if(game.getTeam1().getPlayers().contains(playerHadBall)){
+			teamBall = game.getTeam1();
+			teamDontBall=game.getTeam2();
+		}
+		else{
+			teamBall = game.getTeam2();
+			teamDontBall=game.getTeam1();
+		}
 		if(kindOfShot <= 60) {//2points
 			
 			float succesRate = (playerHadBall.getShot2Pts() - interceptorPlayor.getBlock())* MyRandom.getFloatIntoMinMax((float)1.1,(float)1.3);  
 
 			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 			if(succesRate>lessThan) {
-				Team team;
-				if(game.getTeam1().getPlayers().contains(playerHadBall)){
-					team = game.getTeam1();
-				}
-				else{
-					team = game.getTeam2();
-				}
-				this.game.addPoint(team, 2);
-				actions.put(duration,"<p  style= \"margin-bottom: 10px;\" color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  2 points" + "</p>");
+				
+				this.game.addPoint(teamBall, 2);
+				actions.put(duration,"<p  style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"green\"><span style=\"font-size: 12px;font-weight:bold;\">" 
+						+ teamBall.getName() +"</span> ( "+game.getScore1()+"-"+game.getScore2()+" ) :"
+						+ playerHadBall.getName() +" a mis un panier à  2 points" + "</p>");
 				int points=statsPoints.get(playerHadBall.getName())+2;
 				statsPoints.put(playerHadBall.getName(), points);
 			}
 			else {
-				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"red\">" + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
+				actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
 
 				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
 				statsBlocks.put(interceptorPlayor.getName(), blocks);
@@ -290,21 +298,17 @@ public class GameSimulation {
 
 			float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 			if(succesRate>lessThan) {
-				Team team;
-				if(game.getTeam1().getPlayers().contains(playerHadBall)){
-					team = game.getTeam1();
-				}
-				else{
-					team = game.getTeam2();
-				}
-				this.game.addPoint(team, 3);
-				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"green\">" + team.getName() +" : "+ playerHadBall.getName() +" a mis un panier à  3 points" + "</p>");
+				
+				this.game.addPoint(teamBall, 3);
+				actions.put(duration,"<p  style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"green\"><span style=\"font-size: 12px;font-weight:bold;\">" 
+						+ teamBall.getName() +"</span> ( "+game.getScore1()+"-"+game.getScore2()+" ) :"
+						+ playerHadBall.getName() +" a mis un panier à  3 points" + "</p>");
 				int points=statsPoints.get(playerHadBall.getName())+3;
 				statsPoints.put(playerHadBall.getName(), points);
 				//System.out.println("shot 3pts");
 			}
 			else {
-				actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"red\">" + interceptorPlayor.getName()+" a contré© un shot à  3 point de "+ playerHadBall.getName()+"</p>");
+				actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  3 point de "+ playerHadBall.getName()+ "</p> ");
 				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
 				statsBlocks.put(interceptorPlayor.getName(), blocks);
 				//System.out.println("shot 3pts ratÃ©");
@@ -330,14 +334,14 @@ public class GameSimulation {
 			playersOutGameTeam1.remove(positionToChange);
 			playersOutGameTeam1.add(positionToChange, p);
 			
-			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam1.get(positionToChange).getName()+ "</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"blue\"><span style=\"font-size: 12px;font-weight:bold;\">"+ game.getTeam1().getName() +"</span> : "+p.getName()+" est remplacÃ© par "+ playersInGameTeam1.get(positionToChange).getName()+ "</p>");
 		}
 		else {
 			Player p = playersInGameTeam2.get(positionToChange);
 			playersInGameTeam2.set(positionToChange, playersOutGameTeam2.get(positionToChange));
 			playersOutGameTeam2.set(positionToChange, p);
 			
-			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"blue\">"+p.getName()+" est remplacÃ© par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"blue\"><span style=\"font-size: 12px;font-weight:bold;\">"+ game.getTeam2().getName() +"</span> : "+p.getName()+" est remplacÃ© par "+ playersInGameTeam2.get(positionToChange).getName()+ "</p>");
 		}
 		
 		/*Player playerIn =players.get(positionToChange-1);
@@ -368,7 +372,8 @@ public class GameSimulation {
 				team = game.getTeam2();
 			}
 			this.game.addPoint(team, 1);
-			actions.put(duration,"<p style= \"margin-bottom: 10px;\" color=\"orange\">" +team.getName()+" : " + playerHadBall.getName() + " de l'equipe "+" a mis un lancer franc</p>");
+			actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"orange\"><span style=\"font-size: 12px;font-weight:bold;\">" +team.getName()+"</span>( "+game.getScore1()+"-"+game.getScore2()+" ) :"
+					+ playerHadBall.getName() + " de l'equipe "+" a mis un lancer franc</p>");
 			int points=statsPoints.get(playerHadBall.getName())+1;
 			statsPoints.put(playerHadBall.getName(), points);
 	}
@@ -395,10 +400,20 @@ public class GameSimulation {
 		while (destinatorPlayerIndex==playerHadBall.getPosition() || destinatorPlayerIndex+5==playerHadBall.getPosition()) {
 			destinatorPlayerIndex = MyRandom.getIntIntoMinMax(0, 4);
 		}
+		Team teamBall;
+		Team teamDontBall;
+		if(game.getTeam1().getPlayers().contains(playerHadBall)){
+			teamBall = game.getTeam1();
+			teamDontBall=game.getTeam2();
+		}
+		else{
+			teamBall = game.getTeam2();
+			teamDontBall=game.getTeam1();
+		}
 		Player destinatorPlayer = teamHadBall.get(destinatorPlayerIndex);
 
 		ArrayList <Player> teamDontHadBall = otherTeam(teamHadBall);
-		Player interceptorPlayor = teamDontHadBall.get(MyRandom.getIntIntoMinMax(0, 4));
+		Player interceptorPlayor = teamDontHadBall.get(playerHadBall.getPosition()-1);
 		
 		//Define succesRate of the pass
 		float succesRate = (playerHadBall.getPass() - interceptorPlayor.getSteal())* MyRandom.getFloatIntoMinMax((float)1.5,(float)1.8);  
@@ -409,7 +424,8 @@ public class GameSimulation {
 			this.playerHadBall=destinatorPlayer;
 			return true;
 		}
-		actions.put(duration, "<p style= \"margin-bottom: 10px;\">" + interceptorPlayor.getName() +" a intercepté la balle Ã  "+ playerHadBall.getName()+ "</p> ");
+		
+		actions.put(duration, "<p style= \"margin-bottom: 10px;margin-left: 5px;\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName() +" a intercepté la balle à  "+ playerHadBall.getName()+ "</p> ");
 		int steals=statsSteals.get(interceptorPlayor.getName())+1;
 		statsSteals.put(interceptorPlayor.getName(), steals);
 		this.playerHadBall=interceptorPlayor;
