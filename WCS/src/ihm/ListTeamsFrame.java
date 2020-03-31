@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,10 +81,10 @@ public class ListTeamsFrame extends JFrame {
 		int k= 0;
 		for(int i =0 ; i<4 ; i++) {
 			for(int j=0; j<8; j++) {
-				tabButton[k] = new JButton(teams.get(k).getName());
-				tabButton[k].setBounds(x, y, 180, 30);
-				tabButton[k].setBackground(new Color(225,82,11));
-				tabButton[k].setForeground(Color.white);
+				tabButton[k] = new JButton(new ImageIcon("Drapeau/"+teams.get(k).getName()+".png"));
+				tabButton[k].setBounds(x, y, 60, 36);
+				//tabButton[k].setBackground(new ImageIcon("Drapeau/"+teams.get(k).getName()));
+				//tabButton[k].setForeground(Color.white);
 				tabButton[k].setActionCommand(Integer.toString(k));
 				tabButton[k].addActionListener(new ListTeamAction());
 				panel.add(tabButton[k]);
