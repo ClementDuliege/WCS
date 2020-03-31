@@ -371,23 +371,23 @@ public class TeamFrame extends JFrame {
 				
 				 
 				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-				 g2.drawString("Shot 2 Pts : ", 15, 500);
+				 g2.drawString("Tir 2 Pts : ", 15, 500);
 				 g2.drawString((Integer.toString(shot2PtsGen/numberPlayers)), 140, 500);
 				 
 				
-				 g2.drawString("Shot 3 Pts : ", 15, 540);
+				 g2.drawString("Tir 3 Pts : ", 15, 540);
 				 g2.drawString((Integer.toString(shot3PtsGen/numberPlayers)), 140, 540);
 				 
-				 g2.drawString("Free throws : ", 15, 580);
+				 g2.drawString("Lancer Franc : ", 15, 580);
 				 g2.drawString((Integer.toString(freeThrowsGen/numberPlayers)), 159, 580);
 				 
-				 g2.drawString("Pass : ", 15, 620);
+				 g2.drawString("Passe : ", 15, 620);
 				 g2.drawString((Integer.toString(passGen/numberPlayers)), 80, 620);
 				 
-				 g2.drawString("Ball handle : ", 15, 660);
+				 g2.drawString("Dribble : ", 15, 660);
 				 g2.drawString((Integer.toString(ballHandleGen/numberPlayers)), 150, 660);
 				 
-				 g2.drawString("Speed : ", 15, 700);
+				 g2.drawString("Vitesse : ", 15, 700);
 				 g2.drawString((Integer.toString(speedGen/numberPlayers)), 102, 700);
 				 
 				 //colonne 2
@@ -397,20 +397,20 @@ public class TeamFrame extends JFrame {
 				 g2.drawString((Integer.toString(defenseGen/numberPlayers)), 395, 445);
 				 
 				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-				 g2.drawString("Block : ", 250, 500);
+				 g2.drawString("Contre : ", 250, 500);
 				 g2.drawString((Integer.toString(blockGen/numberPlayers)), 328, 500);
 				 
-				 g2.drawString("Steal : ", 250, 540);
+				 g2.drawString("Interception : ", 250, 540);
 				 g2.drawString((Integer.toString(stealGen/numberPlayers)), 325, 540);
 				 
 				 
-				 g2.drawString("Rebound off : ", 250, 580);
+				 g2.drawString("Rebond off : ", 250, 580);
 				 g2.drawString((Integer.toString(reboundOffGen/numberPlayers)), 400, 580);
 				    
-				 g2.drawString("Rebound def : ", 250, 620);
+				 g2.drawString("Rebond def : ", 250, 620);
 				 g2.drawString((Integer.toString(reboundDefGen/numberPlayers)), 403, 620);
 				 
-				 g2.drawString("Strenght : ", 250, 660);
+				 g2.drawString("Force : ", 250, 660);
 				 g2.drawString((Integer.toString(strenghtGen/numberPlayers)), 359, 660);
 				 
 				 g2.drawString("Reaction : ", 250, 700);
