@@ -143,8 +143,7 @@ public class Phase1Frame extends JFrame {
 		panel.add(groupF);
 		panel.add(groupG);
 		panel.add(groupH);
-		panel.add(details);
-			
+		panel.add(details);		
 	}
 	
 	public void addActionToLabel(JButton j) {

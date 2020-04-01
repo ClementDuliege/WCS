@@ -157,6 +157,7 @@ public class Phase2Frame extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				 windows.dispose();
 				 new Thread(new GameFrame("Game",worldCup,game)).start();
+				 
 			}
 			 public void mouseExited(MouseEvent e) {
 				 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
