@@ -41,7 +41,7 @@ public class Phase2Frame extends JFrame {
 	
 	public Phase2Frame(WorldCup worldCup, String windowsTitle) {
 		super(windowsTitle);
-		setSize(1300,850);
+		setSize(1300,900);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,12 +131,20 @@ public class Phase2Frame extends JFrame {
 		groupL.setBounds(980, 100, 200, 30);
 		groupL.setForeground(Color.WHITE);
 		groupL.setBackground(new Color(225,82,11));
-		JButton[] listLabel = {groupI,groupJ,groupK,groupL};
-		addActionToLabel(listLabel);
+		
+		JButton details = new JButton("Détails");
+		details.setBounds(530,550,200,35);
+		details.setForeground(Color.black);
+		details.setFont(new Font("Georgia", Font.BOLD, 15));
+		details.setBackground(new Color(110,167,255));
+		
+		//JButton[] listLabel = {groupI,groupJ,groupK,groupL};
+		addActionToLabel(details);
 		panel.add(groupI);
 		panel.add(groupJ);
 		panel.add(groupK);
-		panel.add(groupL);	
+		panel.add(groupL);
+		panel.add(details);
 	}
 	
 	public void addActionToPanelScore(JPanel panelScore,Game game) {
@@ -160,9 +168,9 @@ public class Phase2Frame extends JFrame {
 		
 	}
 	
-	public void addActionToLabel(JButton[] listLabel) {
-		for(int i = 0;i<4;i++) {
-			JButton j = listLabel[i];
+	public void addActionToLabel(JButton j) {
+		
+			
 			j.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
 					//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
@@ -179,7 +187,7 @@ public class Phase2Frame extends JFrame {
 			         }
 				
 			});
-		}
+		
 	}
 	
 	public void displayGameGroup(String group, int j) {
