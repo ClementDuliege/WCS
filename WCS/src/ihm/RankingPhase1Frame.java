@@ -210,7 +210,7 @@ public class RankingPhase1Frame extends JFrame {
 			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
-
+			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 			 g2.drawString("Rang", x+5, y+60);
 			 g2.drawString("Pays", x+65, y+60);
 			 g2.drawString("Score", x+220, y+60);
