@@ -26,7 +26,10 @@ import data.Game;
 import data.Team;
 import data.WorldCup;
 
-
+/**
+* This class is used to display the results of the final phase of the World Cup.
+*@author WCS
+*/ 
 public class FinalPhaseFrame extends JFrame {
 	/**
 	 *
@@ -52,11 +55,15 @@ public class FinalPhaseFrame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		windows=this;
+		this.contentPane=getContentPane();
+		this.windows=this;
+		//Initiation of the layout frame
 		initLayout();
 	}
 	
+	/**
+	 * This method is used to initialise the layout and place the menu, etc...
+	 */
 	public void initLayout() {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
@@ -67,72 +74,39 @@ public class FinalPhaseFrame extends JFrame {
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
 		rankButton.setBounds(1000, 750, 200, 40);
-		panel.add(phase1Button);
-		panel.add(phase2Button);
-		panel.add(phaseFinalButton);
-		panel.add(teamsButton);
-		panel.add(rankButton);
 		
 		JLabel winnerLabel=new JLabel(worldCup.getWinnerTeam().getName(),SwingConstants.CENTER);
 		winnerLabel.setBounds(530, 540, 170, 30);
 		winnerLabel.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		panel.add(winnerLabel);
 		
-		initAction();
+		JPanel finalPhasePanel =new TablePhaseFinal(worldCup,windows);
+		finalPhasePanel.setLayout(null);
+		finalPhasePanel.setBounds(100, 150, 1200, 800);
 		
-		JPanel pane2 =new TableauPhaseFinal(worldCup,windows);
-		pane2.setLayout(null);
-		pane2.setBounds(100, 150, 1200, 800);
+		panel.add(finalPhasePanel);
+		panel.add(phase1Button);
+		panel.add(phase2Button);
+		panel.add(phaseFinalButton);
+		panel.add(teamsButton);
+		panel.add(rankButton);
 		
-		panel.add(pane2);
 		contentPane.add(panel);
-		
-	}
-	
-	public void initAction() {
-		phase1Button.addActionListener(new Phase1());
-		phase2Button.addActionListener(new Phase2());
-		teamsButton.addActionListener(new Teams());
-		rankButton.addActionListener(new RankingAction());
+		//Init action to buttons
+		initAction();
 	}
 	
 	
-	public class Phase1 implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			windows.dispose();
-			new Phase1Frame(worldCup,"WCS");
-		}
-	}
 	
-	public class Phase2 implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			windows.dispose();
-			new Phase2Frame(worldCup,"WCS");
-		}
-	}
-	
-	
-	public class Teams implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			windows.dispose();
-			new ListTeamsFrame("TEAMS",worldCup);
-		}
-	}
-	  
-		
-	public class RankingAction implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			windows.dispose();
-			new RankingWorldCupFrame("Classement",worldCup);
-		}
-	}
-	
-	
+	/**
+	 * This method is used to create labels to write de name of the teams.
+	 */
 	public void displayNameTeamInScore() {
 		Game[] quarterFinal=worldCup.getQuarterFinal();
 		Game[] semiFinal=worldCup.getSemiFinal();
 		Game finalGame=worldCup.getFinalGame();
 		Game smallFinalGame=worldCup.getSmallFinalGame();
+		//Display teams'name of the quarter games
 		int k=0;
 		 for(int i = 0;i<2;i++) {
 			 for(int j = 0 ;j<2;j++) {
@@ -148,7 +122,7 @@ public class FinalPhaseFrame extends JFrame {
 				k++;
 			 }
 		 }
-		 
+		//Display teams'name of the semi games
 		 for(int i2= 0;i2<2;i2++) {
 			 Game game=semiFinal[i2];
 			 JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
@@ -159,12 +133,9 @@ public class FinalPhaseFrame extends JFrame {
 			 nameTeam2Label.setBounds(375+(i2*610), 363, 73, 13);
 			 nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 			 panel.add(nameTeam2Label);
-				
-		
-			
-			 k++;
-			 
 		 }
+		 
+		//Display teams'name of the final game
 		 JLabel nameTeamFinal1Label=new JLabel(finalGame.getTeam1().getName(),SwingConstants.CENTER);
 		 nameTeamFinal1Label.setBounds(505, 363, 73, 13);
 		 nameTeamFinal1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
@@ -173,8 +144,8 @@ public class FinalPhaseFrame extends JFrame {
 		 nameTeamFinal2Label.setBounds(675, 363, 73, 13);
 		 nameTeamFinal2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		 panel.add(nameTeamFinal2Label);
-		
 		 
+		//Display teams'name of the small final game
 		 JLabel nameTeamFinal3Label=new JLabel(smallFinalGame.getTeam1().getName(),SwingConstants.CENTER);
 		 nameTeamFinal3Label.setBounds(505, 463, 73, 13);
 		 nameTeamFinal3Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
@@ -184,6 +155,64 @@ public class FinalPhaseFrame extends JFrame {
 		 nameTeamFinal4Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		 panel.add(nameTeamFinal4Label);
 	}
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
+	public void initAction() {
+		phase1Button.addActionListener(new Phase1());
+		phase2Button.addActionListener(new Phase2());
+		teamsButton.addActionListener(new Teams());
+		rankButton.addActionListener(new RankingAction());
+	}
+	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
+	public class Phase1 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase1Frame(worldCup,"WCS");
+		}
+	}
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
+	public class Phase2 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new Phase2Frame(worldCup,"WCS");
+		}
+	}
+	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
+	public class Teams implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new ListTeamsFrame("TEAMS",worldCup);
+		}
+	}
+	  
+	/**
+	 * ActionListener action of the ranking button
+	 *
+	 */	
+	public class RankingAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			windows.dispose();
+			new RankingWorldCupFrame("Classement",worldCup);
+		}
+	}
+	
+	
+
 	
 	
 	

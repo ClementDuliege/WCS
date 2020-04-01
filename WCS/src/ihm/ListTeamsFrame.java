@@ -17,7 +17,11 @@ import javax.swing.JPanel;
 import data.Team;
 import data.WorldCup;
 
-
+/**
+ * This class display the teams's list
+ * @author WCS
+ *
+ */
 public class ListTeamsFrame extends JFrame {
 	/**
 	 *
@@ -40,15 +44,20 @@ public class ListTeamsFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setVisible(true);
+		
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		creationButton();
-		windows=this;
-		
-		
+		this.contentPane=getContentPane();
+		this.windows=this;
+		//Initiation of the layout frame
+		initLayout();
 	}
 	
-	public void creationButton() {
+	
+	
+	/**
+	 * This method is used to initialise the layout and place the menu, to create a button for each team.
+	 */
+	public void initLayout() {
 		
 		GridLayout grid = new GridLayout(1,1);
 		contentPane.setLayout(grid);
@@ -60,7 +69,6 @@ public class ListTeamsFrame extends JFrame {
 		teamsLabel= new JLabel("Equipes");
 		teamsLabel.setFont(new Font("Serif", Font.BOLD,30));
 		teamsLabel.setBounds(150, 115, 275, 75);
-		panel.add(teamsLabel);
 		
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
@@ -71,10 +79,10 @@ public class ListTeamsFrame extends JFrame {
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
+		panel.add(teamsLabel);
 		
-		initAction();
 		
-		
+		//Create Button for each team
 		ArrayList<Team> teams=worldCup.getTeams();
 		int x = 150;
 		int y= 190;
@@ -98,10 +106,17 @@ public class ListTeamsFrame extends JFrame {
 			y=190;
 			x+=250;
 		}
-		contentPane.add(panel);
 		
+		contentPane.add(panel);
+		//Init action to buttons
+		initAction();
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phaseFinalButton.addActionListener(new PhaseFinale());
@@ -109,6 +124,11 @@ public class ListTeamsFrame extends JFrame {
 	}
 	
 	
+	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -116,6 +136,12 @@ public class ListTeamsFrame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the phaseFinal button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -124,6 +150,11 @@ public class ListTeamsFrame extends JFrame {
 	}
 	
 	
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -131,6 +162,12 @@ public class ListTeamsFrame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the team buttons
+	 *
+	 */
 	public class ListTeamAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			ArrayList<Team> teams=worldCup.getTeams();
@@ -140,25 +177,7 @@ public class ListTeamsFrame extends JFrame {
 			
 			windows.dispose();
 			new TeamFrame(teams.get(i).getName(), worldCup, i);
-		   
-			
 		}
 	}
-	
-	public class Back implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			windows.dispose();
-			JFrame main = new MainFrame("WCS",worldCup);
-			
-		   
-	
-		}
-	}
-	
-	
-
-	
-	
 
 }

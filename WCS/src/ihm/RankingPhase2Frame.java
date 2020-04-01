@@ -22,7 +22,12 @@ import data.GroupStage;
 import data.RankingGroupStage;
 import data.WorldCup;
 
-public class RankingGroup2Frame extends JFrame {
+/**
+ * This class display the ranking of the phase2
+ * @author WCS
+ *
+ */
+public class RankingPhase2Frame extends JFrame {
 	/**
 	 *
 	 */ 
@@ -37,7 +42,7 @@ public class RankingGroup2Frame extends JFrame {
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
 	private HashMap<String, GroupStage> groupStage2; 
-	public RankingGroup2Frame(WorldCup worldCup,String windowsTitle) {
+	public RankingPhase2Frame(WorldCup worldCup,String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
 		setResizable(false);
@@ -46,14 +51,20 @@ public class RankingGroup2Frame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		windows=this;
-		groupStage2=worldCup.getGroupStage2();
+		this.contentPane=getContentPane();
+		this.windows=this;
+		this.groupStage2=worldCup.getGroupStage2();
 		displayTableGroup();
+		//Initiation of the layout frame
 		initLayout();
 		
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise the layout and place the menu, etc...
+	 */
 	public void initLayout() {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
@@ -73,6 +84,11 @@ public class RankingGroup2Frame extends JFrame {
 		contentPane.add(panel);
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phase2Button.addActionListener(new Phase2());
@@ -81,6 +97,10 @@ public class RankingGroup2Frame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -88,6 +108,11 @@ public class RankingGroup2Frame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -95,6 +120,11 @@ public class RankingGroup2Frame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the phaseFinal button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -103,6 +133,10 @@ public class RankingGroup2Frame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
 	public class Teams implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -110,6 +144,11 @@ public class RankingGroup2Frame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * This method display this ranking of the groups
+	 */
 	public void displayTableGroup() {
 		String listGroup[]= {"GROUPE I","GROUPE J","GROUPE K","GROUPE L"};
 		int k=0;
@@ -124,6 +163,13 @@ public class RankingGroup2Frame extends JFrame {
 		
 	}
 	
+	
+	
+	/**
+	 * This Class paint the ranking's table of one group
+	 * @author WCS
+	 *
+	 */
 	public class tableGroupPanel extends JPanel {
 		/**
 		 *
@@ -140,6 +186,11 @@ public class RankingGroup2Frame extends JFrame {
 			this.y=y;
 		}
 		
+		
+		
+		/**
+		 * This method paint the table
+		 */
 		public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;

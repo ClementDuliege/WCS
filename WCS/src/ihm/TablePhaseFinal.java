@@ -18,8 +18,12 @@ import javax.swing.JPanel;
 
 import data.Game;
 import data.WorldCup;
-
-public class TableauPhaseFinal extends JPanel{
+/**
+ * This class is a Panel to display the table of the final phase.
+ * @author WCS
+ *
+ */
+public class TablePhaseFinal extends JPanel{
 
 	/**
 	 *
@@ -31,7 +35,7 @@ public class TableauPhaseFinal extends JPanel{
 	private Game finalGame;
 	private Game smallFinalGame;
 	private JFrame windows;
-	public TableauPhaseFinal(WorldCup worldCup, JFrame windows) {
+	public TablePhaseFinal(WorldCup worldCup, JFrame windows) {
 		this.worldCup=worldCup;
 		quarterFinal=worldCup.getQuarterFinal();
 		semiFinal=worldCup.getSemiFinal();
@@ -39,11 +43,17 @@ public class TableauPhaseFinal extends JPanel{
 		smallFinalGame=worldCup.getSmallFinalGame();
 		this.windows=windows;
 	}
+	
+	
+	/**
+	 * This class is used to paint the table of the final phase
+	 * @param g Graphics
+	 */
 	 public void paint(Graphics g) {  
 		  
 		 Graphics2D g2 = (Graphics2D)g;
 		 Image icone2;
-		 
+		 //Paint the ligne
 		 g2.setStroke(new BasicStroke(10));
 		 g2.setColor(new Color(225,82,11));
 		 g2.drawLine(125, 43, 125, 121);
@@ -64,9 +74,8 @@ public class TableauPhaseFinal extends JPanel{
 		 g2.drawLine(350, 222, 400, 222);
 		 g2.drawLine(650, 222, 710, 222);
 		 
+		////////////////////////////////////// //Paint the quarter Finals////////////////////////////////////////
 		 int k=0;
-		 
-		
 		 for(int i = 0;i<2;i++) {
 			 for(int j = 0 ;j<2;j++) {
 				 Game quarterGame=quarterFinal[k];
@@ -76,7 +85,7 @@ public class TableauPhaseFinal extends JPanel{
 				 addActionToPanelScore(panelQuarter,quarterGame);
 				 add(panelQuarter);
 				 try {
-						icone2 = ImageIO.read(new File("score.jpg")); // "score.jpg"
+						icone2 = ImageIO.read(new File("score.jpg"));
 						g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 								
 					}catch(IOException exc){
@@ -90,8 +99,7 @@ public class TableauPhaseFinal extends JPanel{
 				 else {
 					 g2.setColor(new Color(30,130,60));
 				 }
-				// g2.drawString(""+quarterGame.getScore1(), 78, 25);
-				 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
+				 g2.drawString(""+quarterGame.getScore1(), 80+(j*800), 25+(i*400));
 				 if(quarterGame.getScore1()>quarterGame.getScore2()) {
 					 g2.setColor(new Color(210,20,0));
 				 }
@@ -103,6 +111,7 @@ public class TableauPhaseFinal extends JPanel{
 			 }
 		 }
 		 
+		/////////////////////////////////Paint the semi Finals///////////////////////////////////////////////
 		 for(int i2= 0;i2<2;i2++) {
 			 Game semiGame=semiFinal[i2];
 			 JPanel panelSemi=new ScorePanel(semiGame);
@@ -110,7 +119,7 @@ public class TableauPhaseFinal extends JPanel{
 			 addActionToPanelScore(panelSemi,semiGame);
 			 add(panelSemi);
 			 try {
-					icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
+					icone2 =  ImageIO.read(new File("score.jpg")); 
 					g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
 							
 			}catch(IOException exc){
@@ -123,8 +132,8 @@ public class TableauPhaseFinal extends JPanel{
 			 else {
 				 g2.setColor(new Color(30,130,60));
 			 }
-			// g2.drawString(""+quarterGame.getScore1(), 78, 25);
-			 g2.drawString(""+semiGame.getScore1(), 183+(i2*610), 225);
+		
+			 g2.drawString(""+semiGame.getScore1(), 180+(i2*610), 225);
 			 if(semiGame.getScore1()>semiGame.getScore2()) {
 				 g2.setColor(new Color(210,20,0));
 			 }
@@ -132,15 +141,12 @@ public class TableauPhaseFinal extends JPanel{
 				 g2.setColor(new Color(30,130,60));
 			 }
 			 g2.drawString(""+semiGame.getScore2(), 250+(i2*610), 225);
-			// g2.drawString(""+semiGame.getScore1(), 183+(i2*610), 225);
-			// g2.drawString(""+semiGame.getScore2(), 250+(i2*610), 225);
-			 k++;
 			 
 		 }
 		 
-		 
+		////////////////////////////////////////Paint the Final/////////////////////////////////////////////////
 		 try {
-				icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
+				icone2 =  ImageIO.read(new File("score.jpg")); 
 				g2.drawImage(icone2,400,200,250,43,this);
 						
 		}catch(IOException exc){
@@ -160,8 +166,8 @@ public class TableauPhaseFinal extends JPanel{
 		 else {
 			 g2.setColor(new Color(30,130,60));
 		 }
-		// g2.drawString(""+quarterGame.getScore1(), 78, 25);
-		 g2.drawString(""+finalGame.getScore1(), 483, 225);
+
+		 g2.drawString(""+finalGame.getScore1(), 480, 225);
 		 if(finalGame.getScore1()>finalGame.getScore2()) {
 			 g2.setColor(new Color(210,20,0));
 		 }
@@ -170,13 +176,10 @@ public class TableauPhaseFinal extends JPanel{
 		 }
 		 g2.drawString(""+finalGame.getScore2(), 550, 225);
 		 
-		// g2.drawString(""+finalGame.getScore1(), 483, 225);
-		// g2.drawString(""+finalGame.getScore2(), 550, 225);
 		 
-		 
-		 
+		////////////////////////Paint the small Final////////////////////////////////////////////////////////////////
 		 try {
-				icone2 =  ImageIO.read(new File("score.jpg")); // "score.jpg"
+				icone2 =  ImageIO.read(new File("score.jpg"));
 				g2.drawImage(icone2,400,300,250,43,this);
 						
 		}catch(IOException exc){
@@ -196,8 +199,7 @@ public class TableauPhaseFinal extends JPanel{
 		 else {
 			 g2.setColor(new Color(30,130,60));
 		 }
-		// g2.drawString(""+quarterGame.getScore1(), 78, 25);
-		 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
+		 g2.drawString(""+smallFinalGame.getScore1(), 480, 325);
 		 if(smallFinalGame.getScore1()>smallFinalGame.getScore2()) {
 			 g2.setColor(new Color(210,20,0));
 		 }
@@ -207,10 +209,8 @@ public class TableauPhaseFinal extends JPanel{
 		 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
 		 
 		 
-		 //g2.draw
-		 
 		try {
-				icone2 = ImageIO.read(new File("trophee.png")); // "score.jpg"
+				icone2 = ImageIO.read(new File("trophee.png"));
 				g2.drawImage(icone2,360,350,320,320,this);
 						
 		}catch(IOException exc){
@@ -223,6 +223,13 @@ public class TableauPhaseFinal extends JPanel{
 		
 	 }
 	 
+	 
+	 
+	 /**
+		 * This method is used to add action to the scores panels.
+		 * @param panelScore JPanel
+		 * @param game Game
+		 */
 	 public void addActionToPanelScore(JPanel panelScore,Game game) {
 			panelScore.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
@@ -237,13 +244,8 @@ public class TableauPhaseFinal extends JPanel{
 				 public void mouseExited(MouseEvent e) {
 					 Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 					 setCursor(defaultCursor);
-				 }
-				
+				 }	
 			});
-			
-			
 		}
-	
-	 
 	
 }

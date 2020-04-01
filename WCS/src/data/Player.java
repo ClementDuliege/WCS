@@ -2,7 +2,7 @@ package data;
 
 /**
  * 
- * @author WCS Corporation
+ * @author WCS
  *
  */
 public class Player {

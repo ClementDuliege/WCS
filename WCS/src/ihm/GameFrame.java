@@ -27,9 +27,13 @@ import data.WorldCup;
 import ihm.Phase1Frame.Phase2;
 import ihm.Phase1Frame.PhaseFinale;
 import ihm.Phase1Frame.Teams;
-
+/**
+ * This class display a game.
+ * @author WCS
+ *
+ */
 public class GameFrame extends JFrame implements Runnable {
-	private int SPEED;
+	private int speed;
 	private WorldCup worldCup;
 	private Game game;
 	private JFrame windows;
@@ -57,99 +61,83 @@ public class GameFrame extends JFrame implements Runnable {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setVisible(true);
+		
 		this.worldCup=worldCup;
 		this.game=game;
-		contentPane=getContentPane();
-		windows=this;
+		this.contentPane=getContentPane();
+		this.windows=this;
+		this.speed=3000;
+		this.gameIsFinish=false;
+		this.seeGame=false;
+		//Initiation of the layout frame
 		initLayout();
-		SPEED=3000;
-		gameIsFinish=false;
-		seeGame=false;
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise the layout and place the menu, etc...
+	 */
 	public void initLayout() {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
 		gamePanel= new ScorePanel(game);
 		gamePanel.setBounds(470, 100, 250, 43);
+		
 		JLabel nameTeam1Label=new JLabel(game.getTeam1().getName(),SwingConstants.CENTER);
 		nameTeam1Label.setBounds(475, 115, 73, 13);
 		nameTeam1Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-		panel.add(nameTeam1Label);
+		
 		JLabel nameTeam2Label=new JLabel(game.getTeam2().getName(),SwingConstants.CENTER);
 		nameTeam2Label.setBounds(643, 115, 73, 13);
 		nameTeam2Label.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-		panel.add(nameTeam2Label);
-	
+		
+		seeGameButton.setBounds(290, 105, 150, 30);
+		resumeGameButton.setBounds(750, 105, 150, 30);
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
-		
 		speed1Button.setBounds(15, 550, 80, 20);
 		speed2Button.setBounds(100, 550, 80, 20);
 		speed3Button.setBounds(185, 550, 80, 20);
 		endButton.setBounds(270, 550, 80, 20);
+		
 		speed1Button.setVisible(false);
 		speed2Button.setVisible(false);
 		speed3Button.setVisible(false);
 		endButton.setVisible(false);
+		
 		panel.add(speed1Button);
 		panel.add(speed2Button);
 		panel.add(speed3Button);
 		panel.add(endButton);
-		
-		seeGameButton.setBounds(290, 105, 150, 30);
-		resumeGameButton.setBounds(750, 105, 150, 30);
+		panel.add(nameTeam2Label);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
 		panel.add(gamePanel);
-		
+		panel.add(nameTeam1Label);
 		panel.add(seeGameButton);
 		panel.add(resumeGameButton);
+		
+		contentPane.add(panel);
+		
+		//Init Action to the buttons
 		initAction();
 		displayStatsTeam(game.getTeam1(),0);
 		displayStatsTeam(game.getTeam2(),1);
-		contentPane.add(panel);
 	}
 	
 	
-	public class ResumeGame implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			JScrollPane jp ;
-			displayActionsLabel=new JLabel(getActions());
-		
-			jp =new JScrollPane(displayActionsLabel);
-			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			jp.setBounds(360, 150, 530, 650);
-			panel.add(jp);
-			seeGameButton.setVisible(false);
-		}
-	}
 	
-	public class SeeGame implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			JScrollPane jp ;
-			displayActionsLabel=new JLabel();
-			jp =new JScrollPane(displayActionsLabel);
-			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			jp.setBounds(360, 150, 530, 650);
-			panel.add(jp);
-			speed1Button.setVisible(true);
-			speed2Button.setVisible(true);
-			speed3Button.setVisible(true);
-			endButton.setVisible(true);
-			seeGame=true;
-			resumeGameButton.setVisible(false);
-
-			
-			
-		}
-	}
-	
+	/**
+	 * This method is used to display the players's stats of the game
+	 * @param team Team
+	 * @param t Integer used to find the good position for labels 
+	 */
 	public void displayStatsTeam(Team team,int t) {
 		HashMap<String,Integer> statsPoints = game.getStatsPoints();
 		HashMap<String,Integer> statsBlocks =game.getStatsBlocks();
@@ -202,10 +190,13 @@ public class GameFrame extends JFrame implements Runnable {
 	 		blocksLabel.setBounds(274+(t*900), 200+(30*i), 62, 30);
 	 		panel.add(blocksLabel);
 	 	}
-	 	
 	}
 	
 	
+	
+	/**
+	 * This method is used to see a game action by action
+	 */
 	public void seeActions() {
         	
 		String res="<html>";
@@ -227,7 +218,7 @@ public class GameFrame extends JFrame implements Runnable {
             displayActionsLabel.setText(res);
             panel.repaint();
 	        try { 
-	        	Thread.sleep(SPEED);
+	        	Thread.sleep(speed);
 	 		}catch (InterruptedException e) {
 	 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -242,17 +233,19 @@ public class GameFrame extends JFrame implements Runnable {
 		speed3Button.setVisible(false);
 		endButton.setVisible(false);
 		seeGameButton.setVisible(false);
-}
+	}
 	
+	
+	
+	/**
+	 * This method is used to get all the actions of the game.
+	 * @return String all the actions of the game
+	 */
 	public String getActions() {
 		String res="<html>";
 		Set s = game.getActions().entrySet(); 
-		  
         // Using iterator in SortedMap 
         Iterator i = s.iterator(); 
-  
-        // Traversing map. Note that the traversal 
-        // produced sorted (by keys) output . 
         while (i.hasNext()) 
         { 
             Map.Entry m = (Map.Entry)i.next(); 
@@ -266,6 +259,10 @@ public class GameFrame extends JFrame implements Runnable {
         return res;
 	}
 	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phase2Button.addActionListener(new Phase2());
@@ -279,30 +276,102 @@ public class GameFrame extends JFrame implements Runnable {
 		endButton.addActionListener(new EndGame());
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the resumeGame button
+	 *
+	 */
+	public class ResumeGame implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			JScrollPane jp ;
+			displayActionsLabel=new JLabel(getActions());
+		
+			jp =new JScrollPane(displayActionsLabel);
+			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			jp.setBounds(360, 150, 530, 650);
+			panel.add(jp);
+			seeGameButton.setVisible(false);
+		}
+	}
+	
+	
+	
+	/**
+	 * ActionListener action of the seeGame button
+	 *
+	 */
+	public class SeeGame implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			JScrollPane jp ;
+			displayActionsLabel=new JLabel();
+			jp =new JScrollPane(displayActionsLabel);
+			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			jp.setBounds(360, 150, 530, 650);
+			panel.add(jp);
+			speed1Button.setVisible(true);
+			speed2Button.setVisible(true);
+			speed3Button.setVisible(true);
+			endButton.setVisible(true);
+			seeGame=true;
+			resumeGameButton.setVisible(false);
+		}
+	}
+	
+	
+	
+	/**
+	 * ActionListener action of the speed1 button
+	 *
+	 */
 	public class Speed1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			SPEED=3000;
+			speed=3000;
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the speed2 button
+	 *
+	 */
 	public class Speed2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			SPEED=1000;
+			speed=1000;
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the speed3 button
+	 *
+	 */
 	public class Speed3 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			SPEED=500;
+			speed=500;
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the end button
+	 *
+	 */
 	public class EndGame implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			SPEED=0;
+			speed=0;
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -310,36 +379,46 @@ public class GameFrame extends JFrame implements Runnable {
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
 			new Phase2Frame(worldCup,"WCS");
 			
-		   
-			
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the finalPhase button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new FinalPhaseFrame(worldCup,"WCS");
-			
-		   
-			
+			new FinalPhaseFrame(worldCup,"WCS");	
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
 	public class Teams implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			windows.dispose();
-			new ListTeamsFrame("TEAMS",worldCup);
-			
-		   
-			
+			new ListTeamsFrame("TEAMS",worldCup);	
 		}
 	}
 

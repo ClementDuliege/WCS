@@ -21,16 +21,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import data.WorldCup;
-import ihm.RankingGroup2Frame.Phase1;
-import ihm.RankingGroup2Frame.Phase2;
-import ihm.RankingGroup2Frame.PhaseFinale;
-import ihm.RankingGroup2Frame.Teams;
-import ihm.RankingGroup2Frame.tableGroupPanel;
+import ihm.RankingPhase2Frame.Phase1;
+import ihm.RankingPhase2Frame.Phase2;
+import ihm.RankingPhase2Frame.PhaseFinale;
+import ihm.RankingPhase2Frame.Teams;
+import ihm.RankingPhase2Frame.tableGroupPanel;
 import data.GroupStage;
 import data.RankingGroupStage;
 import data.RankingWorldCup;
 
-
+/**
+ * This class display the ranking of the world cup
+ * @author WCS
+ *
+ */
 public class RankingWorldCupFrame extends JFrame {
     /**
      *
@@ -59,19 +63,21 @@ public class RankingWorldCupFrame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		windows=this;
-		groupStage2=worldCup.getGroupStage2();
+		this.contentPane=getContentPane();
+		this.windows=this;
+		this.groupStage2=worldCup.getGroupStage2();
 		displayTableGroup();
+		//Initiation of the layout frame
 		initLayout();
 		
 	}
 
-	
+	/**
+	 * This method is used to initialise the layout and place the menu, etc...
+	 */
 	public void initLayout() {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		
 		
 		phase1Button.setBounds(150, 50, 200, 25);
 		phase2Button.setBounds(400, 50, 200, 25);
@@ -87,6 +93,11 @@ public class RankingWorldCupFrame extends JFrame {
 		contentPane.add(panel);
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phase2Button.addActionListener(new Phase2());
@@ -95,6 +106,10 @@ public class RankingWorldCupFrame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -102,6 +117,11 @@ public class RankingWorldCupFrame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -109,6 +129,11 @@ public class RankingWorldCupFrame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the phaseFinal button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -117,6 +142,11 @@ public class RankingWorldCupFrame extends JFrame {
 	}
 	
 	
+	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
 	public class Teams implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -124,6 +154,10 @@ public class RankingWorldCupFrame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * This method display this ranking of the groups
+	 */
 	public void displayTableGroup() {
 		String listGroup[]= {"","GROUPE J","GROUPE K","GROUPE L"};
 		int k=0;
@@ -138,6 +172,13 @@ public class RankingWorldCupFrame extends JFrame {
 		
 	}
 	
+	
+	
+	/**
+	 * This Class paint the ranking's table of one group
+	 * @author WCS
+	 *
+	 */
 	public class tableGroupPanel extends JPanel {
 		/**
 		 *
@@ -153,15 +194,14 @@ public class RankingWorldCupFrame extends JFrame {
 			this.y=y;
 		}
 		
+		
+		/**
+		 * This method paint the table
+		 */
 		public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 
-		/*	 g2.setStroke(new BasicStroke(5));
-			 g2.drawLine(x, y, x+280, y);//ligne haut
-			 g2.drawLine(x+280, y, x+280, y+550);//ligne droite
-			 g2.drawLine(x+280, y+550, x, y+550);//ligne bas
-			 g2.drawLine(x, y+550, x, y);*/
 			 
 			 //rect 1
 			 g2.drawRect(x, y+30, 285, 40);
@@ -181,10 +221,6 @@ public class RankingWorldCupFrame extends JFrame {
 			 g2.drawString("Pays", x+60, y+90);
 			 g2.drawString("Score", x+235, y+90);
 
-
-
-
-
 			 g2.setColor(Color.black);
 			  
 
@@ -194,9 +230,6 @@ public class RankingWorldCupFrame extends JFrame {
 				 g2.drawString("Partie 1", x+105, y+60);
 				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13)); 
 				 
-				
-				 
-				
 				 y += 30;
 				 
 				 for(int i = 0; i<16;i++) {
@@ -240,43 +273,7 @@ public class RankingWorldCupFrame extends JFrame {
 						}
 
 				 }
-			 }
-			 
-			 
-			 /*
-		
-			 g2.drawString(""+rankingWorldCup.getRanking().getRankingTeams()[0].getName(), x+50, y+90);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[1].getName(), x+50, y+120);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[2].getName(), x+50, y+150);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[3].getName(), x+50, y+180);
-			 
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[0].getName()), x+250, y+90);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[1].getName()), x+250, y+120);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+250, y+150);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+250, y+180);
-
-	*/
-		/*	 g2.drawLine(x+0, y+40, x+280, y+40);
-			 g2.drawLine(x+0, y+70, x+280, y+70);
-			 g2.drawLine(x+0, y+100, x+280, y+100);
-			 g2.drawLine(x+0, y+130, x+280, y+130);
-			 g2.drawLine(x+0, y+160, x+280, y+160);
-			 g2.drawLine(x+0, y+190, x+280, y+190);
-			 g2.drawLine(x+0, y+220, x+280, y+220);
-			 g2.drawLine(x+0, y+250, x+280, y+250);
-			 g2.drawLine(x+0, y+280, x+280, y+280);
-			 g2.drawLine(x+0, y+310, x+280, y+310);
-			 g2.drawLine(x+0, y+340, x+280, y+340);
-			 g2.drawLine(x+0, y+370, x+280, y+370);
-			 g2.drawLine(x+0, y+400, x+280, y+400);
-			 g2.drawLine(x+0, y+430, x+280, y+430);
-			 g2.drawLine(x+0, y+460, x+280, y+460);
-			 g2.drawLine(x+0, y+490, x+280, y+490);
-			 g2.drawLine(x+0, y+520, x+280, y+520);
-			 g2.drawLine(x+0, y+550, x+280, y+550);*/
-
-
-			 
+			 } 
 		}
 	}
 	

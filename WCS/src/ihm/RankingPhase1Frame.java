@@ -22,7 +22,12 @@ import data.GroupStage;
 import data.WorldCup;
 import data.RankingGroupStage;
 
-public class RankingGroup1Frame extends JFrame {
+/**
+ * This class display the ranking of the phase1
+ * @author WCS
+ *
+ */
+public class RankingPhase1Frame extends JFrame {
 	/**
 	 * 
 	 */
@@ -31,13 +36,12 @@ public class RankingGroup1Frame extends JFrame {
 	private JFrame windows;
 	private Container contentPane;
 	private JPanel panel = new JPanel();
-	//private JButton backButton=new JButton("Back");
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
 	private HashMap<String, GroupStage> groupStage1; 
-	public RankingGroup1Frame(WorldCup worldCup,String windowsTitle) {
+	public RankingPhase1Frame(WorldCup worldCup,String windowsTitle) {
 		super(windowsTitle);
 		setSize(1300,850);
 		setResizable(false);
@@ -46,14 +50,20 @@ public class RankingGroup1Frame extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		windows=this;
-		groupStage1=worldCup.getGroupStage1();
+		this.contentPane=getContentPane();
+		this.windows=this;
+		this.groupStage1=worldCup.getGroupStage1();
 		displayTableGroup();
+		//Initiation of the layout frame
 		initLayout();
 		
 	}
 	
+	
+
+	/**
+	 * This method is used to initialise the layout and place the menu, etc...
+	 */
 	public void initLayout() {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
@@ -73,6 +83,11 @@ public class RankingGroup1Frame extends JFrame {
 		contentPane.add(panel);
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phase2Button.addActionListener(new Phase2());
@@ -81,6 +96,11 @@ public class RankingGroup1Frame extends JFrame {
 	}
 	
 	
+	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -88,6 +108,12 @@ public class RankingGroup1Frame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -95,6 +121,12 @@ public class RankingGroup1Frame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * ActionListener action of the phaseFinal button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -103,6 +135,11 @@ public class RankingGroup1Frame extends JFrame {
 	}
 	
 	
+	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
 	public class Teams implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -110,6 +147,11 @@ public class RankingGroup1Frame extends JFrame {
 		}
 	}
 	
+	
+	
+	/**
+	 * This method display this ranking of the groups
+	 */
 	public void displayTableGroup() {
 		String listGroup[]= {"GROUPE A","GROUPE B","GROUPE C","GROUPE D","GROUPE E","GROUPE F","GROUPE G","GROUPE H"};
 		int k=0;
@@ -124,6 +166,12 @@ public class RankingGroup1Frame extends JFrame {
 		
 	}
 	
+	
+	/**
+	 * This Class paint the ranking's table of one group
+	 * @author WCS
+	 *
+	 */
 	public class tableGroupPanel extends JPanel {
 		/**
 		 *
@@ -139,6 +187,9 @@ public class RankingGroup1Frame extends JFrame {
 			this.y=y;
 		}
 		
+		/**
+		 * This method paint the table
+		 */
 		public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
@@ -155,12 +206,11 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.fillRect(x+1, y+40, 269, 230);
 			 g2.setColor(Color.black);
 			
-			 //g2.setColor(new Color(225,82,11));
+
 			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
-			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-			 //g2.setColor(new Color(225,82,11));
+
 			 g2.drawString("Rang", x+5, y+60);
 			 g2.drawString("Pays", x+65, y+60);
 			 g2.drawString("Score", x+220, y+60);
@@ -171,7 +221,7 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.drawString("3", x+15, y+175);
 			 g2.drawString("4", x+15, y+215);
 
-			 //g2.setColor(new Color(239,144,52));
+
 			 Image icone1;
 			 Image icone2;
 			 Image icone3;
@@ -201,14 +251,6 @@ public class RankingGroup1Frame extends JFrame {
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[1].getName()), x+240, y+135);
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+240, y+175);
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+240, y+215);
-
-			// g2.setColor(new Color(225,82,11));
-		/*	 g2.drawLine(x+0, y+40, x+280, y+40);
-			 g2.drawLine(x+0, y+70, x+280, y+70);
-			 g2.drawLine(x+0, y+100, x+280, y+100);
-			 g2.drawLine(x+0, y+130, x+280, y+130);
-			 g2.drawLine(x+0, y+160, x+280, y+160);
-			 g2.drawLine(x+0, y+190, x+280, y+190);*/
 
 		}
 	}

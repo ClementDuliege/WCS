@@ -38,6 +38,12 @@ import ihm.Phase2Frame.Phase1;
 import ihm.Phase2Frame.PhaseFinale;
 import ihm.Phase2Frame.Teams;
 
+
+/**
+ * This class display one team
+ * @author WCS
+ *
+ */
 public class TeamFrame extends JFrame {
 	/**
 	 *
@@ -52,7 +58,7 @@ public class TeamFrame extends JFrame {
 	private int indexTeam;
 	private Team team;
 	private JPanel panel;
-	private PlayerPanel playerPanel;
+	private StatPanel playerPanel;
 	private JButton phase1Button=new JButton("Phase 1");
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
@@ -83,33 +89,35 @@ public class TeamFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setVisible(true);
-		windows=this;
+		this.windows=this;
 		this.worldCup=worldCup;
-		contentPane=getContentPane();
-		contentPane.setBackground(Color.YELLOW);
+		this.contentPane=getContentPane();
 		this.indexTeam=indexTeam;
 		ArrayList<Team> teams=worldCup.getTeams();
-		team=teams.get(this.indexTeam);
-		panel=new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(Color.WHITE);
+		this.team=teams.get(this.indexTeam);
+		this.panel=new JPanel();
+		this.panel.setLayout(null);
+		this.panel.setBackground(Color.WHITE);
 		
+		//Initiation of the layout frame
 		initLayout();
-		statsTeams();
-		 writePlayerName();
+		//Display name's player
+		writePlayerName();
 		
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise the layout and place the menu, to create a button for each team.
+	 */
 	public void initLayout() {
-		
-		
-		
 		GridLayout grid = new GridLayout(1,1);
 		contentPane.setLayout(grid);
 		Font freshman = null;
 		
 		
-		//Nom d'équipe
+		//name's team
 		teamsLabel=new JLabel(team.getName());
 		try {
 			freshman = Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")).deriveFont(45f);
@@ -131,20 +139,30 @@ public class TeamFrame extends JFrame {
 		phaseFinalButton.setBounds(650, 50, 200, 25);
 		teamsButton.setBounds(900, 50, 200, 25);
 		
+		JButton button = new JButton("Général");
+		button.setBounds(100, 650, 150, 30);
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(225,82,11));
+		button.addActionListener(new TeamStatsAction());
+		
+		panel.add(button);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
 		panel.add(flag);
-		
-		initAction();
 		panel.add(teamsLabel);
 		
 		contentPane.add(panel);
 		
-		
+		initAction();	
 	}
 	
+	
+	
+	/**
+	 * This method is used to initialise actions to the buttons
+	 */
 	public void initAction() {
 		phase1Button.addActionListener(new Phase1());
 		phaseFinalButton.addActionListener(new PhaseFinale());
@@ -153,6 +171,10 @@ public class TeamFrame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the phase1 button
+	 *
+	 */
 	public class Phase1 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -160,6 +182,11 @@ public class TeamFrame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the phaseFinal button
+	 *
+	 */
 	public class PhaseFinale implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -168,6 +195,10 @@ public class TeamFrame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the phase2 button
+	 *
+	 */
 	public class Phase2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -175,6 +206,11 @@ public class TeamFrame extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * ActionListener action of the teams button
+	 *
+	 */
 	public class TeamAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			windows.dispose();
@@ -183,144 +219,104 @@ public class TeamFrame extends JFrame {
 	}
 	
 	
+	/**
+	 * ActionListener action of the players button
+	 *
+	 */
+	public class PlayersAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			panel.remove(playerPanel);
+			JButton playerLabel = (JButton)e.getSource();
+			String name = playerLabel.getText();
+			ArrayList<Player>  players = team.getPlayers();
+	        int i =0;
+	        while(!players.get(i).getName().equals(name)) {
+	        	i++;
+	        }
+	        playerPanel.setPlayer(players.get(i));
+	        varStatTeam = false;
+	        playerPanel.repaint();
+			panel.add(playerPanel);
+	        panel.repaint();
+		}
+	}
+	
+	
+	/**
+	 * ActionListener action of the team button
+	 *
+	 */
+	public class TeamStatsAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			ArrayList<Player>  players = team.getPlayers();
+			numberPlayers = players.size();
+			attackGen = 0;
+			shot2PtsGen = 0;
+			shot3PtsGen = 0;
+			freeThrowsGen = 0;
+			passGen = 0;
+			ballHandleGen = 0;
+			reboundOffGen = 0;
+			defenseGen = 0;
+			blockGen = 0;
+			stealGen = 0;
+			reboundDefGen = 0;
+			strenghtGen = 0;
+			reactionTimeGen = 0;
+			speedGen = 0;
+			varStatTeam = true;
+			for(int i = 0;i<players.size();i++) {
+				attackGen += players.get(i).getAttack();
+				shot2PtsGen += players.get(i).getShot2Pts();
+				shot3PtsGen += players.get(i).getShot3Pts();
+				freeThrowsGen += players.get(i).getFreeThrows();
+				passGen += players.get(i).getPass();
+				ballHandleGen += players.get(i).getBallHandle();
+				reboundOffGen += players.get(i).getReboundOff();
+				defenseGen += players.get(i).getDefense();
+				blockGen += players.get(i).getBlock();
+				stealGen += players.get(i).getSteal();
+				reboundDefGen += players.get(i).getReboundDef();
+				strenghtGen += players.get(i).getStrenght();
+				reactionTimeGen += players.get(i).getReactionTime();
+				speedGen += players.get(i).getSpeed();
+			}
+			 panel.repaint();
+		}
+	}
+	
+	
+	/**
+	 * This method create and place JButtons of the players's name
+	 */
 	public void writePlayerName() {
-		
 		ArrayList<Player>  players = team.getPlayers();
-
-		JButton listLabel[]=new JButton[10];
-		
 		
 		for(int i = 0;i<players.size();i++) {
-			JButton playerLabel = new JButton(players.get(i).getName());
-			playerLabel.setBounds(100, 200+(i*40), 150, 30);
-			playerLabel.setForeground(Color.WHITE);
-			playerLabel.setBackground(new Color(225,82,11));
-			 
+			JButton playerButton = new JButton(players.get(i).getName());
+			playerButton.setBounds(100, 200+(i*40), 150, 30);
+			playerButton.setForeground(Color.WHITE);
+			playerButton.setBackground(new Color(225,82,11));
+			playerButton.addActionListener(new PlayersAction());
+			panel.add(playerButton);
 			
-			panel.add(playerLabel);
-			listLabel[i]=playerLabel;
 		}
 		
-		addActionToLabel(listLabel);
-		
-		playerPanel= new PlayerPanel(players.get(0));
+		playerPanel= new StatPanel(players.get(0));
 		playerPanel.setBounds(550, 60, 600, 750);
 		panel.add(playerPanel);
 		
 		
 	}
-	public void statsTeams() {
-		
-		
-		JButton button = new JButton("Général");
-		button.setBounds(100, 650, 150, 30);
-		button.setForeground(Color.WHITE);
-		button.setBackground(new Color(225,82,11));
-		panel.add(button);
-		addActionStatsTeams(button);
-	}
-	public void addActionStatsTeams(JButton button) {
-		ArrayList<Player>  players = team.getPlayers();
-		numberPlayers = players.size();
-		button.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e) {
-				//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-	            ///setCursor(handCursor);
-	           
-	         }
-			public void mousePressed(MouseEvent e) {
-				attackGen = 0;
-				shot2PtsGen = 0;
-				shot3PtsGen = 0;
-				freeThrowsGen = 0;
-				passGen = 0;
-				ballHandleGen = 0;
-				reboundOffGen = 0;
-				defenseGen = 0;
-				blockGen = 0;
-				stealGen = 0;
-				reboundDefGen = 0;
-				strenghtGen = 0;
-				reactionTimeGen = 0;
-				speedGen = 0;
-				varStatTeam = true;
-				for(int i = 0;i<players.size();i++) {
-					attackGen += players.get(i).getAttack();
-					shot2PtsGen += players.get(i).getShot2Pts();
-					shot3PtsGen += players.get(i).getShot3Pts();
-					freeThrowsGen += players.get(i).getFreeThrows();
-					passGen += players.get(i).getPass();
-					ballHandleGen += players.get(i).getBallHandle();
-					reboundOffGen += players.get(i).getReboundOff();
-					defenseGen += players.get(i).getDefense();
-					blockGen += players.get(i).getBlock();
-					stealGen += players.get(i).getSteal();
-					reboundDefGen += players.get(i).getReboundDef();
-					strenghtGen += players.get(i).getStrenght();
-					reactionTimeGen += players.get(i).getReactionTime();
-					speedGen += players.get(i).getSpeed();
-				}
-				 panel.repaint();
-				
-				
-				
-			}
-			 public void mouseExited(MouseEvent e) {
-				 //Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		           // setCursor(defaultCursor);
-		         }
-			
-		});
-	}
 	
-	public void addActionToLabel(JButton[] listLabel) {
-		for(int i = 0;i<10;i++) {
-			JButton j = listLabel[i];
-			j.addMouseListener(new MouseAdapter() {
-				public void mouseEntered(MouseEvent e) {
-					//Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
-		            ///setCursor(handCursor);
-		           
-		         }
-				public void mousePressed(MouseEvent e) {
-					panel.remove(playerPanel);
-					JButton playerLabel = (JButton)e.getSource();
-					String name = playerLabel.getText();
-					ArrayList<Player>  players = team.getPlayers();
-			        int i =0;
-			        while(!players.get(i).getName().equals(name)) {
-			        	i++;
-			        }
-			        playerPanel.setPlayer(players.get(i));
-			        varStatTeam = false;
-			        playerPanel.repaint();
-					panel.add(playerPanel);
-					
-			  
-			        panel.repaint();
-				}
-				 public void mouseExited(MouseEvent e) {
-					 //Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			           // setCursor(defaultCursor);
-			         }
-				
-			});
-		}
-	}
+
 	
-	public class Back implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			windows.dispose();
-			new ListTeamsFrame("listTeams", worldCup);
-			
-		   
-			
-		}
-	}
-	
-	
-	public class PlayerPanel extends JPanel{
+	/**
+	 * This class display the stats of one player or team
+	 * @author WCS
+	 *
+	 */
+	public class StatPanel extends JPanel{
 		/**
 		 *
 		 */
@@ -340,10 +336,14 @@ public class TeamFrame extends JFrame {
 		private int strenght;
 		private int reactionTime;
 		private int speed;
-		public PlayerPanel(Player p) {
+		public StatPanel(Player p) {
 			
 			this.player=p;
 		}
+		
+		/**
+		 * This method paints the stats
+		 */
 		 public void paint(Graphics g) {  
 			  
 			 Graphics2D g2 = (Graphics2D)g;
@@ -369,7 +369,7 @@ public class TeamFrame extends JFrame {
 				 g2.drawLine(0, 460, 470, 460);
 				 g2.drawLine(225, 400, 225, 710);
 				 
-				 //Caractéristiques équipe
+				 //Team's information
 				 g2.setColor(Color.red);
 				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
 				 g2.drawString("ATTAQUE : ", 9, 445);
@@ -435,94 +435,97 @@ public class TeamFrame extends JFrame {
 			 } 
 			 
 			 else {
-			 try {
-				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
-				Image icone2 = ImageIO.read(new File("pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
-				System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
-				g2.drawImage(icone2,125,130,200,200,this);
-						
-			}catch(IOException exc){
-					exc.printStackTrace();
-			}
-			 g2.setFont(new Font("Calibri", Font.BOLD, 25)); 
-			 g2.setColor(new Color(225,82,11));
-			 String[] names= player.getName().split("\\.");
-			 g2.drawString(names[0]+" "+names[1], 123, 115);
-			 g2.setColor(Color.black);
-			 
-			 //rect
-			 g2.setStroke(new BasicStroke(5));
-			 g2.setColor(Color.black);
-			 g2.drawRect(0, 400, 470, 310);
-			 g2.setColor(new Color(219,219,219));
-			 g2.fillRect(3, 402, 467, 308);
-			 g2.setColor(Color.black);
-			 g2.drawLine(0, 460, 470, 460);
-			 g2.drawLine(225, 400, 225, 710);
-			 
-			 //colonne 1
-			 g2.setColor(Color.red);
-			 g2.setFont(new Font("Georgia", Font.BOLD, 25));
-			 g2.drawString("ATTAQUE : ", 9, 445);
-			 g2.drawString(""+player.getAttack(), 162, 442);
-			 
-			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-			 g2.drawString("Tir 2 Pts : ", 15, 500);
-			 g2.drawString(""+player.getShot2Pts(), 162, 500);
-			 
-			 g2.drawString("Tir 3 Pts : ", 15, 540);
-			 g2.drawString(""+player.getShot3Pts(), 162, 540);
-			 
-			 g2.drawString("Lancer Franc : ", 15, 580);
-			 g2.drawString(""+player.getFreeThrows(), 162, 580);
-			 
-			 g2.drawString("Passe : ", 15, 620);
-			 g2.drawString(""+player.getPass(), 162, 620);
-			 
-			 g2.drawString("Dribble : ", 15, 660);
-			 g2.drawString(""+player.getBallHandle(), 162, 660);
-			 
-			 g2.drawString("Vitesse : ", 15, 700);
-			 g2.drawString(""+player.getSpeed(), 162, 700);
-			 
-			 //Colonne 2
-			 g2.setColor(Color.blue);
-			 g2.setFont(new Font("Georgia", Font.BOLD, 25));
-			 g2.drawString("DEFENSE : ", 245, 445);
-			 g2.drawString(""+player.getDefense(), 400, 445);
-			 
-			 g2.setFont(new Font("Calibri", Font.BOLD, 25));
-			 g2.drawString("Contre : ", 250, 500);
-			 g2.drawString(""+player.getBlock(), 400, 500);
-			 
-			 g2.drawString("Interception : ", 250, 540);
-			 g2.drawString(""+player.getSteal(), 400, 540);
-			 
-			 g2.drawString("Rebond off : ", 250, 580);
-			 g2.drawString(""+player.getReboundOff(), 400, 580);
-			 
-			 g2.drawString("Rebond def : ", 250, 620);
-			 g2.drawString(""+player.getReboundDef(), 400, 620);
-			 
-			 g2.drawString("Force : ", 250, 660);
-			 g2.drawString(""+player.getStrenght(), 400, 660);
-			 
-			 g2.drawString("Reaction : ", 250, 700);
-			 g2.drawString(""+player.getReactionTime(), 400, 700);
-			 
-			 g2.setColor(Color.BLACK);
-			 try {
-					subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("BeTrueToYourSchool.ttf")).deriveFont(35f);
-			
-				} catch (FontFormatException|IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				 try {
+					System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
+					Image icone2 = ImageIO.read(new File("pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
+					System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
+					g2.drawImage(icone2,125,130,200,200,this);
+							
+				}catch(IOException exc){
+						exc.printStackTrace();
 				}
-			 g2.setFont(subscribe);
-			 g2.drawString("Poste : "+player.getPositionString(), 125, 380);
-			 }
+				 g2.setFont(new Font("Calibri", Font.BOLD, 25)); 
+				 g2.setColor(new Color(225,82,11));
+				 String[] names= player.getName().split("\\.");
+				 g2.drawString(names[0]+" "+names[1], 123, 115);
+				 g2.setColor(Color.black);
+				 
+				 //rect
+				 g2.setStroke(new BasicStroke(5));
+				 g2.setColor(Color.black);
+				 g2.drawRect(0, 400, 470, 310);
+				 g2.setColor(new Color(219,219,219));
+				 g2.fillRect(3, 402, 467, 308);
+				 g2.setColor(Color.black);
+				 g2.drawLine(0, 460, 470, 460);
+				 g2.drawLine(225, 400, 225, 710);
+				 
+				 //colonne 1
+				 g2.setColor(Color.red);
+				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+				 g2.drawString("ATTAQUE : ", 9, 445);
+				 g2.drawString(""+player.getAttack(), 162, 442);
+				 
+				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+				 g2.drawString("Tir 2 Pts : ", 15, 500);
+				 g2.drawString(""+player.getShot2Pts(), 162, 500);
+				 
+				 g2.drawString("Tir 3 Pts : ", 15, 540);
+				 g2.drawString(""+player.getShot3Pts(), 162, 540);
+				 
+				 g2.drawString("Lancer Franc : ", 15, 580);
+				 g2.drawString(""+player.getFreeThrows(), 162, 580);
+				 
+				 g2.drawString("Passe : ", 15, 620);
+				 g2.drawString(""+player.getPass(), 162, 620);
+				 
+				 g2.drawString("Dribble : ", 15, 660);
+				 g2.drawString(""+player.getBallHandle(), 162, 660);
+				 
+				 g2.drawString("Vitesse : ", 15, 700);
+				 g2.drawString(""+player.getSpeed(), 162, 700);
+				 
+				 //Colonne 2
+				 g2.setColor(Color.blue);
+				 g2.setFont(new Font("Georgia", Font.BOLD, 25));
+				 g2.drawString("DEFENSE : ", 245, 445);
+				 g2.drawString(""+player.getDefense(), 400, 445);
+				 
+				 g2.setFont(new Font("Calibri", Font.BOLD, 25));
+				 g2.drawString("Contre : ", 250, 500);
+				 g2.drawString(""+player.getBlock(), 400, 500);
+				 
+				 g2.drawString("Interception : ", 250, 540);
+				 g2.drawString(""+player.getSteal(), 400, 540);
+				 
+				 g2.drawString("Rebond off : ", 250, 580);
+				 g2.drawString(""+player.getReboundOff(), 400, 580);
+				 
+				 g2.drawString("Rebond def : ", 250, 620);
+				 g2.drawString(""+player.getReboundDef(), 400, 620);
+				 
+				 g2.drawString("Force : ", 250, 660);
+				 g2.drawString(""+player.getStrenght(), 400, 660);
+				 
+				 g2.drawString("Reaction : ", 250, 700);
+				 g2.drawString(""+player.getReactionTime(), 400, 700);
+				 
+				 g2.setColor(Color.BLACK);
+				 try {
+						subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("BeTrueToYourSchool.ttf")).deriveFont(35f);
+				
+					} catch (FontFormatException|IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				 g2.setFont(subscribe);
+				 g2.drawString("Poste : "+player.getPositionString(), 125, 380);
+			}
 		 }
-		 
+		 /**
+		  * Set Player
+		  * @param p Player
+		  */
 		 public void setPlayer(Player p) {
 			 player=p;
 		 }
