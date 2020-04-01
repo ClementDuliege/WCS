@@ -6,10 +6,14 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -112,7 +116,7 @@ public class RankingGroup1Frame extends JFrame {
 		for(int i = 0;i<2;i++) {
 			for(int j = 0;j<4;j++) {
 				JPanel panelTable = new tableGroupPanel(groupStage1.get(listGroup[k]), 0+(320*j), 0+(350*i));
-				panelTable.setBounds(25, 85, 1250, 700);
+				panelTable.setBounds(25, 135, 1250, 700);
 				panel.add(panelTable);
 				k++;
 			}
@@ -139,47 +143,72 @@ public class RankingGroup1Frame extends JFrame {
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 
-			 g2.setStroke(new BasicStroke(5));
-			 //g2.setColor(new Color(225,82,11));
-			 g2.drawLine(x, y, x+280, y);
-			 g2.drawLine(x+280, y, x+280, y+190);
-			 g2.drawLine(x+280, y+190, x, y+190);
-			 g2.drawLine(x, y+190, x, y);
+			 //rect group
+			 g2.drawRect(x, y, 270, 40);
+			 g2.setColor(new Color(219,219,219));
+			 g2.fillRect(x+1, y+1, 269, 39);
+			 g2.setColor(Color.black);
+			 
+			 //rect infos
+			 g2.drawRect(x, y+40, 270, 230);
+			 g2.setColor(new Color(110,167,255));
+			 g2.fillRect(x+1, y+40, 269, 230);
+			 g2.setColor(Color.black);
 			
 			 //g2.setColor(new Color(225,82,11));
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23)); 
 			 g2.drawString(group.getName(), x+75, y+30);
 			 
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15));
+			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 			 //g2.setColor(new Color(225,82,11));
 			 g2.drawString("Rang", x+5, y+60);
-			 g2.drawString("Pays", x+60, y+60);
+			 g2.drawString("Pays", x+65, y+60);
 			 g2.drawString("Score", x+220, y+60);
 
 
-			 g2.drawString("1", x+15, y+90);
-			 g2.drawString("2", x+15, y+120);
-			 g2.drawString("3", x+15, y+150);
-			 g2.drawString("4", x+15, y+180);
+			 g2.drawString("1", x+15, y+95);
+			 g2.drawString("2", x+15, y+135);
+			 g2.drawString("3", x+15, y+175);
+			 g2.drawString("4", x+15, y+215);
 
 			 //g2.setColor(new Color(239,144,52));
-			 g2.drawString(""+group.getRanking().getRankingTeams()[0].getName(), x+50, y+90);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[1].getName(), x+50, y+120);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[2].getName(), x+50, y+150);
-			 g2.drawString(""+group.getRanking().getRankingTeams()[3].getName(), x+50, y+180);
+			 Image icone1;
+			 Image icone2;
+			 Image icone3;
+			 Image icone4;
 			 
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[0].getName()), x+250, y+90);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[1].getName()), x+250, y+120);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+250, y+150);
-			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+250, y+180);
+			try {
+				icone1 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[0].getName()+".png"));
+				icone2 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[1].getName()+".png"));
+				icone3 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[2].getName()+".png"));
+				icone4 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[3].getName()+".png"));
+				g2.drawImage(icone1,x+65,y+79,20,20,this);
+				g2.drawImage(icone2,x+65,y+119,20,20,this);
+				g2.drawImage(icone3,x+65,y+159,20,20,this);
+				g2.drawImage(icone4,x+65,y+199,20,20,this);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+				
+			 //name team
+			 g2.drawString(""+group.getRanking().getRankingTeams()[0].getName(), x+95, y+94);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[1].getName(), x+95, y+134);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[2].getName(), x+95, y+174);
+			 g2.drawString(""+group.getRanking().getRankingTeams()[3].getName(), x+95, y+213);
+			 
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[0].getName()), x+240, y+95);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[1].getName()), x+240, y+135);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[2].getName()), x+240, y+175);
+			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+240, y+215);
 
 			// g2.setColor(new Color(225,82,11));
-			 g2.drawLine(x+0, y+40, x+280, y+40);
+		/*	 g2.drawLine(x+0, y+40, x+280, y+40);
 			 g2.drawLine(x+0, y+70, x+280, y+70);
 			 g2.drawLine(x+0, y+100, x+280, y+100);
 			 g2.drawLine(x+0, y+130, x+280, y+130);
 			 g2.drawLine(x+0, y+160, x+280, y+160);
-			 g2.drawLine(x+0, y+190, x+280, y+190);
+			 g2.drawLine(x+0, y+190, x+280, y+190);*/
 
 		}
 	}
