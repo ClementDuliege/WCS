@@ -33,7 +33,7 @@ public class GameFrame extends JFrame implements Runnable {
 	private WorldCup worldCup;
 	private Game game;
 	private JFrame windows;
-	private JButton seeGameButton=new JButton("Voir le match");
+	private JButton seeGameButton=new JButton("Lancer le match");
 	private JButton resumeGameButton=new JButton("Résumé du match");
 	private Container contentPane;
 	private JPanel panel = new JPanel();
@@ -43,10 +43,10 @@ public class GameFrame extends JFrame implements Runnable {
 	private JButton phase2Button=new JButton("Phase 2");
 	private JButton phaseFinalButton=new JButton("Phase Finale");
 	private JButton teamsButton=new JButton("Equipes");
-	private JButton speed1Button=new JButton("Speed 1");
-	private JButton speed2Button=new JButton("Speed 2");
-	private JButton speed3Button=new JButton("Speed 3");
-	private JButton endButton=new JButton("End");
+	private JButton speed1Button=new JButton("vitesse 1");
+	private JButton speed2Button=new JButton("vitesse 2");
+	private JButton speed3Button=new JButton("vitesse 3");
+	private JButton endButton=new JButton("Fin");
 	private boolean gameIsFinish;
 	private boolean seeGame;
 	public GameFrame(String windowsTitle,WorldCup worldCup, Game game) {

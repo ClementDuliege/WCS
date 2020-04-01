@@ -212,7 +212,7 @@ public class TeamFrame extends JFrame {
 	public void statsTeams() {
 		
 		
-		JButton button = new JButton("Equipe");
+		JButton button = new JButton("Général");
 		button.setBounds(100, 650, 150, 30);
 		button.setForeground(Color.WHITE);
 		button.setBackground(new Color(225,82,11));

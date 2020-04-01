@@ -172,7 +172,7 @@ public class RankingWorldCupFrame extends JFrame {
 			 
 			//rect infos
 			 g2.drawRect(x, y+70, 285, 530);
-			 g2.setColor(new Color(110,167,255));
+			 g2.setColor(new Color(135,206,250));
 			 g2.fillRect(x+1, y+70, 284, 530);
 			 g2.setColor(Color.black);
 			 
@@ -191,7 +191,7 @@ public class RankingWorldCupFrame extends JFrame {
 			 if(value==0) {
 				 
 				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23));
-				 g2.drawString("Part1", x+105, y+60);
+				 g2.drawString("Partie 1", x+105, y+60);
 				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13)); 
 				 
 				
@@ -218,7 +218,7 @@ public class RankingWorldCupFrame extends JFrame {
 			 }
 			 else {
 				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23));
-				 g2.drawString("Part2", x+105, y+60);
+				 g2.drawString("Partie 2", x+105, y+60);
 				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 				 y += 30;
 				 

@@ -147,13 +147,13 @@ public class RankingGroup2Frame extends JFrame {
 			 //rect1
 			 g2.drawRect(x, y, 270, 40);
 			 g2.setColor(new Color(219,219,219));
-			 g2.fillRect(x, y, 270, 40);
+			 g2.fillRect(x+1, y+1, 269, 39);
 			 g2.setColor(Color.black);
 			 
 			//rect infos
 			 g2.drawRect(x, y+40, 270, 230);
-			 g2.setColor(new Color(110,167,255));
-			 g2.fillRect(x, y+40, 270, 230);
+			 g2.setColor(new Color(135,206,250));
+			 g2.fillRect(x+1, y+40, 269, 230);
 			 g2.setColor(Color.black);
 			
 			 g2.setColor(Color.black);

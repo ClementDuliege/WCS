@@ -84,8 +84,7 @@ public class TableauPhaseFinal extends JPanel{
 					}
 				 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
 				
-				 g2.setColor(Color.black);
-				 g2.setColor(Color.white);
+				 
 				 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
 				 g2.drawString(""+quarterGame.getScore2(), 150+(j*800), 25+(i*400));
 				 k++;

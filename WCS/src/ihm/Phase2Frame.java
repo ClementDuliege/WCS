@@ -136,7 +136,7 @@ public class Phase2Frame extends JFrame {
 		details.setBounds(530,550,200,35);
 		details.setForeground(Color.black);
 		details.setFont(new Font("Georgia", Font.BOLD, 15));
-		details.setBackground(new Color(110,167,255));
+		details.setBackground(new Color(135,206,250));
 		
 		//JButton[] listLabel = {groupI,groupJ,groupK,groupL};
 		addActionToLabel(details);
