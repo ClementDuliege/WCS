@@ -8,10 +8,14 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,7 +38,7 @@ public class RankingWorldCupFrame extends JFrame {
     private static final long serialVersionUID = 1L;
 
     private RankingWorldCup rankingWorldCup;
-    private int x,y;
+    private int pos = 15;
 
 	private WorldCup worldCup;
 	private JFrame windows;
@@ -153,46 +157,87 @@ public class RankingWorldCupFrame extends JFrame {
 			  
 			 Graphics2D g2 = (Graphics2D)g;
 			 
-			 g2.setStroke(new BasicStroke(5));
+		/*	 g2.setStroke(new BasicStroke(5));
 			 g2.drawLine(x, y, x+280, y);//ligne haut
 			 g2.drawLine(x+280, y, x+280, y+550);//ligne droite
 			 g2.drawLine(x+280, y+550, x, y+550);//ligne bas
-			 g2.drawLine(x, y+550, x, y);
-			
+			 g2.drawLine(x, y+550, x, y);*/
+			 
+			 //rect 1
+			 g2.drawRect(x, y+30, 285, 40);
+			 g2.setColor(new Color(219,219,219));
+			 g2.fillRect(x+1, y+31, 284, 39);
 			 g2.setColor(Color.black);
-			 g2.drawString("Rang", x+5, y+60);
-			 g2.drawString("Pays", x+60, y+60);
-			 g2.drawString("Score", x+220, y+60);
+			 g2.setColor(Color.black);
+			 
+			//rect infos
+			 g2.drawRect(x, y+70, 285, 530);
+			 g2.setColor(new Color(110,167,255));
+			 g2.fillRect(x+1, y+70, 284, 530);
+			 g2.setColor(Color.black);
+			 
+			 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+			 g2.drawString("Rang", x+5, y+90);
+			 g2.drawString("Pays", x+60, y+90);
+			 g2.drawString("Score", x+235, y+90);
 
 
 
 
 
 			 g2.setColor(Color.black);
-			 g2.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			  
 
 			 if(value==0) {
 				 
-				 g2.drawString("Part1", x+75, y+30);
-				 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-
+				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23));
+				 g2.drawString("Part1", x+105, y+60);
+				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13)); 
+				 
+				
+				 
+				
+				 y += 30;
+				 
 				 for(int i = 0; i<16;i++) {
+					
 					 g2.drawString(Integer.toString(i+1), x+15, y+30*(i+3));
-					 g2.drawString(""+rankingWorldCup.getRankingTeams()[i].getName(), x+50, y+30*(i+3));
+					 g2.drawString(""+rankingWorldCup.getRankingTeams()[i].getName(), x+90, y+30*(i+3));
 					 g2.drawString(""+rankingWorldCup.getScoreTeams().get(rankingWorldCup.getRankingTeams()[i].getName()), x+250, y+30*(i+3));
 
-
+					 try {
+							Image icone1 = ImageIO.read(new File("Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
+							
+							g2.drawImage(icone1,x+66,pos+30*(i+3),20,20,this);
+							
+						} catch (IOException e) {
+							
+							e.printStackTrace();
+						}
 				 }
 			 }
 			 else {
-				 g2.drawString("Part2", x+75, y+30);
-				 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-
+				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 23));
+				 g2.drawString("Part2", x+105, y+60);
+				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+				 y += 30;
+				 
 				 for(int i = 16; i<32;i++) {
+					
+					 
 					 g2.drawString(Integer.toString(i+1), x+15, y+30*(i-16+3));
-					 g2.drawString(""+rankingWorldCup.getRankingTeams()[i].getName(), x+50, y+30*(i-16+3));
+					 g2.drawString(""+rankingWorldCup.getRankingTeams()[i].getName(), x+90, y+30*(i-16+3));
 					 g2.drawString(""+rankingWorldCup.getScoreTeams().get(rankingWorldCup.getRankingTeams()[i].getName()), x+250, y+30*(i-16+3));
-
+					 
+					 try {
+							Image icone2 = ImageIO.read(new File("Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
+							
+							g2.drawImage(icone2,x+66,pos+30*(i-16+3),20,20,this);
+							
+						} catch (IOException e) {
+							
+							e.printStackTrace();
+						}
 
 				 }
 			 }
@@ -211,7 +256,7 @@ public class RankingWorldCupFrame extends JFrame {
 			 g2.drawString(""+rankingGroupStage.getScoreTeams().get(group.getRanking().getRankingTeams()[3].getName()), x+250, y+180);
 
 	*/
-			 g2.drawLine(x+0, y+40, x+280, y+40);
+		/*	 g2.drawLine(x+0, y+40, x+280, y+40);
 			 g2.drawLine(x+0, y+70, x+280, y+70);
 			 g2.drawLine(x+0, y+100, x+280, y+100);
 			 g2.drawLine(x+0, y+130, x+280, y+130);
@@ -228,7 +273,7 @@ public class RankingWorldCupFrame extends JFrame {
 			 g2.drawLine(x+0, y+460, x+280, y+460);
 			 g2.drawLine(x+0, y+490, x+280, y+490);
 			 g2.drawLine(x+0, y+520, x+280, y+520);
-			 g2.drawLine(x+0, y+550, x+280, y+550);
+			 g2.drawLine(x+0, y+550, x+280, y+550);*/
 
 
 			 
