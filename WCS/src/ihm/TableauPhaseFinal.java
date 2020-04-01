@@ -82,10 +82,22 @@ public class TableauPhaseFinal extends JPanel{
 					}catch(IOException exc){
 							exc.printStackTrace();
 					}
-				 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
+				 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13)); 
 				
-				 
+				 if(quarterGame.getScore1()<quarterGame.getScore2()) {
+					 g2.setColor(new Color(210,20,0));
+				 }
+				 else {
+					 g2.setColor(new Color(30,130,60));
+				 }
+				// g2.drawString(""+quarterGame.getScore1(), 78, 25);
 				 g2.drawString(""+quarterGame.getScore1(), 83+(j*800), 25+(i*400));
+				 if(quarterGame.getScore1()>quarterGame.getScore2()) {
+					 g2.setColor(new Color(210,20,0));
+				 }
+				 else {
+					 g2.setColor(new Color(30,130,60));
+				 }
 				 g2.drawString(""+quarterGame.getScore2(), 150+(j*800), 25+(i*400));
 				 k++;
 			 }
@@ -105,12 +117,23 @@ public class TableauPhaseFinal extends JPanel{
 						exc.printStackTrace();
 			}
 			 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-			 //g2.setColor(Color.blue);
-			 g2.setColor(Color.black);
-			 
-			 g2.setColor(Color.white);
+			 if(semiGame.getScore1()<semiGame.getScore2()) {
+				 g2.setColor(new Color(210,20,0));
+			 }
+			 else {
+				 g2.setColor(new Color(30,130,60));
+			 }
+			// g2.drawString(""+quarterGame.getScore1(), 78, 25);
 			 g2.drawString(""+semiGame.getScore1(), 183+(i2*610), 225);
+			 if(semiGame.getScore1()>semiGame.getScore2()) {
+				 g2.setColor(new Color(210,20,0));
+			 }
+			 else {
+				 g2.setColor(new Color(30,130,60));
+			 }
 			 g2.drawString(""+semiGame.getScore2(), 250+(i2*610), 225);
+			// g2.drawString(""+semiGame.getScore1(), 183+(i2*610), 225);
+			// g2.drawString(""+semiGame.getScore2(), 250+(i2*610), 225);
 			 k++;
 			 
 		 }
@@ -130,12 +153,25 @@ public class TableauPhaseFinal extends JPanel{
 		 add(panelFinal);
 		 
 		 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-		 //g2.setColor(Color.blue);
-		 g2.setColor(Color.black);
 		 
-		 g2.setColor(Color.white);
+		 if(finalGame.getScore1()<finalGame.getScore2()) {
+			 g2.setColor(new Color(210,20,0));
+		 }
+		 else {
+			 g2.setColor(new Color(30,130,60));
+		 }
+		// g2.drawString(""+quarterGame.getScore1(), 78, 25);
 		 g2.drawString(""+finalGame.getScore1(), 483, 225);
+		 if(finalGame.getScore1()>finalGame.getScore2()) {
+			 g2.setColor(new Color(210,20,0));
+		 }
+		 else {
+			 g2.setColor(new Color(30,130,60));
+		 }
 		 g2.drawString(""+finalGame.getScore2(), 550, 225);
+		 
+		// g2.drawString(""+finalGame.getScore1(), 483, 225);
+		// g2.drawString(""+finalGame.getScore2(), 550, 225);
 		 
 		 
 		 
@@ -152,13 +188,25 @@ public class TableauPhaseFinal extends JPanel{
 		 addActionToPanelScore(panelSmallFinal,smallFinalGame);
 		 add(panelSmallFinal);
 		 
-		 g2.setFont(new Font("TimesRoman", Font.BOLD, 15)); 
-		 //g2.setColor(Color.blue);
-		 g2.setColor(Color.black);
-		
-		 g2.setColor(Color.white);
+		 g2.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		 
+		 if(smallFinalGame.getScore1()<smallFinalGame.getScore2()) {
+			 g2.setColor(new Color(210,20,0));
+		 }
+		 else {
+			 g2.setColor(new Color(30,130,60));
+		 }
+		// g2.drawString(""+quarterGame.getScore1(), 78, 25);
 		 g2.drawString(""+smallFinalGame.getScore1(), 483, 325);
+		 if(smallFinalGame.getScore1()>smallFinalGame.getScore2()) {
+			 g2.setColor(new Color(210,20,0));
+		 }
+		 else {
+			 g2.setColor(new Color(30,130,60));
+		 }
 		 g2.drawString(""+smallFinalGame.getScore2(), 550, 325);
+		 
+		 
 		 //g2.draw
 		 
 		try {
@@ -195,6 +243,7 @@ public class TableauPhaseFinal extends JPanel{
 			
 			
 		}
+	
 	 
 	
 }
