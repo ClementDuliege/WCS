@@ -114,12 +114,12 @@ public class GameFrame extends JFrame implements Runnable {
 		panel.add(speed3Button);
 		panel.add(endButton);
 		panel.add(nameTeam2Label);
+		panel.add(nameTeam1Label);
 		panel.add(phase1Button);
 		panel.add(phase2Button);
 		panel.add(phaseFinalButton);
 		panel.add(teamsButton);
 		panel.add(gamePanel);
-		panel.add(nameTeam1Label);
 		panel.add(seeGameButton);
 		panel.add(resumeGameButton);
 		
