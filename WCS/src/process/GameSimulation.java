@@ -286,10 +286,15 @@ public class GameSimulation {
 				statsPoints.put(playerHadBall.getName(), points);
 			}
 			else {
-				actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
-
-				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
-				statsBlocks.put(interceptorPlayor.getName(), blocks);
+				int blockOrMissed = MyRandom.getIntIntoMinMax(0, 5);
+				if(blockOrMissed==0) {
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  2 point de "+ playerHadBall.getName()+ "</p> ");
+					int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
+					statsBlocks.put(interceptorPlayor.getName(), blocks);
+				}
+				else {
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 2 points</p> ");
+				}
 			}
 
 		}
@@ -308,10 +313,15 @@ public class GameSimulation {
 				//System.out.println("shot 3pts");
 			}
 			else {
-				actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  3 point de "+ playerHadBall.getName()+ "</p> ");
-				int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
-				statsBlocks.put(interceptorPlayor.getName(), blocks);
-				//System.out.println("shot 3pts ratÃ©");
+				int blockOrMissed = MyRandom.getIntIntoMinMax(0, 5);
+				if(blockOrMissed==0) {
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + interceptorPlayor.getName()+" a contré un shot à  3 point de "+ playerHadBall.getName()+ "</p> ");
+					int blocks=statsBlocks.get(interceptorPlayor.getName())+1;
+					statsBlocks.put(interceptorPlayor.getName(), blocks);
+				}
+				else {
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 3 points</p> ");
+				}
 			}
 		}
 		
@@ -416,7 +426,7 @@ public class GameSimulation {
 		Player interceptorPlayor = teamDontHadBall.get(playerHadBall.getPosition()-1);
 		
 		//Define succesRate of the pass
-		float succesRate = (playerHadBall.getPass() - interceptorPlayor.getSteal())* MyRandom.getFloatIntoMinMax((float)1.5,(float)1.8);  
+		float succesRate = (playerHadBall.getPass() - interceptorPlayor.getSteal())* MyRandom.getFloatIntoMinMax((float)1.6,(float)2.0);  
 
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
 		if(succesRate>lessThan) {

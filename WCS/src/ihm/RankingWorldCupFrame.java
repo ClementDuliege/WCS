@@ -1,8 +1,5 @@
 package ihm;
 
-
-import java.awt.BasicStroke;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -14,20 +11,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import data.WorldCup;
-import ihm.RankingPhase2Frame.Phase1;
-import ihm.RankingPhase2Frame.Phase2;
-import ihm.RankingPhase2Frame.PhaseFinale;
-import ihm.RankingPhase2Frame.Teams;
-import ihm.RankingPhase2Frame.tableGroupPanel;
 import data.GroupStage;
-import data.RankingGroupStage;
 import data.RankingWorldCup;
 
 /**

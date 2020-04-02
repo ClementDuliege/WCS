@@ -7,12 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
- 
 import data.Game;
+
 
 /**
  * This class is used to create a panel to display the score of a game.

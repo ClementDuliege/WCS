@@ -10,23 +10,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import data.Game;
 import data.Player;
 import data.Team;
 import data.WorldCup;
-import ihm.Phase1Frame.Phase2;
-import ihm.Phase1Frame.PhaseFinale;
-import ihm.Phase1Frame.Teams;
+
+
+
 /**
  * This class display a game.
  * @author WCS

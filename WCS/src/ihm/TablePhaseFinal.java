@@ -11,13 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import data.Game;
 import data.WorldCup;
+
+
+
 /**
  * This class is a Panel to display the table of the final phase.
  * @author WCS

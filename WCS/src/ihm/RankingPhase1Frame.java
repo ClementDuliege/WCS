@@ -1,6 +1,5 @@
 package ihm;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -12,15 +11,15 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import data.GroupStage;
 import data.WorldCup;
 import data.RankingGroupStage;
+
+
 
 /**
  * This class display the ranking of the phase1
