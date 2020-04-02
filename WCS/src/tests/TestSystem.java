@@ -1,15 +1,11 @@
 package tests;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
 import data.GroupStage;
 import data.Player;
 import data.RankingWorldCup;
 import data.Team;
 import data.WorldCup;
-import generate.GenerateGroupStage;
-import ihm.RankingWorldCupFrame;
 
 
 public class TestSystem {

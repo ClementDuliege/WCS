@@ -293,7 +293,7 @@ public class GameSimulation {
 					statsBlocks.put(interceptorPlayor.getName(), blocks);
 				}
 				else {
-					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 2 points</p> ");
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 2 points</p> ");
 				}
 			}
 
@@ -320,7 +320,7 @@ public class GameSimulation {
 					statsBlocks.put(interceptorPlayor.getName(), blocks);
 				}
 				else {
-					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamDontBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 3 points</p> ");
+					actions.put(duration,"<p style= \"margin-bottom: 10px;margin-left: 5px;\" color=\"red\"><span style=\"font-size: 12px;font-weight:bold;\">"+teamBall.getName()+"</span> : " + playerHadBall.getName()+" a raté un tir à 3 points</p> ");
 				}
 			}
 		}
