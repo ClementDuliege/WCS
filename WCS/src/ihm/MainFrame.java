@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
 	private JButton simulationStartButton;  
 	protected WorldCup worldCup;
 	private JPanel panel;
-	private Font freshman;
+
 	
 	
 	public MainFrame(String titleWindows,WorldCup worldCup) {
@@ -61,25 +61,12 @@ public class MainFrame extends JFrame {
 		this.simulationStartButton=new JButton("Simulation de la compétition");
 		this.panel=new JPanel();
 		this.worldCup=worldCup;
-		//Init the Font
-		font();
 		//Init the layout
 		initLayoutMain(); 
 		
 	}
 	
-	/**
-	 * This method is used to implement the extern police
-	 */
-	public void font() {
-		try {
-			freshman = Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")).deriveFont(50f);
-			
-		} catch (FontFormatException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	/**
 	 * This method is used to initialise the layout and place the menu, etc...
@@ -91,7 +78,6 @@ public class MainFrame extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.white);
 		
-		titleJLabel.setFont(freshman);
 		titleJLabel.setBounds(112, 30, 675, 75);
 		titleJLabel.setForeground(new Color(225,82,11));
 		
