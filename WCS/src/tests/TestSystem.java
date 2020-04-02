@@ -107,7 +107,7 @@ public class TestSystem {
 		wp.simulateFinal();
 		
 		
-		for(int i=0; i<wp.getRanking().getRankingTeams().length; i++) {
+		for(int i=0; i<wp.getRanking().getRankingTeams().length-1; i++) {
 			if(wp.getRanking().getScoreTeams().get(wp.getRanking().getRankingTeams()[i].getName()) >= wp.getRanking().getScoreTeams().get(wp.getRanking().getRankingTeams()[i+1].getName())) {
 				System.out.println(wp.getRanking().getRankingTeams()[i].getName()+"   "+wp.getRanking().getScoreTeams().get(wp.getRanking().getRankingTeams()[i].getName()));
 			}
