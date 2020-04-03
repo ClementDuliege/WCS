@@ -86,7 +86,7 @@ public class TablePhaseFinal extends JPanel{
 				 addActionToPanelScore(panelQuarter,quarterGame);
 				 add(panelQuarter);
 				 try {
-						icone2 = ImageIO.read(new File("score.jpg"));
+						icone2 = ImageIO.read(new File("pictures/score.jpg"));
 						g2.drawImage(icone2,0 +(j*800),0+(i*400),250,43,this);
 								
 					}catch(IOException exc){
@@ -120,7 +120,7 @@ public class TablePhaseFinal extends JPanel{
 			 addActionToPanelScore(panelSemi,semiGame);
 			 add(panelSemi);
 			 try {
-					icone2 =  ImageIO.read(new File("score.jpg")); 
+					icone2 =  ImageIO.read(new File("pictures/score.jpg")); 
 					g2.drawImage(icone2,100 +(i2*610),200,250,43,this);
 							
 			}catch(IOException exc){
@@ -147,7 +147,7 @@ public class TablePhaseFinal extends JPanel{
 		 
 		////////////////////////////////////////Paint the Final/////////////////////////////////////////////////
 		 try {
-				icone2 =  ImageIO.read(new File("score.jpg")); 
+				icone2 =  ImageIO.read(new File("pictures/score.jpg")); 
 				g2.drawImage(icone2,400,200,250,43,this);
 						
 		}catch(IOException exc){
@@ -180,7 +180,7 @@ public class TablePhaseFinal extends JPanel{
 		 
 		////////////////////////Paint the small Final////////////////////////////////////////////////////////////////
 		 try {
-				icone2 =  ImageIO.read(new File("score.jpg"));
+				icone2 =  ImageIO.read(new File("pictures/score.jpg"));
 				g2.drawImage(icone2,400,300,250,43,this);
 						
 		}catch(IOException exc){
@@ -211,7 +211,7 @@ public class TablePhaseFinal extends JPanel{
 		 
 		 
 		try {
-				icone2 = ImageIO.read(new File("trophee.png"));
+				icone2 = ImageIO.read(new File("pictures/trophee.png"));
 				g2.drawImage(icone2,360,350,320,320,this);
 						
 		}catch(IOException exc){

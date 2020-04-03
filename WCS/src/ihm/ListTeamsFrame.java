@@ -89,7 +89,7 @@ public class ListTeamsFrame extends JFrame {
 		int k= 0;
 		for(int i =0 ; i<4 ; i++) {
 			for(int j=0; j<8; j++) {
-				JLabel drapeauLabel =new JLabel(new ImageIcon("Drapeau/"+teams.get(k).getName()+".png"));
+				JLabel drapeauLabel =new JLabel(new ImageIcon("pictures/Drapeau/"+teams.get(k).getName()+".png"));
 				drapeauLabel.setBounds(x-60,y,60,36);
 				tabButton[k] = new JButton(teams.get(k).getName());
 				tabButton[k].setBounds(x, y, 150, 30);

@@ -22,7 +22,7 @@ public class GenerateInformations {
 	  */
 	public String[][] infoTeam() {
 
-	     String csvFile = "teamWCS.csv"; //C'était "teamWCS.csv" si ça fonctionne pas chez vous
+	     String csvFile = "others_files/teamWCS.csv"; //C'était "teamWCS.csv" si ça fonctionne pas chez vous
 	     String line = "";
 	     String cvsSplitBy = ";";
 	     int i = 0;

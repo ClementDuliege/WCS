@@ -35,7 +35,7 @@ public class ScorePanel extends JPanel{
 		  
 		 Graphics2D g2 = (Graphics2D)g;
 		 try {
-			Image icone2 =  ImageIO.read(new File("score.jpg"));
+			Image icone2 =  ImageIO.read(new File("pictures/score.jpg"));
 			g2.drawImage(icone2,0,0,250,43,this);
 					
 		}catch(IOException exc){

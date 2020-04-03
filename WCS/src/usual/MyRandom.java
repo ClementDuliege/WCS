@@ -1,5 +1,10 @@
 package usual;
 
+/**
+ * This class is used to generate random numbers
+ * @author WCS
+ *
+ */
 public class MyRandom {
 
 	

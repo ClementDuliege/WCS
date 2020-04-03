@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.SortedMap;
-import java.util.TreeMap;
-
 import data.*;
 import usual.*;
 
-
+/**
+ * This is used to simulate a game
+ * @author WCS
+ *
+ */
 public class GameSimulation {
 
 	private int duration;
@@ -84,7 +86,10 @@ public class GameSimulation {
 	}
 
 	
-	
+	/**
+	 * This method start the simulation of one game.
+	 * @param game
+	 */
 	public void play(Game game) {
 		this.game=game;
 		this.duration=-5;
@@ -210,7 +215,7 @@ public class GameSimulation {
 
 
 	/**
-	 * 
+	 * This method define which team get the ball to start
 	 * @return   list of players who get the ball
 	 */
 	public void betweenTwo(){
@@ -233,7 +238,7 @@ public class GameSimulation {
 
 
 	/**
-	 * 
+	 * This method define players who is in game
 	 * @param team 
 	 * @return  a list of players titulars
 	 */
@@ -247,6 +252,12 @@ public class GameSimulation {
 		return playersIn;
 	}
 	
+	
+	/**
+	 * This method define players who is out game
+	 * @param team 
+	 * @return  a list of players titulars
+	 */
 	public ArrayList<Player> getPlayersOutGame(Team team){
 		ArrayList<Player> playersOut = new ArrayList<Player>();
 		for(int i =5;i<10;i++){
@@ -256,7 +267,11 @@ public class GameSimulation {
 		return playersOut;
 	}
 
-
+	/**
+	 * This method calculates the succes of one shot
+	 * @param teamHadBall
+	 * @param playerHadBall
+	 */
 	public void shot(ArrayList<Player> teamHadBall, Player playerHadBall) {
 		ArrayList<Player> teamDontHadBall = otherTeam(teamHadBall);
 		int kindOfShot = MyRandom.getIntIntoMinMax(1, 100);
@@ -329,7 +344,7 @@ public class GameSimulation {
 
 	
 	/**
-	 * 
+	 * This method create a changment of players
 	 * @param players
 	 * @param team 
 	 * @param duration
@@ -369,7 +384,10 @@ public class GameSimulation {
 	}
 	
 
-
+	/**
+	 * This method calculates the succes of one free throw
+	 * @param playerHadBall
+	 */
 	public void freeThrow(Player playerHadBall) {
 		float succesRate = playerHadBall.getFreeThrows() * MyRandom.getFloatIntoMinMax((float)1.1,(float)1.3) ;
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
@@ -391,7 +409,7 @@ public class GameSimulation {
 	
 	
 	/**
-	 * 
+	 * This method return the other team
 	 * @param team team who is already choosed
 	 * @game game 
 	 * @return the other team in the game
@@ -403,7 +421,11 @@ public class GameSimulation {
 		return playersInGameTeam1;
 	}
 	
-
+	/**
+	 * This method calculates the succes of one pass
+	 * @param teamHadBall
+	 * @return
+	 */
 	public boolean pass(ArrayList <Player> teamHadBall) {
 		
 		int destinatorPlayerIndex = MyRandom.getIntIntoMinMax(0, 4);
@@ -443,6 +465,7 @@ public class GameSimulation {
 	}
 	
 	/**
+	 * This method calculates the action (shot,pass,dribble,changment)
 	 * @return what action will happen
 	 */
 	public int chooseActionToDo(int max,int actionTime) {
@@ -514,6 +537,10 @@ public class GameSimulation {
 	
 	
 	//TODO 1 si il a marqué
+	/**
+	 * This method calculates the succes of one shot of the team
+	 * @param teamHadBall
+	 */
 	public void teamFreeThrow(Team teamHadBall) {
 		float succesRate = teamHadBall.getFreeThrows() * teamHadBall.getForm() * MyRandom.getFloatIntoMinMax((float)0.9,(float)1.1) ;
 		float lessThan = MyRandom.getFloatIntoMinMax(0, 100);
@@ -522,6 +549,12 @@ public class GameSimulation {
 		}
 	}
 	
+	
+	/**
+	 * This method calculates the succes of one pass of the team
+	 * @param teamHadBall
+	 * @return
+	 */
 	public boolean teamPass(Team teamHadBall) {
 		
 		Team teamDontHadBall = otherTeam2(teamHadBall);

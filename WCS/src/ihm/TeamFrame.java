@@ -115,7 +115,7 @@ public class TeamFrame extends JFrame {
 		     //Handle exception
 		}
 		
-		JLabel flag = new JLabel(new ImageIcon("Drapeau/"+team.getName()+".png"));
+		JLabel flag = new JLabel(new ImageIcon("pictures/Drapeau/"+team.getName()+".png"));
 		flag.setBounds(20, 101, 100, 100);
 		
 		teamsLabel.setFont(freshman);
@@ -339,7 +339,7 @@ public class TeamFrame extends JFrame {
 			 
 			 if(varStatTeam) {
 				 try {
-						Image icone3 = ImageIO.read(new File("pictureTeams/Equipes/"+team.getName()+".png"));//"player.png"
+						Image icone3 = ImageIO.read(new File("pictures/pictureTeams/Equipes/"+team.getName()+".png"));//"player.png"
 						g2.drawImage(icone3,80,125,300,200,this);
 								
 					}catch(IOException exc){
@@ -411,7 +411,7 @@ public class TeamFrame extends JFrame {
 				 
 				 g2.setColor(Color.black);
 				 try {
-					subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("Freshman.ttf")).deriveFont(25f);
+					subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("others_files/Freshman.ttf")).deriveFont(25f);
 			
 				} catch (FontFormatException|IOException e) {
 					// TODO Auto-generated catch block
@@ -423,9 +423,7 @@ public class TeamFrame extends JFrame {
 			 
 			 else {
 				 try {
-					System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
-					Image icone2 = ImageIO.read(new File("pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
-					System.out.print("pictureTeams/"+team.getName()+"/"+player.getName()+".png");
+					Image icone2 = ImageIO.read(new File("pictures/pictureTeams/"+team.getName()+"/"+player.getName()+".png"));//"player.png"
 					g2.drawImage(icone2,125,130,200,200,this);
 							
 				}catch(IOException exc){
@@ -499,7 +497,7 @@ public class TeamFrame extends JFrame {
 				 
 				 g2.setColor(Color.BLACK);
 				 try {
-						subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("BeTrueToYourSchool.ttf")).deriveFont(35f);
+						subscribe = Font.createFont(Font.TRUETYPE_FONT, new File("others_files/BeTrueToYourSchool.ttf")).deriveFont(35f);
 				
 					} catch (FontFormatException|IOException e) {
 						// TODO Auto-generated catch block
