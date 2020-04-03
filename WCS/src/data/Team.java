@@ -2,6 +2,12 @@ package data;
 
 import java.util.ArrayList;
 
+
+/**
+ * Class used to implement a team
+ * @author WCS
+ *
+ */
 public class Team {
 	
 	private String name;  
@@ -22,6 +28,8 @@ public class Team {
 	private int speed;
 	private int form = 1;
 	
+	
+
 	public Team(String name, ArrayList<Player>  players) {
 		this.name = name;
 		this.players = players;
@@ -382,6 +390,11 @@ public class Team {
 	
 	
 	
+	/**
+	 * Generate point of team thanks to players stats.
+	 * @param name name 
+	 *
+	 */
 	public void getStats() {
 		for(Player p : players) {
 			this.attack+= p.getAttack();

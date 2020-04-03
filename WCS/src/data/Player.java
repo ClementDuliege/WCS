@@ -2,6 +2,7 @@ package data;
 
 /**
  * 
+ * Class used to implement the player
  * @author WCS
  *
  */
@@ -25,9 +26,38 @@ public class Player {
 	private int speed;
 	
 	
+	
+	
+	/**
+	 * GroupStage constructor.
+	 * @param name name 
+	 *
+	 */
 	public Player(String name) {
 		this.name = name;
 	}
+	
+	
+	
+	/**
+	 * GroupStage constructor.
+	 * @param name name 
+	 * @param attack 
+	 * @param shot2Pts
+	 * @param shot3Pts
+	 * @param freeThrows
+	 * @param pass
+	 * @param ballHandle
+	 * @param reboundOff
+	 * @param defense
+	 * @param block
+	 * @param steal
+	 * @param reboundDef
+	 * @param strenght
+	 * @param reactionTime
+	 * @param speed
+	 *
+	 */
 	public Player(String name, int attack, int shot2Pts, int shot3Pts, int freeThrows, int pass, int ballHandle,
 			int reboundOff, int defense, int block, int steal, int reboundDef, int strenght, int reactionTime,
 			int speed) {
@@ -56,6 +86,8 @@ public class Player {
 	public int getPosition() {
 		return position;
 	}
+	
+	
 	/**
 	 * @return the position
 	 */
@@ -65,7 +97,7 @@ public class Player {
 			positionString+="Meneur";
 		}
 		else if(position==2) {
-			positionString+="Arrière";
+			positionString+="Arriï¿½re";
 		}
 		else if(position==3) {
 			positionString+="Aillier";

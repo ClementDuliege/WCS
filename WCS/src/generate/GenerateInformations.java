@@ -5,10 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+/**
+ * Class used to get all the informations from the csv file
+ * @author WCS
+ *
+ */
 public class GenerateInformations {
 	
 	public String[][] informationPlayerTeam = new String[32][11];
 	
+	
+	
+	 /**
+	  * Get team information from csv file
+	  */
 	public String[][] infoTeam() {
 
 	     String csvFile = "teamWCS.csv"; //C'était "teamWCS.csv" si ça fonctionne pas chez vous

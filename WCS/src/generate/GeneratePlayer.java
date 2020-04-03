@@ -4,14 +4,20 @@ import java.util.Random;
 import usual.*;
 import data.Player;
 
+
+/**
+ * Class used to generate all the player informations 
+ * @author WCS
+ *
+ */
 public class GeneratePlayer {
 	private Player playerCreated;
 	
 	
-	public GeneratePlayer() {
-	
-	}
-	 
+	 /**
+	  * Generate all stats for a given new name of player
+	  * @return playerCreated 
+	  */
 	public Player generatePlayer(String name,int position) {
 		
 		this.playerCreated=new Player(name);
@@ -36,6 +42,12 @@ public class GeneratePlayer {
 		return playerCreated;
 	}
 	
+	
+
+	 /**
+	  * Generate attack stats for a player
+	  * @return playerCreated 
+	  */
 	public int generateValueAttack() {
 		Random random = new Random();
 		int valueMin=50;
@@ -45,6 +57,10 @@ public class GeneratePlayer {
 	}
 	
 	
+	 /**
+	  * Generate defense stats for a player
+	  * @return playerCreated 
+	  */
 	public int generateValueDefense() {
 		Random random = new Random();
 		int valueMin=0;

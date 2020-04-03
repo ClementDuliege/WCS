@@ -2,6 +2,11 @@ package data;
 
 import java.util.ArrayList;
 
+/**
+ * Class used to implement the GroupStage
+ * @author WCS
+ *
+ */
 public class GroupStage {
 	
 	private String name;
@@ -13,6 +18,16 @@ public class GroupStage {
 	private RankingGroupStage ranking;
 	
 	
+	
+	/**
+	 * GroupStage constructor.
+	 * @param name name 
+	 * @param team1 
+	 * @param team2
+	 * @param team3
+	 * @param team4
+	 *
+	 */
 	public GroupStage(String name, Team team1, Team team2, Team team3, Team team4) {
 		this.name = name;
 		this.team1 = team1;
@@ -36,8 +51,62 @@ public class GroupStage {
 		listGames.add(game3_4);
 		
 	}
-	
-	
+
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+	/**
+	 * @return the team1
+	 */
+	public Team getTeam1() {
+		return team1;
+	}
+
+
+
+	/**
+	 * @return the team2
+	 */
+	public Team getTeam2() {
+		return team2;
+	}
+
+
+
+	/**
+	 * @return the team3
+	 */
+	public Team getTeam3() {
+		return team3;
+	}
+
+
+
+	/**
+	 * @return the team4
+	 */
+	public Team getTeam4() {
+		return team4;
+	}
+
+
+
+	/**
+	 * @return the listGames
+	 */
+	public ArrayList<Game> getGames() {
+		return listGames;
+	}
+
+
 
 	/**
 	 * @return the ranking
@@ -47,62 +116,75 @@ public class GroupStage {
 	}
 
 
-	public String getName() {
-		return name;
-	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Team getTeam1() {
-		return team1;
-	}
 
+
+	/**
+	 * @param team1 the team1 to set
+	 */
 	public void setTeam1(Team team1) {
 		this.team1 = team1;
 	}
 
-	public Team getTeam2() {
-		return team2;
-	}
 
+
+	/**
+	 * @param team2 the team2 to set
+	 */
 	public void setTeam2(Team team2) {
 		this.team2 = team2;
 	}
 
-	public Team getTeam3() {
-		return team3;
-	}
 
+
+	/**
+	 * @param team3 the team3 to set
+	 */
 	public void setTeam3(Team team3) {
 		this.team3 = team3;
 	}
 
-	public Team getTeam4() {
-		return team4;
-	}
 
+
+	/**
+	 * @param team4 the team4 to set
+	 */
 	public void setTeam4(Team team4) {
 		this.team4 = team4;
 	}
 
-	public ArrayList<Game> getGames() {
-		return listGames;
+
+
+	/**
+	 * @param listGames the listGames to set
+	 */
+	public void setListGames(ArrayList<Game> listGames) {
+		this.listGames = listGames;
 	}
 
-	
+
+
+	/**
+	 * @param ranking the ranking to set
+	 */
+	public void setRanking(RankingGroupStage ranking) {
+		this.ranking = ranking;
+	}
+
+
 
 	@Override
 	public String toString() {
-		String value=name+"\n";
-		value+="	1- "+team1.getName()+"\n";
-		value+="	2- "+team2.getName()+"\n";
-		value+="	3- "+team3.getName()+"\n";
-		value+="	4- "+team4.getName()+"\n";
-		return value;
+		return "GroupStage [name=" + name + ", team1=" + team1 + ", team2=" + team2 + ", team3=" + team3 + ", team4="
+				+ team4 + ", listGames=" + listGames + ", ranking=" + ranking + "]";
 	}
-	
 	
 	
 	

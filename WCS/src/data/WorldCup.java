@@ -20,9 +20,7 @@ import process.GameSimulation;
  */
 public class WorldCup {
 
-	/**
-	 * 
-	 */
+
 	private HashMap<String, GroupStage> groupStage1; 
 	private HashMap<String, GroupStage> groupStage2; 
 	private Game[] quarterFinal = new Game[4];
@@ -36,6 +34,11 @@ public class WorldCup {
 	
 	
 	
+	
+	/**
+	 * WorldCup constructor.
+	 *
+	 */
 	public WorldCup() {
 		GenerateTeam gT=new GenerateTeam();
 		this.teams =gT.getTeams();
@@ -81,6 +84,9 @@ public class WorldCup {
 
 
 
+	/**
+	 * Call generating class and teams for groupStage 1
+	 */
 	public void creationGroupStage1() {
 		/////////////////////////////// CREATION GROUPSTAGE 1//////////////////////////////////////////////
 		GenerateGroupStage generateGroupStage=new GenerateGroupStage(teams);
@@ -88,6 +94,9 @@ public class WorldCup {
 		
 	}
 	
+	/**
+	 * Call generating class and teams for groupStage 2
+	 */
 	public void creationGroupStage2() {
 		//////////////////////////////////GET TEAM QUALIFIED GROUPSTAGE 2 ///////////////////////////////
 		ArrayList<Team> teamQualified=new ArrayList<Team>();
@@ -104,6 +113,9 @@ public class WorldCup {
 		
 	}
 	
+	/**
+	 * Simulate all game in groupStage1
+	 */
 	public void simulateGameGroupStage1() {
 		/////////////////////////////  SIMULATE GAME GROUPSTAGE 1////////////////////////////////////////////
 		for (HashMap.Entry<String, GroupStage> pool : groupStage1.entrySet()) {
@@ -128,6 +140,10 @@ public class WorldCup {
 		}
 	}
 	
+	
+	/**
+	 * Simulate all game in groupStage2
+	 */
 	public void simulateGameGroupStage2() {
 		/////////////////////////////  SIMULATE GAME GROUPSTAGE 2////////////////////////////////////////////
 		for (HashMap.Entry<String, GroupStage> pool : groupStage2.entrySet()) {
@@ -155,6 +171,9 @@ public class WorldCup {
 	}
 	
 	
+	/**
+	 * Simulate all game in quarter final
+	 */
 	public void simulationQuarterFinal() {
 		Team team1 = groupStage2.get("GROUPE I").getRanking().getRankingTeams()[0];
 		Team team2 = groupStage2.get("GROUPE J").getRanking().getRankingTeams()[1];
@@ -238,7 +257,9 @@ public class WorldCup {
 	
 
 	
-	
+	/**
+	 * Simulate all game in semi final
+	 */
 	public void simulateSemiFinal() {
 		
 		Team teamWin1, teamWin2, teamLose1, teamLose2;
@@ -280,6 +301,10 @@ public class WorldCup {
 		
 	}
 	
+	
+	/**
+	 * Simulate the small final
+	 */
 	public void simulateSmallFinal() {
 		
 		gameSimulation.play(smallFinalGame);
@@ -295,6 +320,9 @@ public class WorldCup {
 	}
 	
 	
+	/**
+	 * Simulate the final
+	 */
 	public void simulateFinal() {
 		
 		gameSimulation.play(finalGame);

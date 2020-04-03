@@ -3,12 +3,22 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class used to implement the general ranking
+ * @author WCS
+ *
+ */
 public class RankingWorldCup {
 	
 	private Team[] rankingTeams = new Team[32];
 	private HashMap<String, Integer> scoreTeams = new HashMap<String, Integer>();
 	
 	
+	
+	/**
+	 * Constructor RankingGroupStage
+	 * @param teams list of the teams
+	 */
 	public RankingWorldCup(ArrayList<Team> teams) {
 		for(int i = 0; i< teams.size();i++) {
 			scoreTeams.put(teams.get(i).getName(), 0);
@@ -16,6 +26,12 @@ public class RankingWorldCup {
 		}
 	}
 	
+	
+	/**
+	 * Add point to the winning team in the ranking
+	 * @param nameTeam winningteam name
+	 * @param point points to had
+	 */
 	public void addPointWinningTeam(String nameTeam, int point) {
 		int score =scoreTeams.get(nameTeam);
 		score+=point;
@@ -24,6 +40,9 @@ public class RankingWorldCup {
 		
 	}
 	
+	/**
+	 * Refresh general ranking according to team points
+	 */
 	public void refreshRanking() {
 		for(int j =0; j<30;j++) {
 			for(int i = 0; i<31;i++) {
@@ -39,6 +58,8 @@ public class RankingWorldCup {
 		
 	}
 	
+	
+	@Override
 	public String toString() {
 		
 		String value="Ranking\n";

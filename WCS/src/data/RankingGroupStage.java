@@ -2,6 +2,11 @@ package data;
 
 import java.util.HashMap;
 
+/**
+ * Class used to implement the ranking of a groupStage
+ * @author WCS
+ *
+ */
 public class RankingGroupStage {
 	
 	private Team[] rankingTeams = new Team[4];
@@ -10,6 +15,13 @@ public class RankingGroupStage {
 	
 	
 
+	/**
+	 * Constructor RankingGroupStage
+	 * @param team1 first team
+	 * @param team2 second team
+	 * @param team3 third team
+	 * @param team4 fourth team
+	 */
 	public RankingGroupStage(Team team1,Team team2,Team team3,Team team4) {
 		
 		rankingTeams[0]=team1;
@@ -35,7 +47,10 @@ public class RankingGroupStage {
 	}
 
 
-
+	/**
+	 * Add point to the winning team in the ranking
+	 * @param nameTeam winningteam name
+	 */
 	public void addPointWinningTeam(String nameTeam) {
 		int score =scoreTeams.get(nameTeam);
 		score+=3;
@@ -44,6 +59,9 @@ public class RankingGroupStage {
 		
 	}
 	
+	/**
+	 * Refresh ranking according to team points
+	 */
 	public void refreshRanking() {
 		for(int j =0; j<3;j++) {
 			for(int i = 0; i<3;i++) {
@@ -59,6 +77,8 @@ public class RankingGroupStage {
 		
 	}
 	
+	
+	@Override
 	public String toString() {
 		
 		String value="Ranking\n";
@@ -71,9 +91,35 @@ public class RankingGroupStage {
 	}
 
 
-	public HashMap<String,Integer> getScoreTeams(){
+
+	/**
+	 * @return the scoreTeams
+	 */
+	public HashMap<String, Integer> getScoreTeams() {
 		return scoreTeams;
 	}
+
+
+
+	/**
+	 * @param rankingTeams the rankingTeams to set
+	 */
+	public void setRankingTeams(Team[] rankingTeams) {
+		this.rankingTeams = rankingTeams;
+	}
+
+
+
+	/**
+	 * @param scoreTeams the scoreTeams to set
+	 */
+	public void setScoreTeams(HashMap<String, Integer> scoreTeams) {
+		this.scoreTeams = scoreTeams;
+	}
+
+
+
+	
 	
 	
 

@@ -7,6 +7,12 @@ import data.GroupStage;
 import data.Team;
 import usual.MyRandom;
 
+
+/**
+ * Class used to generate the group stages
+ * @author WCS
+ *
+ */
 public class GenerateGroupStage {
 
 	 private GroupStage poolA;
@@ -28,20 +34,19 @@ public class GenerateGroupStage {
 	 private HashMap<String, GroupStage> groupStage2= new HashMap<String, GroupStage>();
 	 private ArrayList<Team> teamsAlreadyChosen;
 
-	public ArrayList<Team> getTeams() {
-		return teams;
-	}
-
-	
-	public GenerateGroupStage(ArrayList<Team> teams) {
+	 
+	 
+	 public GenerateGroupStage(ArrayList<Team> teams) {
 		this.teams = teams;
 	}
+	 
+	 
 	
-	public void setTeams(ArrayList<Team> listTeams) {
-		teams=listTeams;
-	}
-	
-	public  HashMap<String, GroupStage> generateGroupStage1(){
+	 /**
+	  * Generate the first groupStage
+	  *@return groupeStage1
+	  */
+	 public  HashMap<String, GroupStage> generateGroupStage1(){
 		teamsAlreadyChosen=new ArrayList<Team>();
 		
 		poolA=generateOnePool("GROUPE A");
@@ -66,7 +71,13 @@ public class GenerateGroupStage {
 		return groupStage1;
 	}
 	
-public  HashMap<String, GroupStage> generateGroupStage2(){
+	
+	
+	 /**
+	  * Generate the second groupStage
+	  *@return groupeStage2
+	  */
+	 public  HashMap<String, GroupStage> generateGroupStage2(){
 		teamsAlreadyChosen=new ArrayList<Team>();
 		
 		poolI=generateOnePool("GROUPE I");
@@ -85,6 +96,10 @@ public  HashMap<String, GroupStage> generateGroupStage2(){
 		return groupStage2;
 	}
 	
+	 /**
+	  * Generate a fool in the groupStage
+	  *@param name group 
+	  */
 	public GroupStage generateOnePool(String name) {
 	
 		Team groupStageTeam1=selectRandomTeam();
@@ -97,6 +112,11 @@ public  HashMap<String, GroupStage> generateGroupStage2(){
 		
 	}
 	
+	
+	 /**
+	  * Select a team
+	  *@return teamChosen
+	  */
 	public Team selectRandomTeam() {
 		
 		int max=teams.size()-1;
@@ -115,7 +135,10 @@ public  HashMap<String, GroupStage> generateGroupStage2(){
 	}
 	
 	
-	
+	 /**
+	  * Select a team
+	  *@return teamChosen
+	  */
 	public boolean alreadyChosen(Team teamPotentialChosen) {
 		
 		for(Team alreadyChosen : teamsAlreadyChosen ) {
@@ -128,7 +151,41 @@ public  HashMap<String, GroupStage> generateGroupStage2(){
 		
 	}
 
+	/**
+	 * @return the teams
+	 */
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
+
+	/**
+	 * @return the teamsAlreadyChosen
+	 */
+	public ArrayList<Team> getTeamsAlreadyChosen() {
+		return teamsAlreadyChosen;
+	}
+
+	/**
+	 * @param teams the teams to set
+	 */
+	public void setTeams(ArrayList<Team> teams) {
+		this.teams = teams;
+	}
+
+	/**
+	 * @param teamsAlreadyChosen the teamsAlreadyChosen to set
+	 */
+	public void setTeamsAlreadyChosen(ArrayList<Team> teamsAlreadyChosen) {
+		this.teamsAlreadyChosen = teamsAlreadyChosen;
+	}
+
 	
+	
+
+	
+
+	
+
 	
 	 
 	 
