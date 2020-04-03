@@ -228,7 +228,7 @@ public class RankingWorldCupFrame extends JFrame {
 					 g2.drawString(""+rankingWorldCup.getScoreTeams().get(rankingWorldCup.getRankingTeams()[i].getName()), x+250, y+30*(i+3));
 
 					 try {
-							Image icone1 = ImageIO.read(new File("Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
+							Image icone1 = ImageIO.read(new File("pictures/Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
 							
 							g2.drawImage(icone1,x+66,pos+30*(i+3),20,20,this);
 							
@@ -252,7 +252,7 @@ public class RankingWorldCupFrame extends JFrame {
 					 g2.drawString(""+rankingWorldCup.getScoreTeams().get(rankingWorldCup.getRankingTeams()[i].getName()), x+250, y+30*(i-16+3));
 					 
 					 try {
-							Image icone2 = ImageIO.read(new File("Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
+							Image icone2 = ImageIO.read(new File("pictures/Drapeau_rond/"+rankingWorldCup.getRankingTeams()[i].getName()+".png"));
 							
 							g2.drawImage(icone2,x+66,pos+30*(i-16+3),20,20,this);
 							

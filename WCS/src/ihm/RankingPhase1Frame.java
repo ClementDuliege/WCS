@@ -227,10 +227,10 @@ public class RankingPhase1Frame extends JFrame {
 			 Image icone4;
 			 
 			try {
-				icone1 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[0].getName()+".png"));
-				icone2 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[1].getName()+".png"));
-				icone3 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[2].getName()+".png"));
-				icone4 = ImageIO.read(new File("Drapeau_rond/"+group.getRanking().getRankingTeams()[3].getName()+".png"));
+				icone1 = ImageIO.read(new File("pictures/Drapeau_rond/"+group.getRanking().getRankingTeams()[0].getName()+".png"));
+				icone2 = ImageIO.read(new File("pictures/Drapeau_rond/"+group.getRanking().getRankingTeams()[1].getName()+".png"));
+				icone3 = ImageIO.read(new File("pictures/Drapeau_rond/"+group.getRanking().getRankingTeams()[2].getName()+".png"));
+				icone4 = ImageIO.read(new File("pictures/Drapeau_rond/"+group.getRanking().getRankingTeams()[3].getName()+".png"));
 				g2.drawImage(icone1,x+65,y+79,20,20,this);
 				g2.drawImage(icone2,x+65,y+119,20,20,this);
 				g2.drawImage(icone3,x+65,y+159,20,20,this);
